@@ -11,7 +11,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <a href={project.link} target="_blank" rel="noopener noreferrer" className="group">
+    <div className="group">
       <div className="flex h-full flex-col overflow-hidden rounded-md bg-card p-6 transition-all hover:-translate-y-2 hover:shadow-xl">
         <div className="flex justify-between items-center mb-4">
           <Folder className="h-8 w-8 text-primary" />
@@ -23,14 +23,18 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 </a>
               </Button>
             )}
-            <Button variant="ghost" size="icon" asChild>
-              <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="View Project">
-                <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
-              </a>
-            </Button>
+            {project.link && (
+                <Button variant="ghost" size="icon" asChild>
+                <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="View Project">
+                    <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
+                </a>
+                </Button>
+            )}
           </div>
         </div>
-        <h3 className="font-headline text-xl font-bold text-card-foreground transition-colors group-hover:text-primary">{project.title}</h3>
+        <a href={project.link || '#'} target="_blank" rel="noopener noreferrer">
+            <h3 className="font-headline text-xl font-bold text-card-foreground transition-colors group-hover:text-primary">{project.title}</h3>
+        </a>
         <p className="mt-3 flex-grow text-muted-foreground">{project.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tags.map(tag => (
@@ -41,6 +45,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <ProjectEnhancer project={project} />
         </div>
       </div>
-    </a>
+    </div>
   );
 }
