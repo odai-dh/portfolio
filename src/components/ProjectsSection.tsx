@@ -9,11 +9,13 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
     <SectionWrapper id="projects">
         <FadeIn>
-            <div className="text-center">
-                <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">My Projects</h2>
-                <p className="mt-4 text-lg text-muted-foreground">A selection of my work. Feel free to explore.</p>
+            <div className="flex items-center gap-4 mb-12">
+                <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground whitespace-nowrap">
+                    <span className="text-primary font-mono text-2xl">03.</span> Some Things I’ve Built
+                </h2>
+                <div className="w-full h-px bg-border"></div>
             </div>
-            <div className="mt-12 grid gap-8 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project, index) => (
                 <ProjectCard key={index} project={project} />
                 ))}

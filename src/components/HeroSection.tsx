@@ -3,39 +3,27 @@ import { Button } from '@/components/ui/button';
 import { SectionWrapper } from '@/components/SectionWrapper';
 import { FadeIn } from './FadeIn';
 
-type HeroSectionProps = Pick<PortfolioData, 'name' | 'title' | 'subtitle' | 'aboutHtml'>;
+type HeroSectionProps = Pick<PortfolioData, 'name' | 'title' | 'subtitle' | 'email'>;
 
-export function HeroSection({ name, title, subtitle, aboutHtml }: HeroSectionProps) {
+export function HeroSection({ name, title, subtitle, email }: HeroSectionProps) {
   return (
-    <SectionWrapper id="hero" className="pt-24 md:pt-32">
-      <div className="text-center">
-        <FadeIn>
-          <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-            {title}
-          </h1>
-        </FadeIn>
-        <FadeIn delay="duration-700">
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            {subtitle}
-          </p>
-        </FadeIn>
-        <FadeIn delay="duration-1000">
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Button asChild>
-              <a href="#projects">View My Work</a>
-            </Button>
-            <Button variant="outline" asChild>
-              <a href="#contact">Get in Touch</a>
-            </Button>
-          </div>
-        </FadeIn>
-      </div>
-
-      <FadeIn className="mt-16 md:mt-24">
-        <div 
-          className="prose prose-lg mx-auto max-w-2xl text-center text-muted-foreground"
-          dangerouslySetInnerHTML={{ __html: aboutHtml }}
-        />
+    <SectionWrapper id="hero" className="flex min-h-[60vh] flex-col justify-center py-12 md:py-0">
+      <FadeIn>
+        <p className="mb-4 font-mono text-primary">Hi, my name is</p>
+        <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          {name}.
+        </h1>
+        <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-muted-foreground sm:text-5xl lg:text-6xl">
+          {title}.
+        </h2>
+        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+          {subtitle}
+        </p>
+        <div className="mt-10">
+          <Button asChild size="lg">
+            <a href={`mailto:${email}`}>Get In Touch</a>
+          </Button>
+        </div>
       </FadeIn>
     </SectionWrapper>
   );

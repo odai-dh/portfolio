@@ -11,12 +11,20 @@ export type Skill = {
   proficiency: number;
 };
 
+export type Experience = {
+  company: string;
+  title: string;
+  date: string;
+  duties: string[];
+};
+
 export type Project = {
   title: string;
   description: string;
   tags: string[];
   image: string;
   link: string;
+  github?: string;
 };
 
 export type Socials = {
@@ -31,6 +39,7 @@ export type PortfolioData = {
   subtitle: string;
   email: string;
   skills: Skill[];
+  experience: Experience[];
   projects: Project[];
   socials: Socials;
   aboutHtml: string;

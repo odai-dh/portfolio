@@ -50,7 +50,7 @@ export function ProjectEnhancer({ project }: { project: Project }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button variant="link" size="sm" className="p-0 h-auto text-xs">
           <Wand2 className="mr-2 h-4 w-4" /> Enhance with AI
         </Button>
       </DialogTrigger>
