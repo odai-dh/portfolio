@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
 import { MainNav } from '@/components/MainNav';
 import { AboutSection } from '@/components/AboutSection';
+import { ContactSection } from '@/components/ContactSection';
 
 export default async function Home() {
   const portfolioData = await getPortfolioData();
@@ -31,6 +32,7 @@ export default async function Home() {
             <AboutSection aboutHtml={portfolioData.aboutHtml} />
             <ExperienceSection experiences={portfolioData.experience} />
             <ProjectsSection projects={portfolioData.projects} />
+            <ContactSection />
           </main>
           <Footer name={portfolioData.name} />
         </SidebarInset>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Github, Linkedin, Twitter, PanelLeft } from 'lucide-react';
+import { Github, Linkedin, Twitter, PanelLeft, Home, User, Briefcase, Mail, Code } from 'lucide-react';
 import type { Socials } from '@/lib/markdown';
 import { useSidebar } from './ui/sidebar';
 import { Button } from './ui/button';
@@ -10,6 +10,7 @@ const navLinks = [
   { href: '#about', label: 'About', number: '01.' },
   { href: '#experience', label: 'Experience', number: '02.' },
   { href: '#projects', label: 'Projects', number: '03.' },
+  { href: '#contact', label: 'Contact', number: '04.' },
 ];
 
 export function MainNav({ name, socials }: { name: string; socials: Socials }) {
@@ -21,11 +22,13 @@ export function MainNav({ name, socials }: { name: string; socials: Socials }) {
       const sections = navLinks.map(link => document.getElementById(link.href.substring(1)));
       const scrollPosition = window.scrollY + window.innerHeight / 2;
 
+      let currentSection = '';
       for (const section of sections) {
         if (section && scrollPosition >= section.offsetTop) {
-          setActiveLink(`#${section.id}`);
+          currentSection = `#${section.id}`;
         }
       }
+      setActiveLink(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -58,7 +61,10 @@ export function MainNav({ name, socials }: { name: string; socials: Socials }) {
           <a 
             key={label} 
             href={href}
-            onClick={() => setOpenMobile(false)}
+            onClick={() => {
+              setOpenMobile(false);
+              setActiveLink(href);
+            }}
             className={`
               font-mono text-sm
               transition-colors hover:text-primary 

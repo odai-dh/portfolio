@@ -25,6 +25,8 @@ export type Project = {
   image: string;
   link: string;
   github?: string;
+  slug: string;
+  contentHtml: string;
 };
 
 export type Socials = {
@@ -56,8 +58,26 @@ export async function getPortfolioData(): Promise<PortfolioData> {
     .process(matterResult.content);
   const aboutHtml = processedContent.toString();
 
+  const projects = await Promise.all(matterResult.data.projects.map(async (project: any) => {
+    const processedContent = await remark()
+      .use(html)
+      .process(project.content || '');
+    const contentHtml = processedContent.toString();
+    return {
+      ...project,
+      slug: (project.title as string).toLowerCase().replace(/\s+/g, '-'),
+      contentHtml,
+    };
+  }));
+
   return {
     ...matterResult.data,
     aboutHtml,
+    projects,
   } as PortfolioData;
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
+  const portfolioData = await getPortfolioData();
+  return portfolioData.projects.find(p => p.slug === slug);
 }

@@ -31,53 +31,67 @@ experience:
       - "Presented final project to senior leadership at the end of the internship."
 projects:
   - title: "QuantumLeap CRM"
-    description: "A minimal, dark blue theme for VS Code, Sublime Text, and more. An AI-powered CRM that predicts customer churn and suggests engagement strategies."
-    tags:
-      - "Next.js"
-      - "AI"
-      - "Python"
+    description: "An AI-powered CRM that predicts customer churn and suggests engagement strategies."
+    tags: ["Next.js", "AI", "Python"]
     link: "#"
     github: "#"
+    image: "https://placehold.co/1200x630.png"
+    content: |
+      ### Overview
+      QuantumLeap CRM is a cutting-edge customer relationship management tool that leverages artificial intelligence to provide predictive analytics on customer behavior. It helps businesses proactively address potential churn by identifying at-risk customers and suggesting tailored engagement strategies.
+
+      ### Key Features
+      - **Predictive Churn Model**: Utilizes a machine learning model to analyze customer data and predict the likelihood of churn.
+      - **Automated Engagement Suggestions**: Provides actionable recommendations for retaining customers.
+      - **Real-time Dashboard**: A comprehensive dashboard that visualizes key metrics and customer health scores.
+      
+      Built with Next.js for the frontend and a Python backend for the AI components, QuantumLeap CRM is a powerful tool for any business looking to improve customer retention.
   - title: "Stellar eCommerce"
-    description: "A high-performance e-commerce platform with a focus on stellar user experience and conversion optimization. Features real-time inventory and a serverless architecture."
-    tags:
-      - "React"
-      - "Serverless"
-      - "Stripe"
+    description: "A high-performance e-commerce platform with a focus on stellar user experience and conversion optimization."
+    tags: ["React", "Serverless", "Stripe"]
     link: "#"
     github: "#"
+    image: "https://placehold.co/1200x630.png"
+    content: |
+      ### Project Description
+      Stellar eCommerce is a headless e-commerce solution designed for performance and scalability. By leveraging a serverless architecture and a React-based frontend, it delivers a lightning-fast shopping experience.
+
+      ### Technical Details
+      - The frontend is built with React and Next.js, ensuring optimal performance and SEO.
+      - Backend services are deployed as serverless functions, providing auto-scaling and reducing operational costs.
+      - Payments are securely handled through the Stripe API.
   - title: "HealthTrackr"
-    description: "A mobile-first wellness app for tracking fitness goals and nutrition. Integrated with HealthKit and Google Fit for seamless data synchronization."
-    tags:
-      - "React Native"
-      - "Firebase"
-      - "Mobile"
+    description: "A mobile-first wellness app for tracking fitness goals and nutrition. Integrated with HealthKit and Google Fit."
+    tags: ["React Native", "Firebase", "Mobile"]
     link: "#"
     github: "#"
+    image: "https://placehold.co/1200x630.png"
+    content: |
+      HealthTrackr is a comprehensive mobile application that empowers users to take control of their health and wellness. It provides tools for tracking workouts, monitoring nutritional intake, and setting personal fitness goals. With deep integrations with Apple HealthKit and Google Fit, it offers a seamless experience for syncing health data across platforms.
   - title: "CodeCollab"
-    description: "A real-time collaborative code editor with shared workspaces and integrated video chat, built using WebSockets and Monaco Editor."
-    tags:
-      - "WebSockets"
-      - "Node.js"
-      - "Collaboration"
+    description: "A real-time collaborative code editor with shared workspaces and integrated video chat."
+    tags: ["WebSockets", "Node.js", "Collaboration"]
     link: "#"
     github: "#"
+    image: "https://placehold.co/1200x630.png"
+    content: |
+      CodeCollab brings developers together in a shared coding environment. It features a real-time collaborative editor based on the Monaco Editor, persistent workspaces, and integrated video and text chat to facilitate communication. The backend is powered by Node.js and WebSockets to handle the real-time data synchronization.
   - title: "Project 5"
-    description: "A real-time collaborative code editor with shared workspaces and integrated video chat, built using WebSockets and Monaco Editor."
-    tags:
-      - "WebSockets"
-      - "Node.js"
-      - "Collaboration"
+    description: "A real-time collaborative code editor with shared workspaces and integrated video chat."
+    tags: ["WebSockets", "Node.js", "Collaboration"]
     link: "#"
     github: "#"
+    image: "https://placehold.co/1200x630.png"
+    content: |
+      Detailed description for Project 5.
   - title: "Project 6"
-    description: "A real-time collaborative code editor with shared workspaces and integrated video chat, built using WebSockets and Monaco Editor."
-    tags:
-      - "WebSockets"
-      - "Node.js"
-      - "Collaboration"
+    description: "A real-time collaborative code editor with shared workspaces and integrated video chat."
+    tags: ["WebSockets", "Node.js", "Collaboration"]
     link: "#"
     github: "#"
+    image: "https://placehold.co/1200x630.png"
+    content: |
+      Detailed description for Project 6.
 ---
 
 Hello! My name is Alex and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try editing custom Tumblr themes — turns out hacking together a custom reblog button taught me a lot about HTML & CSS!
