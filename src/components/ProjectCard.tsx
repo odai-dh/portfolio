@@ -13,11 +13,10 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="group relative flex h-full flex-col overflow-hidden rounded-md bg-card p-6 transition-all hover:-translate-y-2 hover:shadow-xl">
-      <Link href={`/projects/${project.slug}`} className="after:absolute after:inset-0">
         <div className="flex justify-between items-start mb-4">
-            <div className="flex-grow">
+            <Link href={`/projects/${project.slug}`} className="flex-grow after:absolute after:inset-0 after:content-[''] after:z-0">
                 <Folder className="h-8 w-8 text-primary" />
-            </div>
+            </Link>
             <div className="flex items-center gap-1 z-10">
                 {project.github && (
                 <Button variant="ghost" size="icon" asChild>
@@ -35,10 +34,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 )}
             </div>
         </div>
-        <h3 className="font-headline text-xl font-bold text-card-foreground transition-colors group-hover:text-primary">
-            {project.title}
-        </h3>
-      </Link>
+        <Link href={`/projects/${project.slug}`}>
+            <h3 className="font-headline text-xl font-bold text-card-foreground transition-colors group-hover:text-primary">
+                {project.title}
+            </h3>
+        </Link>
         <p className="mt-3 flex-grow text-muted-foreground">{project.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
             {project.tags.map(tag => (
