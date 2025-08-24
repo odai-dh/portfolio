@@ -1,6 +1,19 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
+
+// Add these separate exports
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 0.6,
+  maximumScale: 5,
+  userScalable: true,
+};
+
+export const themeColor = [
+  { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+  { media: '(prefers-color-scheme: dark)', color: '#111111' }
+];
 
 export const metadata: Metadata = {
   title: 'Odai Dahi | Frontend Developer',
@@ -61,16 +74,6 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#111111' }
-  ],
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
 };
 
 export default function RootLayout({
