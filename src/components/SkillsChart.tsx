@@ -13,7 +13,7 @@ export function SkillsChart({ skills }: { skills: Skill[] }) {
       <CardContent>
         <div className="h-[300px] w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={skills} layout="vertical" margin={{ left: 20, right: 20 }}>
+            <BarChart data={skills} layout="vertical" margin={{ left: 20, right: 20 }} >
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border) / 0.5)" />
               <XAxis type="number" domain={[0, 100]} hide />
               <YAxis

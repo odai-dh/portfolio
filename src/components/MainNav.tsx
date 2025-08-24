@@ -1,6 +1,6 @@
 'use client';
 
-import { Github, Linkedin, Twitter, PanelLeft, Home, User, Briefcase, Mail, Code } from 'lucide-react';
+import { Github, Linkedin, Instagram, PanelLeft, Home, User, Briefcase, Mail, Code } from 'lucide-react';
 import type { Socials } from '@/lib/markdown';
 import { useSidebar } from './ui/sidebar';
 import { Button } from './ui/button';
@@ -85,8 +85,8 @@ export function MainNav({ name, socials }: { name: string; socials: Socials }) {
         <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-primary">
           <Linkedin className="h-5 w-5" />
         </a>
-        <a href={socials.twitter} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-primary">
-          <Twitter className="h-5 w-5" />
+        <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-primary">
+          <Instagram className="h-5 w-5" />
         </a>
       </div>
     </div>

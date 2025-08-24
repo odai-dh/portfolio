@@ -16,6 +16,7 @@ export type Experience = {
   title: string;
   date: string;
   duties: string[];
+  link?: string;
 };
 
 export type Project = {
@@ -32,7 +33,7 @@ export type Project = {
 export type Socials = {
   github: string;
   linkedin: string;
-  twitter: string;
+  instagram: string;
 };
 
 export type PortfolioData = {

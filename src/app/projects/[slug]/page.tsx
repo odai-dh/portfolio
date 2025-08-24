@@ -6,6 +6,8 @@ import { ArrowLeft, ArrowUpRight, Github } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Footer } from '@/components/Footer';
+import { ProjectContentCards } from '@/components/ProjectContentCards';
+import { WebsitePreview } from '@/components/WebsitePreview';
 
 type ProjectPageParams = {
   params: {
@@ -14,7 +16,12 @@ type ProjectPageParams = {
 };
 
 export default async function ProjectPage({ params }: ProjectPageParams) {
-  const project = await getProjectBySlug(params.slug);
+  // Await the params object before using it
+  const resolvedParams = await Promise.resolve(params);
+  const slug = resolvedParams.slug;
+  
+  // Use the resolved slug
+  const project = await getProjectBySlug(slug);
   const portfolioData = await getPortfolioData();
 
   if (!project) {
@@ -65,7 +72,14 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
             </div>
           </header>
 
-          {project.image && (
+          {/* Replace the Image component with WebsitePreview */}
+          {project.link ? (
+            <WebsitePreview 
+              url={project.link} 
+              title={project.title} 
+              imageUrl={project.image || "https://placehold.co/1200x630.png"} 
+            />
+          ) : project.image ? (
             <div className="mb-8 overflow-hidden rounded-lg border">
               <Image 
                 src={project.image} 
@@ -76,13 +90,9 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                 data-ai-hint="project screenshot"
               />
             </div>
-          )}
+          ) : null}
 
-          <div 
-            className="prose prose-lg max-w-none text-muted-foreground prose-p:mb-4 prose-strong:text-foreground prose-headings:text-foreground prose-a:text-primary hover:prose-a:text-primary/80"
-            dangerouslySetInnerHTML={{ __html: project.contentHtml }}
-          />
-
+          <ProjectContentCards contentHtml={project.contentHtml} />
         </article>
       </main>
       <Footer name={portfolioData.name} />
