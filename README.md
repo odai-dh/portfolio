@@ -8,11 +8,6 @@
 - [Getting Started](#-getting-started)
 - [Customization](#-customization)
 - [Project Structure](#-project-structure)
-- [Deployment](#-deployment)
-- [Performance](#-performance)
-- [License](#-license)
-- [Contact](#-contact)
-- [Acknowledgments](#-acknowledgments)
 
 ## ✨ Features
     💻 Clean, modern design with smooth animations
