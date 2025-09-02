@@ -108,3 +108,31 @@ export async function generateStaticParams() {
     slug: project.slug,
   }));
 }
+
+export async function generateMetadata({ params }: ProjectPageParams) {
+  const resolvedParams = await Promise.resolve(params);
+  const slug = resolvedParams.slug;
+  const project = await getProjectBySlug(slug);
+
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+    };
+  }
+
+  return {
+    title: `${project.title} | Odai Dahi`,
+    description: project.description || `${project.title} - A project by Odai Dahi`,
+    openGraph: {
+      title: `${project.title} | Odai Dahi Portfolio`,
+      description: project.description || `${project.title} - A project by Odai Dahi`,
+      images: project.image ? [project.image] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${project.title} | Odai Dahi`,
+      description: project.description || `${project.title} - A project by Odai Dahi`,
+      images: project.image ? [project.image] : [],
+    },
+  };
+}

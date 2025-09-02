@@ -23,14 +23,14 @@ export const metadata: Metadata = {
   creator: 'Odai Dahi',
   publisher: 'Odai Dahi',
   robots: 'index, follow',
-  metadataBase: new URL('https://yourdomain.com'), // Replace with your actual domain
+  metadataBase: new URL('https://www.odaidh.dev'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://yourdomain.com',
+    url: 'https://www.odaidh.dev',
     title: 'Odai Dahi | Frontend Developer Portfolio',
     description: 'Frontend developer specializing in React, TypeScript, and modern web technologies.',
     siteName: 'Odai Dahi Portfolio',
