@@ -12,7 +12,7 @@ socials:
 experience:
   - company: "Sportly"
     title: "Frontend Developer Intern"
-    date: "Jun 2025 – Mar 2026"
+    date: "Jun 2025 – Present"
     link: "https://sportly.se/"
     duties:
       - "Contributing to frontend development of a sports tech platform."
