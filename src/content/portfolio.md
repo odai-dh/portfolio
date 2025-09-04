@@ -1,6 +1,6 @@
 ---
 name: "Odai Dahi"
-title: "Frontend Developer Student"
+title: "Frontend Developer"
 subtitle: "Frontend developer student at Hyper Island, passionate about building responsive, user-friendly, and accessible web applications. Exploring fullstack development with Node.js, Express, and MongoDB."
 email: "odai.dahi@hyperisland.se"
 socials:
@@ -173,6 +173,6 @@ projects:
 Hello! My name is Odai and I enjoy creating digital experiences that are intuitive and engaging.  
 At Hyper Island, I’ve worked with JavaScript, React, Next.js, TypeScript, TailwindCSS, and explored backend tools like Node.js, Express, and MongoDB.  
 
-I’ve collaborated in cross-functional teams using Agile and Design Thinking methods, building projects like an e-commerce platform, a movie trailer player, a school website for Litorina Folkhögskola, and a startup concept for a haircut booking app.  
+I’ve collaborated in cross-functional teams using Agile and Design Thinking methods, building projects like an e-commerce platform, movie trailer player, school website for Litorina Folkhögskola, and a startup concept for a haircut booking app.  
 
 I’m currently looking forward to growing as a **Frontend Developer** during my search for an internship.
