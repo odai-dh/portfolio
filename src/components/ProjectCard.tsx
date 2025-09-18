@@ -3,7 +3,7 @@
 import type { Project } from '@/lib/markdown';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowUpRight, Folder, Github } from 'lucide-react';
+import { ArrowUpRight, Folder, Github, Figma } from 'lucide-react';
 import Link from 'next/link';
 
 interface ProjectCardProps {
@@ -12,24 +12,31 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="group relative flex h-full flex-col overflow-hidden rounded-md bg-card p-6 transition-all hover:-translate-y-2 hover:shadow-xl">
+   <div className="group relative flex h-full flex-col overflow-hidden rounded-md bg-card p-6 transition-all hover:-translate-y-2 hover:shadow-xl">
         <div className="flex justify-between items-start mb-4">
             <Link href={`/projects/${project.slug}`} className="flex-grow after:absolute after:inset-0 after:content-[''] after:z-0">
                 <Folder className="h-8 w-8 text-primary" />
             </Link>
             <div className="flex items-center gap-1 z-10">
-                {project.github && (
-                <Button variant="ghost" size="icon" asChild>
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub link" onClick={(e) => e.stopPropagation()}>
-                        <Github className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
-                    </a>
-                </Button>
+                {project.figma && (
+                    <Button variant="ghost" size="icon" asChild>
+                        <a href={project.figma} target="_blank" rel="noopener noreferrer" aria-label="Figma design" onClick={(e) => e.stopPropagation()}>
+                            <Figma className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
+                        </a>
+                    </Button>
+                )}
+                {project.github && project.github !== '#' && (
+                    <Button variant="ghost" size="icon" asChild>
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub link" onClick={(e) => e.stopPropagation()}>
+                            <Github className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
+                        </a>
+                    </Button>
                 )}
                 {project.link && (
                     <Button variant="ghost" size="icon" asChild>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="External project link" onClick={(e) => e.stopPropagation()}>
-                        <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
-                    </a>
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="External project link" onClick={(e) => e.stopPropagation()}>
+                            <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
+                        </a>
                     </Button>
                 )}
             </div>

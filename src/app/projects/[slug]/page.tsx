@@ -51,8 +51,8 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                   <Badge key={tag} variant="secondary" className="text-sm font-mono">{tag}</Badge>
                 ))}
               </div>
-              <div className="flex items-center gap-2">
-                {project.github && (
+               <div className="flex items-center gap-2">
+                {project.github && project.github !== '#' && (
                   <Button variant="outline" size="sm" asChild>
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
                       <Github className="mr-2" />
@@ -60,11 +60,19 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                     </a>
                   </Button>
                 )}
-                {project.link && (
+                {project.figma && (
+                  <Button variant="outline" size="sm" asChild>
+                    <a href={project.figma} target="_blank" rel="noopener noreferrer">
+                      <ArrowUpRight className="mr-2" />
+                      Figma Design
+                    </a>
+                  </Button>
+                )}
+                {project.link && project.link !== '#' && (
                   <Button variant="outline" size="sm" asChild>
                     <a href={project.link} target="_blank" rel="noopener noreferrer">
                       <ArrowUpRight className="mr-2" />
-                      Live Demo
+                      {project.figma ? 'Live Prototype' : 'Live Demo'}
                     </a>
                   </Button>
                 )}
@@ -73,7 +81,21 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
           </header>
 
           {/* Replace the Image component with WebsitePreview */}
-          {project.link ? (
+           {project.figma && project.link && project.link.includes('figma.com/proto') ? (
+            <div className="mb-8">
+              <div className="rounded-lg border bg-muted/50 p-6 text-center">
+                <p className="mb-4 text-sm text-muted-foreground">
+                  Interactive Figma Prototype - Click to view and interact
+                </p>
+                <Button asChild size="lg">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    <ArrowUpRight className="mr-2" />
+                    Open Figma Prototype
+                  </a>
+                </Button>
+              </div>
+            </div>
+          ) : project.link ? (
             <WebsitePreview 
               url={project.link} 
               title={project.title} 
@@ -91,7 +113,6 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
               />
             </div>
           ) : null}
-
           <ProjectContentCards contentHtml={project.contentHtml} />
         </article>
       </main>

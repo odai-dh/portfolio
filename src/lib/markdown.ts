@@ -26,6 +26,7 @@ export type Project = {
   image: string;
   link: string;
   github?: string;
+  figma?: string;
   slug: string;
   contentHtml: string;
 };

@@ -128,6 +128,33 @@ projects:
 
       ### Learning Outcome
       This project gave me hands-on experience with **3D rendering, VR interactions, and WebXR integration**, combining creative design with technical implementation.
+  - title: "myHealth ID Digital Healthcare App"
+    description: "A responsive UX/UI design for a digital healthcare platform where users can manage appointments, prescriptions, and family health cases."
+    tags: ["Figma", "UX/UI Design", "Prototyping", "User Research"]
+    link: "https://www.figma.com/proto/03juTRyTDZDbuKr9cbY18k/myHealth-ID?node-id=1-4&p=f&m=draw&scaling=scale-down&content-scaling=fixed&page-id=0%3A1"
+    figma: "https://www.figma.com/file/03juTRyTDZDbuKr9cbY18k/myHealth-ID"
+    github: "#"
+    image: "https://placehold.co/1200x630.png"
+    content: |
+      ### Overview
+      **myHealth ID** is a digital healthcare UX/UI concept designed to simplify the way individuals and guardians access and manage healthcare services.  
+      The platform enables users to book appointments, request care, manage prescriptions, and switch between profiles (such as for children under 13).
+
+      ### Design Process
+      - **User Research**: Identified primary personas like busy parents and young adults managing their health independently.
+      - **Wireframing**: Created low-fidelity sketches to map out key flows (e.g., selecting patient, starting new case, viewing health card).
+      - **Prototyping**: Built interactive prototypes in **Figma**, emphasizing simplicity, clarity, and accessibility.
+      - **Visual Design**: Applied a clean, health-oriented color palette and icon system for intuitive navigation.
+      - **Usability Testing**: Collected early feedback from peers and iterated to improve information hierarchy and mobile usability.
+
+      ### Tools Used
+      - **Figma** for wireframing, prototyping, and visual design
+      - **Design Tokens** and components for consistency
+      - **Auto Layout** and variants for responsive behavior
+
+      ### Learning Outcome
+      This project deepened my understanding of user-centered healthcare design, mobile-first layout strategy, and the importance of managing multiple user personas (e.g., adult + child view).  
+      It also strengthened my skills in design systems, user flow mapping, and presenting a seamless digital experience for a sensitive and important use case like health management.
   - title: "HyperKart"
     description: "A Mario Kart–inspired tournament website built with HTML, CSS, and JavaScript."
     tags: ["HTML", "CSS", "JavaScript", "Team Project"]
