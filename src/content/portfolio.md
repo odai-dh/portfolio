@@ -10,9 +10,18 @@ socials:
 
 
 experience:
+  - company: "Aeoflo"
+    title: "Frontend Developer Intern"
+    date: "Sep 2025 - Present"
+    link: "https://aeoflo.com/"
+    duties:
+      - "Developed a production-ready Shopify app with React + Remix for AI visibility auditing."
+      - "Built modular, reusable components and advanced features like audits, OAuth, and Quick Fix automation."
+      - "Delivered a bilingual, role-based UI with real-time API integration, error handling, and Shopify API tools."
+
   - company: "Sportly"
     title: "Frontend Developer Intern"
-    date: "Jun 2025 – Present"
+    date: "Jun 2025 – Oct 2025"
     link: "https://sportly.se/"
     duties:
       - "Contributing to frontend development of a sports tech platform."
