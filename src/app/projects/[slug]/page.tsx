@@ -19,7 +19,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
   // Await the params object before using it
   const resolvedParams = await Promise.resolve(params);
   const slug = resolvedParams.slug;
-  
+
   // Use the resolved slug
   const project = await getProjectBySlug(slug);
   const portfolioData = await getPortfolioData();
@@ -51,7 +51,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                   <Badge key={tag} variant="secondary" className="text-sm font-mono">{tag}</Badge>
                 ))}
               </div>
-               <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 {project.github && project.github !== '#' && (
                   <Button variant="outline" size="sm" asChild>
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
@@ -81,7 +81,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
           </header>
 
           {/* Replace the Image component with WebsitePreview */}
-           {project.figma && project.link && project.link.includes('figma.com/proto') ? (
+          {project.figma && project.link && project.link.includes('figma.com/proto') ? (
             <div className="mb-8">
               <div className="rounded-lg border bg-muted/50 p-6 text-center">
                 <p className="mb-4 text-sm text-muted-foreground">
@@ -96,17 +96,17 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
               </div>
             </div>
           ) : project.link ? (
-            <WebsitePreview 
-              url={project.link} 
-              title={project.title} 
-              imageUrl={project.image || "https://placehold.co/1200x630.png"} 
+            <WebsitePreview
+              url={project.link}
+              title={project.title}
+              imageUrl={project.image || "https://placehold.co/1200x630.png"}
             />
           ) : project.image ? (
             <div className="mb-8 overflow-hidden rounded-lg border">
-              <Image 
-                src={project.image} 
-                alt={project.title} 
-                width={1200} 
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={1200}
                 height={630}
                 className="w-full object-cover"
                 data-ai-hint="project screenshot"
@@ -122,14 +122,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
 }
 
 // This function is needed for Next.js to know which slugs are available at build time.
-export async function generateStaticParams() {
-  const portfolioData = await getPortfolioData();
- 
-  return portfolioData.projects.map((project) => ({
-    slug: project.slug,
-  }));
-}
-
+// ...existing code...
 export async function generateMetadata({ params }: ProjectPageParams) {
   const resolvedParams = await Promise.resolve(params);
   const slug = resolvedParams.slug;
@@ -144,16 +137,34 @@ export async function generateMetadata({ params }: ProjectPageParams) {
   return {
     title: `${project.title} | Odai Dahi`,
     description: project.description || `${project.title} - A project by Odai Dahi`,
+    alternates: {
+      canonical: `/projects/${slug}`,
+    },
     openGraph: {
+      type: 'article',
+      locale: 'en_US',
+      url: `https://www.odaidh.dev/projects/${slug}`,
       title: `${project.title} | Odai Dahi Portfolio`,
       description: project.description || `${project.title} - A project by Odai Dahi`,
-      images: project.image ? [project.image] : [],
+      siteName: 'Odai Dahi Portfolio',
+      images: project.image ? [
+        {
+          url: project.image,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        }
+      ] : [],
+      publishedTime: new Date().toISOString(),
+      authors: ['Odai Dahi'],
+      tags: project.tags,
     },
     twitter: {
       card: 'summary_large_image',
       title: `${project.title} | Odai Dahi`,
       description: project.description || `${project.title} - A project by Odai Dahi`,
       images: project.image ? [project.image] : [],
+      creator: '@odaidh', // Add your Twitter handle if you have one
     },
   };
 }

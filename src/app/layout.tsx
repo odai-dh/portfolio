@@ -90,6 +90,32 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet" />
+
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Odai Dahi",
+              "url": "https://www.odaidh.dev",
+              "jobTitle": "Frontend Developer",
+              "description": "Frontend developer specializing in React, TypeScript, and modern web technologies.",
+              "image": "https://www.odaidh.dev/og-image.png",
+              "sameAs": [
+                "https://github.com/odai-dh",
+                "https://www.linkedin.com/in/odai-dahi/",
+                "https://www.instagram.com/odai.dh1"
+              ],
+              "knowsAbout": ["React", "TypeScript", "Next.js", "TailwindCSS", "Web Development"],
+              "alumniOf": {
+                "@type": "Organization",
+                "name": "Hyper Island"
+              }
+            })
+          }}
+        />
       </head>
       <body className="font-body antialiased">
         {children}
