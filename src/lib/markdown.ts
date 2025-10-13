@@ -35,6 +35,7 @@ export type Socials = {
   github: string;
   linkedin: string;
   instagram: string;
+  tiktok?: string;
 };
 
 export type PortfolioData = {
