@@ -1,12 +1,13 @@
 ---
 name: "Odai Dahi"
 title: "Frontend Developer"
-subtitle: "Frontend developer student at Hyper Island, passionate about building responsive, user-friendly, and accessible web applications. Exploring fullstack development with Node.js, Express, and MongoDB."
+subtitle: "Building modern, accessible web experiences with React, TypeScript, and Tailwind, currently interning at Aeoflo and studying Frontend Development at Hyper Island."
 email: "odai.dahi@hyperisland.se"
 socials:
   github: "https://github.com/odai-dh"
   linkedin: "https://www.linkedin.com/in/odai-dahi/"
   instagram: "https://www.instagram.com/odai.dh1"
+  tiktok: "https://www.tiktok.com/@limonboy96"
 
 
 experience:
@@ -206,9 +207,12 @@ projects:
       Stay tuned — the full story is coming soon.
 ---
 
-Hello! My name is Odai and I enjoy creating digital experiences that are intuitive and engaging.  
-At Hyper Island, I’ve worked with JavaScript, React, Next.js, TypeScript, TailwindCSS, and explored backend tools like Node.js, Express, and MongoDB.  
+Hey, I’m Odai.. a Frontend Developer student at Hyper Island and a current intern at **Aeoflo**, where I’m building real Shopify tools with **React**, **Remix**, and **TypeScript**.
 
-I’ve collaborated in cross-functional teams using Agile and Design Thinking methods, building projects like an e-commerce platform, movie trailer player, school website for Litorina Folkhögskola, and a startup concept for a haircut booking app.  
+Working at Aeoflo has been a crash course in real-world development: debugging complex systems, collaborating with designers and backend engineers, and learning how to turn rough ideas into smooth, production-ready apps.
 
-I’m currently looking forward to growing as a **Frontend Developer** during my search for an internship.
+At Hyper Island, I’ve built everything from a **Next.js e-commerce store** to a **3D space exploration app**,  each project teaching me something new about code, design, and how people experience the web.
+
+I love solving problems that mix creativity and logic,  and when I’m not coding, you’ll probably find me cooking 🍋.
+
+I’m currently looking for new opportunities to keep growing as a **Frontend Developer** and contribute to projects that make people’s digital lives a bit more enjoyable.
