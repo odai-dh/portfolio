@@ -7,11 +7,15 @@ import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger } from '@/compon
 import { MainNav } from '@/components/MainNav';
 import { AboutSection } from '@/components/AboutSection';
 import { ContactSection } from '@/components/ContactSection';
+import { ScrollProgress } from '@/components/ScrollProgress';
+
 
 export default async function Home() {
   const portfolioData = await getPortfolioData();
 
   return (
+    <>
+    <ScrollProgress />
     <SidebarProvider>
       <div className="md:flex">
         <Sidebar className="hidden md:block" collapsible="icon">
@@ -41,5 +45,6 @@ export default async function Home() {
         </Sidebar>
       </div>
     </SidebarProvider>
+    </>
   );
 }
