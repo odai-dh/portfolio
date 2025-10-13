@@ -1,4 +1,3 @@
-import { getProjectBySlug, getPortfolioData } from '@/lib/markdown';
 import { notFound } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -16,11 +15,12 @@ type ProjectPageParams = {
 };
 
 export default async function ProjectPage({ params }: ProjectPageParams) {
-  // Await the params object before using it
+  // Dynamic import to ensure server-only execution
+  const { getProjectBySlug, getPortfolioData } = await import('@/lib/markdown');
+  
   const resolvedParams = await Promise.resolve(params);
   const slug = resolvedParams.slug;
 
-  // Use the resolved slug
   const project = await getProjectBySlug(slug);
   const portfolioData = await getPortfolioData();
 
@@ -80,7 +80,6 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
             </div>
           </header>
 
-          {/* Replace the Image component with WebsitePreview */}
           {project.figma && project.link && project.link.includes('figma.com/proto') ? (
             <div className="mb-8">
               <div className="rounded-lg border bg-muted/50 p-6 text-center">
@@ -121,9 +120,9 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
   );
 }
 
-// This function is needed for Next.js to know which slugs are available at build time.
-// ...existing code...
 export async function generateMetadata({ params }: ProjectPageParams) {
+  const { getProjectBySlug } = await import('@/lib/markdown');
+  
   const resolvedParams = await Promise.resolve(params);
   const slug = resolvedParams.slug;
   const project = await getProjectBySlug(slug);
@@ -164,7 +163,16 @@ export async function generateMetadata({ params }: ProjectPageParams) {
       title: `${project.title} | Odai Dahi`,
       description: project.description || `${project.title} - A project by Odai Dahi`,
       images: project.image ? [project.image] : [],
-      creator: '@odaidh', // Add your Twitter handle if you have one
+      creator: '@odaidh',
     },
   };
+}
+
+export async function generateStaticParams() {
+  const { getPortfolioData } = await import('@/lib/markdown');
+  const portfolioData = await getPortfolioData();
+  
+  return portfolioData.projects.map((project) => ({
+    slug: project.slug,
+  }));
 }
