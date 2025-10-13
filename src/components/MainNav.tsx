@@ -33,7 +33,7 @@ export function MainNav({ name, socials }: { name: string; socials: Socials }) {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); 
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -61,8 +61,8 @@ export function MainNav({ name, socials }: { name: string; socials: Socials }) {
 
       <nav className="my-auto flex flex-col items-center justify-center gap-4">
         {navLinks.map(({ href, label, number }) => (
-          <a 
-            key={label} 
+          <a
+            key={label}
             href={href}
             onClick={() => {
               setOpenMobile(false);
