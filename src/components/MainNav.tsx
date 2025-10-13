@@ -1,9 +1,10 @@
 'use client';
 
-import { Github, Linkedin, Instagram, PanelLeft, Home, User, Briefcase, Mail, Code } from 'lucide-react';
+import { Github, Linkedin, Instagram, PanelLeft } from 'lucide-react';
 import type { Socials } from '@/lib/markdown';
 import { useSidebar } from './ui/sidebar';
 import { Button } from './ui/button';
+import { ThemeToggle } from './ThemeToggle';
 import { useEffect, useState } from 'react';
 
 const navLinks = [
@@ -37,23 +38,25 @@ export function MainNav({ name, socials }: { name: string; socials: Socials }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
   return (
     <div className="flex h-full flex-col p-4">
       <div className="flex items-center justify-between p-2">
         <a href="#hero" className="font-headline text-2xl font-bold text-primary">
           {name.charAt(0)}
         </a>
-        <Button
-          data-sidebar="trigger"
-          variant="ghost"
-          size="icon"
-          className="h-7 w-7 md:hidden"
-          onClick={() => setOpenMobile(false)}
-        >
-          <PanelLeft />
-          <span className="sr-only">Toggle Sidebar</span>
-        </Button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Button
+            data-sidebar="trigger"
+            variant="ghost"
+            size="icon"
+            className="h-7 w-7 md:hidden"
+            onClick={() => setOpenMobile(false)}
+          >
+            <PanelLeft />
+            <span className="sr-only">Toggle Sidebar</span>
+          </Button>
+        </div>
       </div>
 
       <nav className="my-auto flex flex-col items-center justify-center gap-4">
@@ -66,26 +69,29 @@ export function MainNav({ name, socials }: { name: string; socials: Socials }) {
               setActiveLink(href);
             }}
             className={`
-              font-mono text-sm
-              transition-colors hover:text-primary 
+              font-mono text-sm relative
+              transition-all duration-300 hover:text-primary 
               md:flex md:flex-col md:items-center md:gap-1
-              ${activeLink === href ? 'text-primary' : 'text-muted-foreground'}
+              ${activeLink === href ? 'text-primary scale-110' : 'text-muted-foreground'}
             `}
           >
             <span className="text-primary">{number}</span>
             <span>{label}</span>
+            {activeLink === href && (
+              <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-primary animate-in slide-in-from-left duration-300" />
+            )}
           </a>
         ))}
       </nav>
 
       <div className="mt-auto flex justify-center gap-4">
-        <a href={socials.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-primary">
+        <a href={socials.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
           <Github className="h-5 w-5" />
         </a>
-        <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-primary">
+        <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
           <Linkedin className="h-5 w-5" />
         </a>
-        <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-primary">
+        <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
           <Instagram className="h-5 w-5" />
         </a>
       </div>
