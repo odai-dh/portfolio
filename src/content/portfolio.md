@@ -2,7 +2,7 @@
 name: "Odai Dahi"
 title: "Frontend Developer"
 subtitle: "Building modern, accessible web experiences with React, TypeScript, and Tailwind, currently interning at Aeoflo and studying Frontend Development at Hyper Island."
-email: "odai.dahi@hyperisland.se"
+email: "odai@odaidh.dev"
 socials:
   github: "https://github.com/odai-dh"
   linkedin: "https://www.linkedin.com/in/odai-dahi/"

@@ -76,11 +76,11 @@ export function ContactSection() {
             
             <div className="pt-6 border-t border-border">
               <a 
-                href="mailto:odai.dahi@hyperisland.se"
+                href="mailto:odai@odaidh.dev"
                 className="inline-flex items-center gap-3 text-lg text-muted-foreground hover:text-primary transition-all duration-300 group"
               >
                 <Mail className="h-6 w-6 transition-transform group-hover:scale-110 group-hover:rotate-12" />
-                <span className="group-hover:translate-x-1 transition-transform">odai.dahi@hyperisland.se</span>
+                <span className="group-hover:translate-x-1 transition-transform">odai@odaidh.dev</span>
               </a>
             </div>
           </div>
