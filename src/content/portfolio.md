@@ -53,6 +53,49 @@ experience:
       - "Troubleshot hardware and software issues."
       - "Supported digital learning environments."
 projects:
+  - title: "Jeopardy AI"
+    description: "An interactive Jeopardy-style trivia game powered by AI-generated questions using Hugging Face API."
+    tags: ["Next.js", "TypeScript", "Tailwind", "Hugging Face AI", "shadcn/ui", "React"]
+    link: "https://jeopardy-ai.netlify.app/"
+    github: "https://github.com/odai-dh/TrivialTriumph"
+    image: "https://placehold.co/1200x630.png"
+    content: |
+      ### Overview
+      Trivial Triumph is a modern take on the classic Jeopardy game format, featuring **AI-powered question generation** to create unique trivia experiences every time.
+      Players compete by answering questions across multiple categories, with point values ranging from 100 to 500.
+      Built with cutting-edge web technologies and enhanced by AI, this project demonstrates full-stack development with intelligent features.
+
+      ### Features
+      - **AI-Generated Questions**: Uses Hugging Face's Qwen2.5-72B-Instruct model to create unique trivia questions dynamically
+      - **Multiplayer Support**: Up to 8 players can compete simultaneously
+      - **Persistent Game State**: Auto-saves game progress using localStorage
+      - **Modern UI**: Beautiful animations and dark mode support with shadcn/ui components
+      - **Responsive Design**: Works seamlessly across desktop, tablet, and mobile devices
+      - **Interactive Gameplay**: Click question values to reveal clues, award or deduct points
+      - **Custom Categories**: Select from predefined categories or create your own
+
+      ### Tech Stack
+      - Built with **Next.js 15** and **React 19** for modern web performance
+      - Styled with **Tailwind CSS** and **shadcn/ui** component library
+      - AI integration via **Hugging Face Inference API**
+      - Written in **TypeScript** for type safety and better developer experience
+      - State management with React hooks and localStorage persistence
+
+      ### How It Works
+      1. **Setup Phase**: Players add their names and select 5 trivia categories
+      2. **Question Generation**: AI generates 5 questions per category with varying difficulty (100-500 points)
+      3. **Gameplay**: Players select questions from the board, reveal the clue, and answer
+      4. **Scoring**: Points are awarded for correct answers or deducted for incorrect ones
+      5. **Winner**: The player with the highest score at the end wins!
+
+      ### Deployment
+      Deployed on **Netlify** with serverless function support for AI API calls.
+      Features environment variable configuration for secure API key management.
+
+      ### Learning Outcome
+      This project gave me hands-on experience with **AI API integration, real-time state management, localStorage persistence**, and building interactive multiplayer game logic.
+      I learned how to optimize API calls to reduce token usage, implement sequential AI generation with progress tracking, and create an engaging user experience with modern UI/UX patterns.
+      The project also taught me valuable lessons in **error handling, async operations**, and **responsive game design**.
   - title: "E-commerce Platform"
     description: "A full-stack e-commerce application built with Next.js, Node.js/Express, and MongoDB."
     tags: ["Next.js", "TypeScript", "Tailwind", "Node.js", "Express", "MongoDB"]
