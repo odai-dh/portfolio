@@ -1,7 +1,7 @@
 ---
 name: "Odai Dahi"
 title: "Frontend Developer"
-subtitle: "Building modern, accessible web experiences with React, TypeScript, and Tailwind, currently interning at Aeoflo and studying Frontend Development at Hyper Island."
+subtitle: "Frontend Developer student at Hyper Island, currently interning at Aeoflo."
 email: "odai@odaidh.dev"
 socials:
   github: "https://github.com/odai-dh"
@@ -16,22 +16,22 @@ experience:
     date: "Sep 2025 - Present"
     link: "https://aeoflo.com/"
     duties:
-      - "Developed a production-ready Shopify app with React + Remix for AI visibility auditing."
-      - "Built modular, reusable components and advanced features like audits, OAuth, and Quick Fix automation."
-      - "Delivered a bilingual, role-based UI with real-time API integration, error handling, and Shopify API tools."
+      - "Built the company website from scratch with Next.js, TypeScript, and Tailwind CSS, featuring scroll animations and dark mode."
+      - "Refactored a ~4,000-line Shopify app into modular React components with error handling and documentation."
+      - "Developed interactive dashboards with dynamic KPI cards, expandable tables, and Chart.js visualizations for investor presentations."
+      - "Integrated third-party services including HubSpot API and Cloudflare R2 CDN."
 
   - company: "Sportly"
     title: "Frontend Developer Intern"
     date: "Jun 2025 – Oct 2025"
     link: "https://sportly.se/"
     duties:
-      - "Contributing to frontend development of a sports tech platform."
-      - "Implementing responsive UI with React, TypeScript, and TailwindCSS."
-      - "Collaborating in an agile team to deliver new features."
+      - "Built responsive UI components for a sports booking platform using React and TypeScript."
+      - "Worked with designers to implement new features in an agile workflow."
       
   - company: "RAW Comedy Club"
     title: "Event Assistant"
-    date: "Sep 2024 – Present"
+    date: "Sep 2024 – Dec 2025"
     duties:
       - "Supporting event operations to create memorable guest experiences."
       - "Assisting artists, coordinating logistics, and ensuring smooth execution."
@@ -46,7 +46,7 @@ experience:
       - "Planned and optimized staff schedules for efficient workflow."
 
   - company: "Stockholm Stad"
-    title: "IT Host"
+    title: "IT-supportassistent"
     date: "2018 – 2019"
     duties:
       - "Provided technical support to staff and students."
@@ -250,11 +250,11 @@ projects:
       Stay tuned — the full story is coming soon.
 ---
 
-Hey, I’m Odai.. a Frontend Developer student at Hyper Island and a current intern at **Aeoflo**, where I’m building real Shopify tools with **React**, **Remix**, and **TypeScript**.
+Hey, I’m Odai a Frontend Developer student at Hyper Island and a current intern at **Aeoflo**, where I’m building real Shopify tools with **React**, **Remix**, and **TypeScript**.
 
 Working at Aeoflo has been a crash course in real-world development: debugging complex systems, collaborating with designers and backend engineers, and learning how to turn rough ideas into smooth, production-ready apps.
 
-At Hyper Island, I’ve built everything from a **Next.js e-commerce store** to a **3D space exploration app**,  each project teaching me something new about code, design, and how people experience the web.
+At Hyper Island, I’ve built everything from a **Next.js e-commerce store** to a **3D space exploration app** –  each project teaching me something new about code, design, and how people experience the web.
 
 I love solving problems that mix creativity and logic,  and when I’m not coding, you’ll probably find me cooking 🍋.
 

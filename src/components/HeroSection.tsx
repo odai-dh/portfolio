@@ -2,6 +2,13 @@ import type { PortfolioData } from '@/lib/markdown';
 import { Button } from '@/components/ui/button';
 import { SectionWrapper } from '@/components/SectionWrapper';
 import { FadeIn } from './FadeIn';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { ChevronDown } from 'lucide-react';
 
 type HeroSectionProps = Pick<PortfolioData, 'name' | 'title' | 'subtitle' | 'email'>;
 
@@ -19,10 +26,30 @@ export function HeroSection({ name, title, subtitle, email }: HeroSectionProps) 
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
           {subtitle}
         </p>
-        <div className="mt-10">
+        <div className="mt-10 flex flex-wrap gap-4">
           <Button asChild size="lg">
             <a href={`mailto:${email}`}>Get In Touch</a>
           </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button size="lg" variant="outline">
+                Download CV
+                <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem asChild>
+                <a href="/Odai_Dahi_CV_En.pdf" download="Odai_Dahi_CV_En.pdf" className="cursor-pointer">
+                  English (EN)
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="/Odai_Dahi_CV_Sv.pdf" download="Odai_Dahi_CV_Sv.pdf" className="cursor-pointer">
+                  Swedish (SV)
+                </a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </FadeIn>
     </SectionWrapper>
