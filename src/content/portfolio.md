@@ -53,6 +53,102 @@ experience:
       - "Troubleshot hardware and software issues."
       - "Supported digital learning environments."
 projects:
+
+  - title: "Death Calendar"
+    description: "A minimalist iOS app that visualizes your entire life as a grid of dots, making time tangible to encourage intentional living."
+    tags: ["Swift", "SwiftUI", "iOS", "MVVM", "UserDefaults", "Combine"]
+    link: "https://death-calendar-web.netlify.app/"
+    github: "https://github.com/odai-dh/LifeCircle"
+    image: "https://placehold.co/1200x630.png"
+    content: |
+      ### Overview
+      > **Note:** The app is not yet available on the App Store — Apple's $99/year Developer Program fee is a real barrier when you're a broke student. A web preview is live at the link above.
+
+      LifeCircle is an iOS app inspired by the "death calendar" concept, reimagined as a **motivational reflection tool** rather than a morbid reminder.
+      It renders your entire life as a grid of dots — each one representing a year, month, week, or day — filled to show the time you've lived, and outlined to show what remains.
+      The goal is simple: make time feel real, and live it more intentionally.
+
+      ### Features
+      - **Four Time Modes**: Switch between years, months, weeks, and days — rendering grids of up to 29,000+ dots with lazy loading
+      - **Interactive Dot Tap**: Tap any dot to see the exact date range, your age at that moment, and any life events attached to it
+      - **Life Events & Milestones**: Log events across 10 categories (Career, Travel, Family, Health, etc.) with emoji, description, and category color overlays on the grid
+      - **Live Stats Panel**: Collapsible summary showing current age breakdown, total units lived vs. remaining, and a progress bar
+      - **Smooth Onboarding**: First-launch flow captures birthdate and target lifespan with full input validation
+      - **Settings Editor**: Update birthdate or target age at any time — the grid recalculates and re-animates instantly
+      - **Zero Dependencies**: Fully self-contained — no third-party libraries, no backend, no cloud sync required
+
+      ### Tech Stack
+      - Built entirely with **SwiftUI** and **Swift** targeting iOS 15.0+
+      - **MVVM architecture** with `@StateObject`, `@EnvironmentObject`, and `@Published` for reactive state management
+      - **Combine** for observable data flow across the app
+      - **UserDefaults** with **Codable** JSON encoding for lightweight, privacy-first local persistence
+      - Pure function design via a dedicated `TimeCalculator` utility — deterministic, testable, side-effect-free
+
+      ### How It Works
+      1. **Onboarding**: Enter your birthdate and choose a target lifespan (default 80 years)
+      2. **Visualization**: The app calculates every unit of time and renders a scrollable dot grid — orange dots for lived time, white outlines for what's ahead
+      3. **Exploration**: Tap any dot to reveal its date range and any life events you've logged for that period
+      4. **Reflection**: Switch between year/month/week/day views to shift your sense of scale
+      5. **Logging**: Add milestones to your timeline — career moves, travel, relationships — and watch them appear as colored markers on the grid
+
+      ### Architecture Highlights
+      - **Lazy Rendering**: `LazyVStack` and on-demand dot generation keep Days mode (29K+ dots) performant without pre-allocating memory
+      - **Dependency Injection**: Managers are created at the app root and injected via `.environmentObject()` — no singletons
+      - **Single Source of Truth**: `UserSettingsManager` and `LifeEventManager` own all state; views are purely declarative
+      - **Year-Based Calculations**: Time is calculated by calendar alignment, not raw day counts — ensuring leap years and decade boundaries render correctly
+
+      ### Learning Outcomes
+      This project deepened my understanding of **SwiftUI's reactive data model**, particularly how `@Published`, `@StateObject`, and `@EnvironmentObject` interact to build a fully reactive UI without UIKit.
+      I learned how to handle **large dataset rendering** efficiently using lazy stacks and on-demand generation — a pattern directly applicable to any paginated or virtualized list.
+      Building the `TimeCalculator` as a pure-function utility reinforced clean **separation of concerns** and made the logic easy to reason about and test independently.
+      The project also taught me how to design a **dark, minimalist design system** from scratch — typography scales, spacing tokens, and animation curves — without relying on third-party UI libraries.
+  - title: "BuzzyJeopardy"
+    description: "A real-time multiplayer Jeopardy game for parties and game nights, with AI-generated questions and smart answer judging."
+    tags: ["Next.js", "TypeScript", "Tailwind", "Firebase", "Google Gemini", "shadcn/ui", "Framer Motion", "React"]
+    link: ""
+    github: "https://github.com/odai-dh/buzzy-jeopardy"
+    image: "/images/projects/buzzyjeopardy.png"
+    content: |
+      ### Overview
+      > **Want to play with friends or family?** Clone the repo from GitHub, add your own [Google Gemini API key](https://aistudio.google.com/app/apikey) (it's free), and you're good to go.
+
+      BuzzyJeopardy is the next evolution of the Jeopardy game format — rebuilt from the ground up as a **true couch multiplayer experience**.
+      Instead of one screen and one player, every participant joins on their own device, buzzes in live, and competes in real-time.
+      Whether it's a party, a classroom, or a team building night, BuzzyJeopardy turns any room into a game show.
+
+      ### Features
+      - **Real-Time Multiplayer**: Powered by Firebase — all players see updates instantly with no page refreshes
+      - **Buzz-In System**: Players tap a giant BUZZ button to compete for the right to answer first
+      - **AI-Generated Games**: Enter any topic and Google Gemini generates a full 5-category game in one API call
+      - **AI Answer Judging**: Smart validation that accepts typos and paraphrasing — no more arguing over technicalities
+      - **Daily Doubles**: Players wager their own points on special clues for high-stakes moments
+      - **QR Code Join**: Guests scan a QR code to instantly join on their phones — no account needed
+      - **30-Second Timer**: Countdown pressure keeps the game moving and the energy high
+      - **Host Controls**: Dedicated host view to reveal clues, judge answers, and manage the game flow
+      - **Live Scoreboard**: Real-time score tracking visible to everyone throughout the game
+
+      ### Tech Stack
+      - Built with **Next.js 15** and **React** for a fast, modern web experience
+      - **Firebase Firestore** handles real-time game state synced across all devices
+      - **Google Gemini AI** powers both question generation and intelligent answer validation
+      - Styled with **Tailwind CSS** and **shadcn/ui** for a polished dark-themed UI
+      - **Framer Motion** drives smooth animations throughout the game
+      - Written in **TypeScript** for type-safe, maintainable code
+
+      ### How It Works
+      1. **Create**: Host enters a topic (or builds manually) — AI generates the full game board instantly
+      2. **Invite**: Players join via a 6-digit code or QR code scan on their own phones
+      3. **Play**: Host reveals clues, players race to buzz in and submit their answer
+      4. **Judge**: Host marks correct/incorrect, or delegates to the AI judge for tricky answers
+      5. **Win**: The player with the most points when the board is cleared takes the crown
+
+      ### Upgrade from V1
+      This project is a full rethink of my earlier solo Jeopardy clone. The core shift was from a single-device game with localStorage state to a **distributed, device-per-player architecture** using Firebase.
+      I also swapped Hugging Face for Google Gemini and reduced game generation to a single optimized API call — making it faster and more reliable within free-tier limits.
+
+      ### Learning Outcome
+      Building BuzzyJeopardy pushed me into **real-time architecture design** — handling race conditions in buzz-in logic, syncing game state across multiple clients, and separating host vs. player views cleanly.
+      I also deepened my experience with **Firebase Firestore**, **AI prompt engineering** for structured JSON output, and designing a UI that works equally well on a phone in someone's hand and a laptop on a table.
   - title: "Jeopardy AI"
     description: "An interactive Jeopardy-style trivia game powered by AI-generated questions using Hugging Face API."
     tags: ["Next.js", "TypeScript", "Tailwind", "Hugging Face AI", "shadcn/ui", "React"]
