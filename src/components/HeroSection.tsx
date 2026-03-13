@@ -39,12 +39,12 @@ export function HeroSection({ name, title, subtitle, email }: HeroSectionProps) 
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuItem asChild>
-                <a href="/Odai_Dahi_CV_En.pdf" download="Odai_Dahi_CV_En.pdf" className="cursor-pointer">
+                <a href="/OdaiDahi-CV-En.pdf" download="OdaiDahi-CV-En.pdf" className="cursor-pointer">
                   English (EN)
                 </a>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <a href="/Odai_Dahi_CV_Sv.pdf" download="Odai_Dahi_CV_Sv.pdf" className="cursor-pointer">
+                <a href="/OdaiDahi-CV-Sv.pdf" download="OdaiDahi-CV-Sv.pdf" className="cursor-pointer">
                   Swedish (SV)
                 </a>
               </DropdownMenuItem>
