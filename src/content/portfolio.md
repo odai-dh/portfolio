@@ -271,9 +271,8 @@ projects:
       - Styled with **TailwindCSS & DaisyUI**  
       - Fast builds and deployment using **Vite & Netlify**  
 
-      ### Client Feedback
-      *"As project manager/client manager for our collaboration on a redesign project for our website, Odai was the link between us as a client and the Hyper Island design team. His clear and professional communication and excellent interpersonal skills made it easy for us to work together. Dealing with us as a client without any inhouse competency when it comes to website design and management, he was a great communicator and made the process easy. I would recommend Odai for any role involving communication and client management."*  
-      — **Anna Pahle, Chief Executive / Headmaster @Litorina Folkhögskola**  
+      ### My Contribution
+      I worked on building and styling key sections of the site, translating the design team's mockups into responsive, accessible components. The project gave me hands-on experience delivering a real client solution under time constraints while collaborating across design, development, and project management roles.
 
       ### Learning Outcome
       This project gave me hands-on experience with **team collaboration, agile workflows, and delivering a real-world client solution**.
