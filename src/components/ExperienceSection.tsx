@@ -141,12 +141,12 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
                   {/* Duties with staggered animation */}
                   <ul className="space-y-3">
                     {exp.duties.map((duty, i) => (
-                      <li 
-                        key={i} 
+                      <li
+                        key={i}
                         className="flex gap-3 text-muted-foreground group/duty animate-in fade-in slide-in-from-left duration-500"
-                        style={{ 
+                        style={{
                           animationDelay: `${i * 100}ms`,
-                          animationFillMode: 'backwards' 
+                          animationFillMode: 'backwards'
                         }}
                       >
                         <span className="text-primary mt-1 transition-transform group-hover/duty:scale-125 group-hover/duty:translate-x-1">

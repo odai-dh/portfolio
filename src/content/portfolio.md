@@ -1,7 +1,7 @@
 ---
 name: "Odai Dahi"
-title: "Frontend Developer"
-subtitle: "Frontend Developer student at Hyper Island, currently interning at Aeoflo."
+title: "Full Stack Developer"
+subtitle: "Full Stack Developer with a frontend focus — freelancing & open to new opportunities."
 email: "odai@odaidh.dev"
 socials:
   github: "https://github.com/odai-dh"
@@ -13,7 +13,7 @@ socials:
 experience:
   - company: "Aeoflo"
     title: "Frontend Developer Intern"
-    date: "Sep 2025 - Present"
+    date: "Sep 2025 – Apr 2026"
     link: "https://aeoflo.com/"
     duties:
       - "Built the company website from scratch with Next.js, TypeScript, and Tailwind CSS, featuring scroll animations and dark mode."
@@ -26,8 +26,10 @@ experience:
     date: "Jun 2025 – Oct 2025"
     link: "https://sportly.se/"
     duties:
-      - "Built responsive UI components for a sports booking platform using React and TypeScript."
-      - "Worked with designers to implement new features in an agile workflow."
+      - "Helped build the frontend of a sports tech platform using React, TypeScript, and Tailwind CSS."
+      - "Built and improved responsive UI components, ensuring consistency with the design system."
+      - "Collaborated with developers and designers in an agile team to deliver new features."
+      - "Maintained design consistency and usability across the platform while adding new functionality."
       
   - company: "RAW Comedy Club"
     title: "Event Assistant"
@@ -53,6 +55,44 @@ experience:
       - "Troubleshot hardware and software issues."
       - "Supported digital learning environments."
 projects:
+
+  - title: "Aeoflo"
+    description: "As the sole frontend developer at a venture-backed AI analytics startup, built the company website from scratch and a multi-client dashboard platform used by real brands."
+    tags: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Framer Motion", "Chart.js", "HubSpot API", "Cloudflare R2", "Clerk", "Zod", "shadcn/ui"]
+    link: "https://aeoflo-web.netlify.app/"
+    github: "#"
+    image: "https://placehold.co/1200x630.png"
+    content: |
+      ### Overview
+      Aeoflo is a venture-backed AI visibility analytics platform for Shopify merchants — helping brands get discovered by AI search engines like ChatGPT, Gemini, and Perplexity.
+
+      As the **sole frontend developer**, I joined at an early stage and shipped across three major workstreams over 6 months.
+
+      ### Company Website
+      Built the entire marketing website from scratch — 20,000+ lines of code. Features scroll-triggered animations, dark/light mode, a HubSpot booking integration, Cloudflare R2 CDN for image hosting, a blog system with 16+ posts, an animated testimonial marquee, and a full AI visibility audit lead generation form.
+
+      ### Client Analytics Dashboards
+      Designed and built a multi-client AI visibility dashboard platform used by real brands including **Oatly, Stiga, Billhop, Norstedts, CRA-YON, and X-peng**. Key features:
+      - Expandable KPI cards with slide-out analytics panels and backdrop blur
+      - Chart.js doughnut charts and circular gauge indicators
+      - AI model breakdowns per client (ChatGPT, Gemini, Claude, Perplexity)
+      - Category performance tables with conditional column visibility
+      - Scalable JSON-based data architecture — adding a new client requires no component changes
+      - Authenticated project submission flow with Clerk, react-hook-form, and Zod
+
+      ### Shopify App Refactor
+      Inherited a ~4,000-line monolithic Shopify app and refactored it into modular React components with error boundaries, custom hooks, and full documentation. Also built a JSON-LD manager for SEO enhancements and dynamic Shopify asset injection.
+
+      ### Recommendation
+      > "He grew from a talented intern into a dependable developer capable of shipping production-ready features independently. Any team would benefit from his work ethic, technical skill, and positive attitude."
+      >
+      > — **Antoine Abribat**, Co-Founder & COO, Aeoflo AB
+
+      ### Tech Stack
+      Next.js 15/16, React, TypeScript, Tailwind CSS, Framer Motion, Chart.js, shadcn/ui, HubSpot API, Cloudflare R2, Clerk, react-hook-form, Zod, Formspree, JSON data architecture
+
+      ### Learning Outcome
+      This was my deepest production experience to date — shipping real features for real clients, iterating on designs based on stakeholder feedback, and owning the entire frontend independently. I learned how to design scalable data architectures, balance visual polish with performance, and communicate effectively across technical and non-technical boundaries.
 
   - title: "Death Calendar"
     description: "A minimalist iOS app that visualizes your entire life as a grid of dots, making time tangible to encourage intentional living."
@@ -232,7 +272,7 @@ projects:
       - Fast builds and deployment using **Vite & Netlify**  
 
       ### Client Feedback
-      *"As project manager/client manager for our collaboration on a redesign project for our website, Kiattisak was the link between us as a client and the Hyper Island design team. His clear and professional communication and excellent interpersonal skills made it easy for us to work together. Dealing with us as a client without any inhouse competency when it comes to website design and management, he was a great communicator and made the process easy. I would recommend Kiattisak for any role involving communication and client management."*  
+      *"As project manager/client manager for our collaboration on a redesign project for our website, Odai was the link between us as a client and the Hyper Island design team. His clear and professional communication and excellent interpersonal skills made it easy for us to work together. Dealing with us as a client without any inhouse competency when it comes to website design and management, he was a great communicator and made the process easy. I would recommend Odai for any role involving communication and client management."*  
       — **Anna Pahle, Chief Executive / Headmaster @Litorina Folkhögskola**  
 
       ### Learning Outcome
@@ -346,12 +386,10 @@ projects:
       Stay tuned — the full story is coming soon.
 ---
 
-Hey, I’m Odai a Frontend Developer student at Hyper Island and a current intern at **Aeoflo**, where I’m building real Shopify tools with **React**, **Remix**, and **TypeScript**.
+Hey, I’m Odai — a Full Stack Developer who leans frontend, with hands-on experience building real products for startups and clients.
 
-Working at Aeoflo has been a crash course in real-world development: debugging complex systems, collaborating with designers and backend engineers, and learning how to turn rough ideas into smooth, production-ready apps.
+I’ve worked across the stack: from Shopify apps and dashboards at **Aeoflo**, to responsive UIs at **Sportly**, to personal projects spanning **iOS apps**, **AI-powered games**, and **3D web experiences**. Each one taught me something new about code, design, and how people experience the web.
 
-At Hyper Island, I’ve built everything from a **Next.js e-commerce store** to a **3D space exploration app** –  each project teaching me something new about code, design, and how people experience the web.
+Right now I’m taking on **freelance projects** while actively looking for my next full-time role. I love solving problems that mix creativity and logic, and when I’m not coding, you’ll probably find me cooking 🍋.
 
-I love solving problems that mix creativity and logic,  and when I’m not coding, you’ll probably find me cooking 🍋.
-
-I’m currently looking for new opportunities to keep growing as a **Frontend Developer** and contribute to projects that make people’s digital lives a bit more enjoyable.
+If you’re working on something interesting, I’d love to hear about it.
