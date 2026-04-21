@@ -1,5 +1,5 @@
 import { getPortfolioData } from '@/lib/markdown';
-import { HeroSection } from '@/components/HeroSection';
+import { HeroWithGame } from '@/components/HeroWithGame';
 import { ExperienceSection } from '@/components/ExperienceSection';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { Footer } from '@/components/Footer';
@@ -27,7 +27,7 @@ export default async function Home() {
                 <h1 className="font-headline text-2xl font-bold">{portfolioData.name}</h1>
                 <SidebarTrigger />
               </div>
-              <HeroSection
+              <HeroWithGame
                 name={portfolioData.name}
                 title={portfolioData.title}
                 subtitle={portfolioData.subtitle}
