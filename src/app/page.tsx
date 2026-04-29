@@ -1,5 +1,6 @@
 import { getPortfolioData } from '@/lib/markdown';
 import { HeroWithGame } from '@/components/HeroWithGame';
+import { ChatWidget } from '@/components/ChatWidget';
 import { ExperienceSection } from '@/components/ExperienceSection';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { Footer } from '@/components/Footer';
@@ -48,6 +49,7 @@ export default async function Home() {
           </Sidebar>
         </div>
       </SidebarProvider>
+      <ChatWidget />
     </>
   );
 }
