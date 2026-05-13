@@ -118,31 +118,66 @@ export default function RootLayout({
               "description": "Full Stack Developer with a frontend focus, building production apps with Next.js, TypeScript, Node.js, and AI integrations.",
               "image": "https://www.odaidh.dev/og-image.png",
               "email": "mailto:odai@odaidh.dev",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Stockholm",
+                "addressCountry": "SE"
+              },
               "sameAs": [
                 "https://github.com/odai-dh",
                 "https://www.linkedin.com/in/odai-dahi/",
                 "https://www.instagram.com/odai.dh1"
               ],
               "knowsAbout": [
-                "React",
-                "Next.js",
-                "TypeScript",
-                "JavaScript",
-                "Node.js",
-                "Express",
-                "MongoDB",
-                "SQL",
-                "REST APIs",
-                "Tailwind CSS",
-                "SwiftUI",
-                "AI Integration",
-                "Full Stack Development",
-                "Web Development"
+                "React", "Next.js", "TypeScript", "JavaScript", "Node.js",
+                "Express", "MongoDB", "SQL", "REST APIs", "Tailwind CSS",
+                "SwiftUI", "AI Integration", "Full Stack Development", "Web Development"
               ],
+              "hasOccupation": {
+                "@type": "Occupation",
+                "name": "Full Stack Developer",
+                "occupationalCategory": "15-1254.00",
+                "skills": "React, Next.js, TypeScript, Node.js, Express, MongoDB, SQL, Tailwind CSS, SwiftUI, AI integrations (Groq, Gemini, Hugging Face), REST APIs, full-stack feature development",
+                "responsibilities": "Building production web applications, AI-powered features, dashboards, and frontend systems for startups and clients.",
+                "occupationLocation": {
+                  "@type": "City",
+                  "name": "Stockholm"
+                }
+              },
+              "seeks": {
+                "@type": "Demand",
+                "name": "Open to new opportunities",
+                "description": "Open to full-time Full Stack or Frontend Developer roles (remote, hybrid, or Stockholm-based) and freelance web/mobile projects."
+              },
               "alumniOf": {
-                "@type": "Organization",
-                "name": "Hyper Island"
-              }
+                "@type": "EducationalOrganization",
+                "name": "Hyper Island",
+                "url": "https://www.hyperisland.com/",
+                "description": "Code & Collaborate program — project-based education focused on collaborative product development."
+              },
+              "workExperience": [
+                {
+                  "@type": "OrganizationRole",
+                  "roleName": "Frontend Developer Intern",
+                  "startDate": "2025-09",
+                  "endDate": "2026-04",
+                  "worksFor": { "@type": "Organization", "name": "Aeoflo", "url": "https://aeoflo.com/" }
+                },
+                {
+                  "@type": "OrganizationRole",
+                  "roleName": "Frontend Developer Intern",
+                  "startDate": "2025-06",
+                  "endDate": "2025-10",
+                  "worksFor": { "@type": "Organization", "name": "Sportly", "url": "https://sportly.se/" }
+                },
+                {
+                  "@type": "OrganizationRole",
+                  "roleName": "Assistant Restaurant Manager",
+                  "startDate": "2020-03",
+                  "endDate": "2024-08",
+                  "worksFor": { "@type": "Organization", "name": "Max Burgers" }
+                }
+              ]
             })
           }}
         />
