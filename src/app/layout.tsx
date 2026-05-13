@@ -17,9 +17,22 @@ export const themeColor = [
 ];
 
 export const metadata: Metadata = {
-  title: 'Odai Dahi | Frontend Developer',
-  description: 'Frontend developer specializing in React, TypeScript, and modern web technologies. View my portfolio and get in touch.',
-  keywords: ['frontend developer', 'React', 'TypeScript', 'web development', 'portfolio'],
+  title: 'Odai Dahi | Full Stack Developer',
+  description: 'Full Stack Developer with a frontend focus — building production apps with Next.js, TypeScript, Node.js, and AI integrations. Currently freelancing and open to new opportunities.',
+  keywords: [
+    'full stack developer',
+    'frontend developer',
+    'React developer',
+    'Next.js developer',
+    'TypeScript',
+    'Node.js',
+    'AI integration',
+    'web development',
+    'portfolio',
+    'Stockholm developer',
+    'freelance developer',
+    'Odai Dahi',
+  ],
   authors: [{ name: 'Odai Dahi' }],
   creator: 'Odai Dahi',
   publisher: 'Odai Dahi',
@@ -32,22 +45,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.odaidh.dev',
-    title: 'Odai Dahi | Frontend Developer Portfolio',
-    description: 'Frontend developer specializing in React, TypeScript, and modern web technologies.',
+    title: 'Odai Dahi | Full Stack Developer',
+    description: 'Full Stack Developer with a frontend focus — Next.js, TypeScript, Node.js, and AI integrations. Freelancing & open to work.',
     siteName: 'Odai Dahi Portfolio',
     images: [
       {
-        url: '/og-image.png', // Create this 1200x630 image in your public folder
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Odai Dahi - Frontend Developer',
+        alt: 'Odai Dahi — Full Stack Developer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Odai Dahi | Frontend Developer',
-    description: 'Frontend developer specializing in React, TypeScript, and modern web technologies.',
+    title: 'Odai Dahi | Full Stack Developer',
+    description: 'Full Stack Developer with a frontend focus — Next.js, TypeScript, Node.js, and AI integrations.',
     images: ['/og-image.png'],
   },
   icons: {
@@ -101,15 +114,31 @@ export default function RootLayout({
               "@type": "Person",
               "name": "Odai Dahi",
               "url": "https://www.odaidh.dev",
-              "jobTitle": "Frontend Developer",
-              "description": "Frontend developer specializing in React, TypeScript, and modern web technologies.",
+              "jobTitle": "Full Stack Developer",
+              "description": "Full Stack Developer with a frontend focus, building production apps with Next.js, TypeScript, Node.js, and AI integrations.",
               "image": "https://www.odaidh.dev/og-image.png",
+              "email": "mailto:odai@odaidh.dev",
               "sameAs": [
                 "https://github.com/odai-dh",
                 "https://www.linkedin.com/in/odai-dahi/",
                 "https://www.instagram.com/odai.dh1"
               ],
-              "knowsAbout": ["React", "TypeScript", "Next.js", "TailwindCSS", "Web Development"],
+              "knowsAbout": [
+                "React",
+                "Next.js",
+                "TypeScript",
+                "JavaScript",
+                "Node.js",
+                "Express",
+                "MongoDB",
+                "SQL",
+                "REST APIs",
+                "Tailwind CSS",
+                "SwiftUI",
+                "AI Integration",
+                "Full Stack Development",
+                "Web Development"
+              ],
               "alumniOf": {
                 "@type": "Organization",
                 "name": "Hyper Island"
