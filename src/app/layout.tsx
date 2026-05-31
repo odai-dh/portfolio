@@ -18,7 +18,7 @@ export const themeColor = [
 
 export const metadata: Metadata = {
   title: 'Odai Dahi | Full Stack Developer',
-  description: 'Full Stack Developer with a frontend focus — building production apps with Next.js, TypeScript, Node.js, and AI integrations. Currently freelancing and open to new opportunities.',
+  description: 'Full Stack Developer with a frontend focus — building production apps with Next.js, TypeScript, and AI integrations. Freelancing and open to work.',
   keywords: [
     'full stack developer',
     'frontend developer',
