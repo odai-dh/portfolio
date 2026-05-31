@@ -25,7 +25,7 @@ export default async function Home() {
           <SidebarInset>
             <main className="container mx-auto max-w-4xl px-4 py-12 md:px-6 md:py-24">
               <div className="md:hidden mb-8 flex justify-between items-center">
-                <h1 className="font-headline text-2xl font-bold">{portfolioData.name}</h1>
+                <div className="font-headline text-2xl font-bold">{portfolioData.name}</div>
                 <SidebarTrigger />
               </div>
               <HeroWithGame
