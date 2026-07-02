@@ -1,44 +1,44 @@
-# Odai Dahi - Frontend Developer Portfolio
+# Odai Dahi — Full Stack Developer Portfolio
 
 ![Portfolio Preview](/public/og-image.png)
 
-## 📋 Table of Contents
-- [Features](#-features)
-- [Tech Stack](#️-tech-stack)
-- [Getting Started](#-getting-started)
-- [Customization](#-customization)
-- [Project Structure](#-project-structure)
+Live at **[www.odaidh.dev](https://www.odaidh.dev)**
 
 ## ✨ Features
-    💻 Clean, modern design with smooth animations
-    📱 Fully responsive for all device sizes
-    🌓 Dark mode support
-    ⚡ Built with Next.js 14 App Router
-    🔍 SEO optimized with metadata
-    📝 Interactive project showcase with website previews
-    📊 Skills visualization
-    📫 Contact form with email integration via Resend
-    🔄 Tab-based experience timeline
-    ⚙️ Type-safe development with TypeScript
 
+- 🌓 Dark-first design with a light-mode toggle
+- 🎮 **Skill·Boy** — a hidden Game Boy–style Snake game where eating skills levels up your developer title
+- 🤖 **AI chat assistant** — ask about Odai's work (Groq-powered, rate-limited, 5 questions/day)
+- 📝 Markdown-driven content — one file (`src/content/portfolio.md`) powers the whole site
+- 🖼️ Project pages with live website previews (sandboxed iframes with screenshot fallback)
+- 📫 Contact form with validation (React Hook Form + Zod) and email delivery via Resend
+- 📄 Multilingual CV download (English & Swedish)
+- 🔍 Deep SEO: Person JSON-LD, dynamic sitemap & robots, Open Graph/Twitter cards, `llms.txt` for AI agents, IndexNow submission
+- ⚡ Statically generated project pages, scroll-progress bar, section-aware navigation
 
 ## 🛠️ Tech Stack
-    Framework: Next.js 14
-    Language: TypeScript
-    Styling: Tailwind CSS
-    UI Components: shadcn/ui
-    Form Handling: React Hook Form & Zod
-    Email Service: Resend
-    Animation: Custom fade-in components
-    Deployment: Vercel
+
+| Concern | Choice |
+|---|---|
+| Framework | **Next.js 16** (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS + shadcn/ui (Radix) |
+| Icons | lucide-react |
+| Content | Markdown + front-matter (`gray-matter`, `remark`) |
+| Forms | React Hook Form + Zod |
+| Email | Resend |
+| AI chat | Groq SDK + Upstash Redis (rate limiting) |
+| Deployment | **Netlify** (`@netlify/plugin-nextjs`) |
 
 ## 🚀 Getting Started
+
 ### Prerequisites
 
-    Node.js 18+
-    npm or yarn
+- Node.js 18+
+- npm
 
 ### Installation
+
 1. Clone the repository:
 
 ```bash
@@ -52,64 +52,61 @@ cd portfolio
 npm install
 ```
 
-3. Create a .env.local file and add your Resend API key:
+3. Create a `.env.local` file:
 
-RESEND_API_KEY=your_resend_api_key
+```bash
+RESEND_API_KEY=...            # contact form email delivery
+GROQ_API_KEY=...              # AI chat assistant
+UPSTASH_REDIS_REST_URL=...    # chat rate limiting
+UPSTASH_REDIS_REST_TOKEN=...  # chat rate limiting
+```
 
 4. Run the development server:
+
 ```bash
 npm run dev
 ```
 
-5. Open http://localhost:3000 in your browser.
+5. Open http://localhost:3000
 
+## 📜 Scripts
+
+| Script | What it does |
+|---|---|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Lint |
+| `npm run typecheck` | TypeScript check (`tsc --noEmit`) — also runs in the Netlify build |
+| `npm run indexnow` | Submit the live sitemap's URLs to IndexNow (run after deploy) |
 
 ## 🔧 Customization
-### Content
 
-Update your portfolio content by editing the Markdown files in content:
+All content lives in **`src/content/portfolio.md`**: the YAML front-matter defines `name`, `title`, `subtitle`, `email`, `socials`, `experience[]`, and `projects[]` (with tags, links, optional Figma link, and per-project Markdown content); the Markdown body below the front-matter is the About section. Edit that one file to change the site.
 
-portfolio.md: Main content including projects, skills, and experiences
-
-### Styling
-
-The site uses Tailwind CSS for styling. Customize the theme in tailwind.config.js.
+Theme colors are HSL CSS variables in `src/app/globals.css`; Tailwind config in `tailwind.config.ts`.
 
 ## 📁 Project Structure
-```bash
+
+```
 portfolio/
-├── public/               # Static assets
-│   ├── favicon.ico       # Site favicon
-│   ├── og-image.png      # Open Graph image
-│   └── site.webmanifest  # PWA manifest
+├── public/                    # static assets, SEO files (llms.txt, verification), CVs
+├── scripts/indexnow.mjs       # IndexNow submission
 ├── src/
-│   ├── app/              # App router pages
-│   │   ├── actions.ts    # Server actions
-│   │   ├── globals.css   # Global styles
-│   │   ├── layout.tsx    # Root layout
-│   │   └── page.tsx      # Home page
-│   ├── components/       # React components
-│   │   ├── ContactSection.tsx
-│   │   ├── ExperienceSection.tsx
-│   │   ├── FadeIn.tsx
-│   │   ├── Footer.tsx
-│   │   ├── MainNav.tsx
-│   │   ├── ProjectContentCards.tsx
-│   │   ├── SectionWrapper.tsx
-│   │   ├── SkillsChart.tsx
-│   │   ├── WebsitePreview.tsx
-│   │   └── ui/           # UI components
-│   ├── content/          # Markdown content
-│   │   └── portfolio.md  # Portfolio content
-│   ├── hooks/            # Custom React hooks
-│   │   └── use-toast.ts  # Toast notifications
-│   └── lib/              # Utility functions
-│       └── markdown.ts   # Markdown parser
-├── .env.local            # Environment variables (create this)
-├── next.config.js        # Next.js configuration
-├── package.json          # Dependencies
-├── tailwind.config.js    # Tailwind CSS configuration
-└── tsconfig.json         # TypeScript configuration
+│   ├── app/
+│   │   ├── layout.tsx         # metadata, JSON-LD, providers
+│   │   ├── page.tsx           # home page
+│   │   ├── actions.ts         # contact form server action
+│   │   ├── robots.ts          # dynamic robots.txt
+│   │   ├── sitemap.ts         # dynamic sitemap.xml
+│   │   ├── api/chat/route.ts  # AI chat endpoint
+│   │   └── projects/[slug]/   # project detail pages (SSG)
+│   ├── components/            # sections, Snake game, chat widget, ui/ (shadcn)
+│   ├── content/portfolio.md   # ★ all site content
+│   ├── hooks/
+│   └── lib/markdown.ts        # content parser
+├── netlify.toml               # deploy config (typecheck + build)
+└── tailwind.config.ts
 ```
 
 ---
