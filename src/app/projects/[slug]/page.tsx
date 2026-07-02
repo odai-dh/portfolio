@@ -9,17 +9,16 @@ import { ProjectContentCards } from '@/components/ProjectContentCards';
 import { WebsitePreview } from '@/components/WebsitePreview';
 
 type ProjectPageParams = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export default async function ProjectPage({ params }: ProjectPageParams) {
   // Dynamic import to ensure server-only execution
   const { getProjectBySlug, getPortfolioData } = await import('@/lib/markdown');
-  
-  const resolvedParams = await Promise.resolve(params);
-  const slug = resolvedParams.slug;
+
+  const { slug } = await params;
 
   const project = await getProjectBySlug(slug);
   const portfolioData = await getPortfolioData();
@@ -122,9 +121,8 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
 
 export async function generateMetadata({ params }: ProjectPageParams) {
   const { getProjectBySlug } = await import('@/lib/markdown');
-  
-  const resolvedParams = await Promise.resolve(params);
-  const slug = resolvedParams.slug;
+
+  const { slug } = await params;
   const project = await getProjectBySlug(slug);
 
   if (!project) {

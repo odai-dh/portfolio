@@ -23,8 +23,8 @@ export async function submitContactFormAction(data: unknown) {
 
     // Send the email using Resend
     const { data: emailData, error } = await resend.emails.send({
-      from: 'Portfolio Contact Form <onboarding@resend.dev>',
-      to: 'odai.dahi@hyperisland.se',
+      from: 'Portfolio Contact <contact@odaidh.dev>',
+      to: 'odai@odaidh.dev',
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,

@@ -3,18 +3,16 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from '@/components/ThemeProvider';
 
-// Add these separate exports
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 0.6,
   maximumScale: 5,
   userScalable: true,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#111111' },
+  ],
 };
-
-export const themeColor = [
-  { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-  { media: '(prefers-color-scheme: dark)', color: '#111111' }
-];
 
 export const metadata: Metadata = {
   title: 'Odai Dahi | Full Stack Developer',
@@ -83,7 +81,7 @@ export const metadata: Metadata = {
       {
         rel: 'mask-icon',
         url: '/safari-pinned-tab.svg',
-        color: '#5bbad5',
+        color: '#0099ff',
       },
     ],
   },
