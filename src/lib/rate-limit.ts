@@ -20,12 +20,15 @@ function getRedis(): Redis | null {
 type HeaderReader = { get(name: string): string | null };
 
 /**
- * Client IP for rate limiting. On Netlify, x-nf-client-connection-ip is set
- * by the platform and cannot be spoofed by the client; x-forwarded-for is
- * only a fallback for local dev / other hosts.
+ * Client IP for rate limiting. www.odaidh.dev is proxied through Cloudflare
+ * in front of Netlify, so cf-connecting-ip carries the real visitor IP;
+ * x-nf-client-connection-ip would only see Cloudflare's edge (shared bucket).
+ * x-forwarded-for is a fallback for local dev / other hosts. The global
+ * daily cap is the spoof-proof backstop either way.
  */
 export function getClientIp(headers: HeaderReader): string {
   return (
+    headers.get('cf-connecting-ip') ??
     headers.get('x-nf-client-connection-ip') ??
     headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     'unknown'
