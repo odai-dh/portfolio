@@ -2,13 +2,19 @@
 
 import { z } from "zod";
 import { Resend } from 'resend';
+import { headers } from 'next/headers';
+import { getClientIp, incrementDailyCount } from '@/lib/rate-limit';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+const RATE_LIMIT_PER_DAY = 5; // submissions per IP
+const GLOBAL_LIMIT_PER_DAY = 100; // all visitors combined — circuit breaker for the Resend quota
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
   email: z.string().email("Please enter a valid email address."),
   message: z.string().min(10, "Message must be at least 10 characters."),
+  website: z.string().optional(), // honeypot — humans never see or fill this field
 });
 
 export async function submitContactFormAction(data: unknown) {
@@ -16,6 +22,23 @@ export async function submitContactFormAction(data: unknown) {
 
   if (!parsedData.success) {
     return { success: false, errors: parsedData.error.flatten().fieldErrors };
+  }
+
+  // Honeypot filled → almost certainly a bot; pretend success so it doesn't adapt
+  if (parsedData.data.website) {
+    return { success: true };
+  }
+
+  const limitError = {
+    success: false as const,
+    errors: { _form: ['Too many messages today. Please email me directly at odai@odaidh.dev.'] },
+  };
+  const ip = getClientIp(await headers());
+  if ((await incrementDailyCount('contact', ip)) > RATE_LIMIT_PER_DAY) {
+    return limitError;
+  }
+  if ((await incrementDailyCount('contact-global', 'all')) > GLOBAL_LIMIT_PER_DAY) {
+    return limitError;
   }
 
   try {

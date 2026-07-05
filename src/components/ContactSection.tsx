@@ -18,6 +18,7 @@ const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
   email: z.string().email("Please enter a valid email address."),
   message: z.string().min(10, "Message must be at least 10 characters."),
+  website: z.string().optional(), // honeypot — hidden from humans
 });
 
 export function ContactSection() {
@@ -30,6 +31,7 @@ export function ContactSection() {
       name: "",
       email: "",
       message: "",
+      website: "",
     },
   });
 
@@ -46,10 +48,13 @@ export function ContactSection() {
       // Reset success state after animation
       setTimeout(() => setIsSuccess(false), 3000);
     } else {
+      const formError = 'errors' in result
+        ? (result.errors as Record<string, string[] | undefined> | undefined)?._form?.[0]
+        : undefined;
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request. Please check your input and try again.",
+        description: formError ?? "There was a problem with your request. Please check your input and try again.",
       });
     }
   }
@@ -89,6 +94,15 @@ export function ContactSection() {
           <div>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                {/* Honeypot: invisible to humans; bots that fill it are silently dropped */}
+                <input
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute -left-[9999px] h-px w-px overflow-hidden"
+                  {...form.register('website')}
+                />
                 <FormField
                   control={form.control}
                   name="name"

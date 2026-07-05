@@ -1,11 +1,7 @@
 import Groq from 'groq-sdk';
-import { Redis } from '@upstash/redis';
+import { getClientIp, incrementDailyCount } from '@/lib/rate-limit';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-});
 
 const SYSTEM_PROMPT = `You are a friendly assistant on Odai Dahi's personal portfolio website. Your job is to answer questions about Odai — his background, skills, experience, and projects. Keep answers concise and conversational. If someone asks something completely unrelated to Odai, politely redirect them.
 
@@ -68,20 +64,9 @@ Odai is creative, driven, and loves solving problems that mix logic and design. 
 const MAX_QUESTIONS = 5;
 const MAX_MESSAGE_LENGTH = 400;
 const RATE_LIMIT_PER_DAY = 8; // slightly above MAX_QUESTIONS to allow for retries
+const GLOBAL_LIMIT_PER_DAY = 300; // all visitors combined — circuit breaker for the Groq bill
 
 export async function POST(req: Request) {
-  const ip = (req.headers.get('x-forwarded-for')?.split(',')[0] ?? 'unknown').trim();
-  const today = new Date().toISOString().slice(0, 10);
-  const key = `chat:${ip}:${today}`;
-
-  // Increment counter; set 24h expiry on first hit
-  const count = await redis.incr(key);
-  if (count === 1) await redis.expire(key, 86400);
-
-  if (count > RATE_LIMIT_PER_DAY) {
-    return new Response('Daily limit reached.', { status: 429 });
-  }
-
   let messages: { role: 'user' | 'assistant'; content: string }[];
   try {
     ({ messages } = await req.json());
@@ -112,6 +97,18 @@ export async function POST(req: Request) {
   const invalidRole = messages.some(m => m.role !== 'user' && m.role !== 'assistant');
   if (invalidRole) {
     return new Response('Bad request', { status: 400 });
+  }
+
+  // Quotas come last so invalid requests never consume them
+  const ip = getClientIp(req.headers);
+  const ipCount = await incrementDailyCount('chat', ip);
+  if (ipCount > RATE_LIMIT_PER_DAY) {
+    return new Response('Daily limit reached.', { status: 429 });
+  }
+
+  const globalCount = await incrementDailyCount('chat-global', 'all');
+  if (globalCount > GLOBAL_LIMIT_PER_DAY) {
+    return new Response('Daily limit reached.', { status: 429 });
   }
 
   const trimmed = messages.slice(-MAX_QUESTIONS * 2);

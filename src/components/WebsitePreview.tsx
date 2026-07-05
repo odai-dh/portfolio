@@ -127,7 +127,8 @@ export function WebsitePreview({ url, title, imageUrl }: WebsitePreviewProps) {
             className={`w-full h-full border-0 ${isLoading || iframeError ? 'opacity-0' : 'opacity-100'}`}
             onLoad={handleIframeLoad}
             onError={handleIframeError}
-            sandbox="allow-scripts allow-same-origin allow-forms"
+            sandbox="allow-scripts allow-forms allow-popups"
+            referrerPolicy="no-referrer"
             loading="lazy"
           />
         )}
