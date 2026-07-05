@@ -18,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Individual project pages
   const projectPages = portfolioData.projects.map((project) => ({
     url: `${baseUrl}/projects/${project.slug}`,
-    lastModified: new Date(),
+    lastModified: project.date ? new Date(project.date) : new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }))

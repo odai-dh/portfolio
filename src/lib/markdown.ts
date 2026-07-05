@@ -22,6 +22,7 @@ export type Experience = {
 export type Project = {
   title: string;
   description: string;
+  date?: string; // YYYY-MM-DD — when the project was added to the portfolio
   tags: string[];
   image: string;
   link: string;

@@ -81,3 +81,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Respect the user's motion preferences: collapse animations/transitions
+   to imperceptible durations instead of removing them, so JS onTransitionEnd
+   handlers and IntersectionObserver reveals still fire. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}

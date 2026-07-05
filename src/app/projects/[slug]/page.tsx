@@ -27,9 +27,40 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
     notFound();
   }
 
+  const projectUrl = `https://www.odaidh.dev/projects/${slug}`;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CreativeWork',
+        name: project.title,
+        description: project.description,
+        url: projectUrl,
+        image: project.image.startsWith('/')
+          ? `https://www.odaidh.dev${project.image}`
+          : project.image,
+        ...(project.date ? { datePublished: project.date } : {}),
+        keywords: project.tags.join(', '),
+        author: { '@type': 'Person', name: 'Odai Dahi', url: 'https://www.odaidh.dev' },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.odaidh.dev' },
+          { '@type': 'ListItem', position: 2, name: 'Projects', item: 'https://www.odaidh.dev/#projects' },
+          { '@type': 'ListItem', position: 3, name: project.title, item: projectUrl },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
       <main className="container mx-auto max-w-4xl px-4 py-12 md:px-6 md:py-24">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div className="mb-8">
           <Button variant="link" asChild className="pl-0">
             <Link href="/">
@@ -152,7 +183,7 @@ export async function generateMetadata({ params }: ProjectPageParams) {
           alt: project.title,
         }
       ] : [],
-      publishedTime: new Date().toISOString(),
+      publishedTime: project.date,
       authors: ['Odai Dahi'],
       tags: project.tags,
     },

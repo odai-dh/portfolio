@@ -57,11 +57,12 @@ experience:
 projects:
 
   - title: "Aeoflo"
+    date: "2026-04-21"
     description: "As the sole frontend developer at a venture-backed AI analytics startup, built the company website from scratch and a multi-client dashboard platform used by real brands."
     tags: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Framer Motion", "Chart.js", "HubSpot API", "Cloudflare R2", "Clerk", "Zod", "shadcn/ui"]
     link: "https://aeoflo-web.netlify.app/"
     github: "#"
-    image: "https://placehold.co/1200x630.png"
+    image: "/images/projects/aeoflo.jpg"
     content: |
       ### Overview
       Aeoflo is a venture-backed AI visibility analytics platform for Shopify merchants — helping brands get discovered by AI search engines like ChatGPT, Gemini, and Perplexity.
@@ -95,11 +96,12 @@ projects:
       This was my deepest production experience to date — shipping real features for real clients, iterating on designs based on stakeholder feedback, and owning the entire frontend independently. I learned how to design scalable data architectures, balance visual polish with performance, and communicate effectively across technical and non-technical boundaries.
 
   - title: "Death Calendar"
+    date: "2026-02-27"
     description: "A minimalist iOS app that visualizes your entire life as a grid of dots, making time tangible to encourage intentional living."
     tags: ["Swift", "SwiftUI", "iOS", "MVVM", "UserDefaults", "Combine"]
     link: "https://death-calendar-web.netlify.app/"
     github: "https://github.com/odai-dh/LifeCircle"
-    image: "https://placehold.co/1200x630.png"
+    image: "/images/projects/death-calendar.jpg"
     content: |
       ### Overview
       > **Note:** The app is not yet available on the App Store — Apple's $99/year Developer Program fee is a real barrier when you're a broke student. A web preview is live at the link above.
@@ -143,6 +145,7 @@ projects:
       Building the `TimeCalculator` as a pure-function utility reinforced clean **separation of concerns** and made the logic easy to reason about and test independently.
       The project also taught me how to design a **dark, minimalist design system** from scratch — typography scales, spacing tokens, and animation curves — without relying on third-party UI libraries.
   - title: "BuzzyJeopardy"
+    date: "2026-02-27"
     description: "A real-time multiplayer Jeopardy game for parties and game nights, with AI-generated questions and smart answer judging."
     tags: ["Next.js", "TypeScript", "Tailwind", "Firebase", "Google Gemini", "shadcn/ui", "Framer Motion", "React"]
     link: ""
@@ -190,11 +193,12 @@ projects:
       Building BuzzyJeopardy pushed me into **real-time architecture design** — handling race conditions in buzz-in logic, syncing game state across multiple clients, and separating host vs. player views cleanly.
       I also deepened my experience with **Firebase Firestore**, **AI prompt engineering** for structured JSON output, and designing a UI that works equally well on a phone in someone's hand and a laptop on a table.
   - title: "Jeopardy AI"
+    date: "2025-12-08"
     description: "An interactive Jeopardy-style trivia game powered by AI-generated questions using Hugging Face API."
     tags: ["Next.js", "TypeScript", "Tailwind", "Hugging Face AI", "shadcn/ui", "React"]
     link: "https://jeopardy-ai.netlify.app/"
     github: "https://github.com/odai-dh/TrivialTriumph"
-    image: "https://placehold.co/1200x630.png"
+    image: "/images/projects/jeopardy-ai.jpg"
     content: |
       ### Overview
       Trivial Triumph is a modern take on the classic Jeopardy game format, featuring **AI-powered question generation** to create unique trivia experiences every time.
@@ -233,11 +237,12 @@ projects:
       I learned how to optimize API calls to reduce token usage, implement sequential AI generation with progress tracking, and create an engaging user experience with modern UI/UX patterns.
       The project also taught me valuable lessons in **error handling, async operations**, and **responsive game design**.
   - title: "E-commerce Platform"
+    date: "2025-08-24"
     description: "A full-stack e-commerce application built with Next.js, Node.js/Express, and MongoDB."
     tags: ["Next.js", "TypeScript", "Tailwind", "Node.js", "Express", "MongoDB"]
     link: "https://sellby.netlify.app/"
     github: "https://github.com/odai-dh/ecommerce"
-    image: "https://placehold.co/1200x630.png"
+    image: "/images/projects/e-commerce-platform.jpg"
     content: |
       ### Overview
         A full-stack e-commerce platform designed for a seamless shopping experience.  
@@ -255,11 +260,12 @@ projects:
         ### Learning Outcome
         This project gave me hands-on experience with full-stack development, authentication, API design, accessibility, and deployment workflows.
   - title: "Litorina School Website"
+    date: "2025-08-24"
     description: "A modern school website built with React, TailwindCSS, and Vite for Litorina Folkhögskola."
     tags: ["React", "Vite", "Tailwind", "DaisyUI", "React Router", "Netlify"]
     link: "https://litorina-school.netlify.app/"
     github: "https://github.com/odai-dh/Litorina-School"
-    image: "https://placehold.co/1200x630.png"
+    image: "/images/projects/litorina-school-website.jpg"
     content: |
       ### Overview
       A collaborative project developed as part of Hyper Island’s **Code & Collaborate program**.  
@@ -277,11 +283,12 @@ projects:
       ### Learning Outcome
       This project gave me hands-on experience with **team collaboration, agile workflows, and delivering a real-world client solution**.
   - title: "StremVibe"
+    date: "2025-08-24"
     description: "A movie database web app using the TMDB API, allowing users to browse, search, and watch trailers."
     tags: ["React", "TMDB API", "JavaScript", "Netlify"]
     link: "https://stram.netlify.app/"
     github: "https://github.com/odai-dh/StremVibe"
-    image: "https://placehold.co/1200x630.png"
+    image: "/images/projects/stremvibe.jpg"
     content: |
       ### Overview
       A streaming-inspired movie database built with **React** and integrated with the **TMDB API**.  
@@ -297,11 +304,12 @@ projects:
       ### Learning Outcome
       This project helped me practice **API integration, state management, and building a multi-page React application with reusable components**.
   - title: "SpaceToon 3D"
+    date: "2025-08-24"
     description: "An interactive VR solar system experience, where users explore space from inside a cockpit spaceship."
     tags: ["React", "Three.js", "A-Frame", "WebXR", "TypeScript", "Next.js"]
     link: "https://spacetoon-3d.netlify.app/"
     github: "https://github.com/odai-dh/spaceToon-3D"
-    image: "https://placehold.co/1200x630.png"
+    image: "/images/projects/spacetoon-3d.jpg"
     content: |
       ### Overview
       SpaceToon 3D is a **VR-ready web application** that lets users explore the solar system in an immersive 3D cockpit experience.  
@@ -317,6 +325,7 @@ projects:
       ### Learning Outcome
       This project gave me hands-on experience with **3D rendering, VR interactions, and WebXR integration**, combining creative design with technical implementation.
   - title: "myHealth ID Digital Healthcare App"
+    date: "2025-09-18"
     description: "A responsive UX/UI design for a digital healthcare platform where users can manage appointments, prescriptions, and family health cases."
     tags: ["Figma", "UX/UI Design", "Prototyping", "User Research"]
     link: "https://www.figma.com/proto/03juTRyTDZDbuKr9cbY18k/myHealth-ID?node-id=1-4&p=f&m=draw&scaling=scale-down&content-scaling=fixed&page-id=0%3A1"
@@ -344,11 +353,12 @@ projects:
       This project deepened my understanding of user-centered healthcare design, mobile-first layout strategy, and the importance of managing multiple user personas (e.g., adult + child view).  
       It also strengthened my skills in design systems, user flow mapping, and presenting a seamless digital experience for a sensitive and important use case like health management.
   - title: "HyperKart"
+    date: "2025-08-24"
     description: "A Mario Kart–inspired tournament website built with HTML, CSS, and JavaScript."
     tags: ["HTML", "CSS", "JavaScript", "Team Project"]
     link: "https://maybejod.github.io/hyperkart/"
     github: "https://github.com/antxhan/hyperkart"
-    image: "https://placehold.co/1200x630.png"
+    image: "/images/projects/hyperkart.jpg"
     content: |
       ### Overview
       HyperKart is a fun, interactive web project created as part of a team hackathon.  
@@ -364,6 +374,7 @@ projects:
       ### Learning Outcome
       This project was a chance to practice **team collaboration, creative frontend design, and interactive UI development** while keeping a playful theme.
   - title: "Naiman"
+    date: "2025-08-24"
     description: "An upcoming project — still under development, but something truly unique is on the way."
     tags: ["Next.js", "TypeScript", "Tailwind", "Startup Project"]
     link: "#"
