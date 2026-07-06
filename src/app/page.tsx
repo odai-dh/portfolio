@@ -18,11 +18,14 @@ export default async function Home() {
     <>
       <ScrollProgress />
       <SidebarProvider>
-        <div className="md:flex">
+        {/* min-w-0 lets this flex item shrink below its content's min-width
+            (nowrap rows like the experience tab bar otherwise force the page
+            wider than the viewport on mobile) */}
+        <div className="md:flex min-w-0 w-full">
           <Sidebar className="hidden md:block" collapsible="icon">
             <MainNav name={portfolioData.name} socials={portfolioData.socials} />
           </Sidebar>
-          <SidebarInset>
+          <SidebarInset className="min-w-0">
             <main className="container mx-auto max-w-4xl px-4 py-12 md:px-6 md:py-24">
               <div className="md:hidden mb-8 flex justify-between items-center">
                 <div className="font-headline text-2xl font-bold">{portfolioData.name}</div>

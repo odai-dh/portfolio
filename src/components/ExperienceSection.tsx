@@ -66,7 +66,7 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
           className="flex flex-col md:flex-row gap-8"
           onValueChange={setActiveTab}
         >
-          <TabsList className="flex flex-row md:flex-col h-auto md:h-full justify-start bg-transparent p-0 gap-0">
+          <TabsList className="flex flex-row md:flex-col h-auto md:h-full justify-start bg-transparent p-0 gap-0 overflow-x-auto md:overflow-x-visible max-w-full">
             {experiences.map((exp) => (
               <TabsTrigger
                 key={exp.company}

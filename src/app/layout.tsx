@@ -20,7 +20,7 @@ const calistoga = Calistoga({
 
 export const viewport: Viewport = {
   width: 'device-width',
-  initialScale: 0.6,
+  initialScale: 1,
   maximumScale: 5,
   userScalable: true,
   themeColor: [
