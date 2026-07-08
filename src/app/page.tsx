@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
 import { MainNav } from '@/components/MainNav';
 import { AboutSection } from '@/components/AboutSection';
+import { SkillsSection } from '@/components/SkillsSection';
 import { ContactSection } from '@/components/ContactSection';
 import { ScrollProgress } from '@/components/ScrollProgress';
 
@@ -43,6 +44,8 @@ export default async function Home() {
               />
               <ExperienceSection experiences={portfolioData.experience} />
               <ProjectsSection projects={portfolioData.projects} />
+              <SkillsSection skills={portfolioData.skills} />
+
               <ContactSection />
             </main>
             <Footer name={portfolioData.name} />

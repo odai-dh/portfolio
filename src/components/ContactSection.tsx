@@ -64,7 +64,7 @@ export function ContactSection() {
       <FadeIn>
         <div className="flex items-center gap-4 mb-12">
           <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground whitespace-nowrap">
-            <span className="text-primary font-mono text-2xl">04.</span> Get In Touch
+            <span className="text-primary font-mono text-2xl">05.</span> Get In Touch
           </h2>
           <div className="w-full h-px bg-border"></div>
         </div>

@@ -11,7 +11,8 @@ const navLinks = [
   { href: '#about', label: 'About', number: '01.' },
   { href: '#experience', label: 'Experience', number: '02.' },
   { href: '#projects', label: 'Projects', number: '03.' },
-  { href: '#contact', label: 'Contact', number: '04.' },
+  { href: '#skills', label: 'Skills', number: '04.' },
+  { href: '#contact', label: 'Contact', number: '05.' },
 ];
 
 export function MainNav({ name, socials }: { name: string; socials: Socials }) {
