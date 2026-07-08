@@ -89,7 +89,7 @@ function drawRoundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: n
   ctx.closePath();
 }
 
-export function SnakeGame() {
+export function SnakeGame({ onClose }: { onClose?: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [gameState, setGameState] = useState<GameState>('idle');
   const [earnedTitle, setEarnedTitle] = useState('Developer');
@@ -312,11 +312,23 @@ export function SnakeGame() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center rounded-2xl bg-[#1a1a2e] border border-[#2d2d4e] shadow-2xl p-4 gap-3 w-fit select-none">
+    <div className="flex flex-col items-center rounded-2xl bg-[#1a1a2e] border border-[#2d2d4e] shadow-2xl p-4 gap-3 w-fit max-w-full select-none">
       {/* Header */}
       <div className="flex items-center justify-between w-full px-1">
-        <div className="flex gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-red-500 opacity-80" />
+        <div className="flex items-center gap-1.5">
+          {/* The red shell button is the power/close switch — vital on mobile,
+              where the overlay covers the hero's Stop button */}
+          {onClose ? (
+            <button
+              onClick={onClose}
+              aria-label="Close game"
+              className="group -m-1.5 flex h-6 w-6 items-center justify-center"
+            >
+              <span className="block h-2.5 w-2.5 rounded-full bg-red-500 opacity-80 transition-all group-hover:scale-125 group-hover:opacity-100 group-active:scale-90" />
+            </button>
+          ) : (
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500 opacity-80" />
+          )}
           <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 opacity-80" />
           <div className="w-2.5 h-2.5 rounded-full bg-green-400 opacity-80" />
         </div>
@@ -325,12 +337,14 @@ export function SnakeGame() {
       </div>
 
       {/* Screen bezel */}
-      <div className="rounded-lg bg-[#0d0d1a] border-2 border-[#2d2d4e] shadow-inner p-2">
+      <div className="rounded-lg bg-[#0d0d1a] border-2 border-[#2d2d4e] shadow-inner p-2 max-w-full">
+        {/* CSS max-w/h-auto scales the canvas down on small screens; the
+            internal 448px resolution stays the same */}
         <canvas
           ref={canvasRef}
           width={W}
           height={H}
-          className="rounded cursor-pointer block"
+          className="rounded cursor-pointer block max-w-full h-auto"
           onClick={() => { if (gameState === 'idle') startGame(); }}
         />
       </div>

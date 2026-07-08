@@ -66,7 +66,6 @@ export function HeroWithGame({ name, title, subtitle, email }: Props) {
               size="lg"
               variant={gameOpen ? 'destructive' : 'outline'}
               onClick={() => setGameOpen(v => !v)}
-              className="hidden lg:inline-flex"
             >
               {gameOpen ? (
                 <><X className="mr-2 h-4 w-4" /> Stop</>
@@ -78,10 +77,11 @@ export function HeroWithGame({ name, title, subtitle, email }: Props) {
         </FadeIn>
       </SectionWrapper>
 
-      {/* Game — fixed overlay, touches nothing in the layout */}
+      {/* Game — fixed overlay, touches nothing in the layout.
+          Mobile: centered near the top, capped to the viewport; desktop: top-right. */}
       {gameOpen && (
-        <div className="fixed top-6 right-6 z-50 hidden lg:flex flex-col items-center gap-3 bg-background border border-border rounded-xl p-4 shadow-2xl animate-in fade-in slide-in-from-right-8 duration-300">
-          <SnakeGame />
+        <div className="fixed z-50 flex max-h-[92svh] w-[min(94vw,26rem)] flex-col items-center gap-3 overflow-auto rounded-xl border border-border bg-background p-3 shadow-2xl animate-in fade-in duration-300 left-1/2 top-4 -translate-x-1/2 lg:left-auto lg:right-6 lg:top-6 lg:w-auto lg:translate-x-0 lg:p-4 lg:slide-in-from-right-8">
+          <SnakeGame onClose={() => setGameOpen(false)} />
         </div>
       )}
     </>
