@@ -9,6 +9,27 @@ socials:
   instagram: "https://www.instagram.com/odai.dh1"
   tiktok: "https://www.tiktok.com/@limonboy96"
 
+skills:
+  - { name: "HTML & CSS", category: "frontend" }
+  - { name: "JavaScript", category: "frontend" }
+  - { name: "TypeScript", category: "frontend" }
+  - { name: "React", category: "frontend" }
+  - { name: "Next.js", category: "frontend" }
+  - { name: "Tailwind CSS", category: "frontend" }
+  - { name: "SwiftUI", category: "frontend" }
+  - { name: "Framer Motion", category: "frontend" }
+  - { name: "Node.js", category: "backend" }
+  - { name: "Express", category: "backend" }
+  - { name: "MongoDB", category: "backend" }
+  - { name: "SQL", category: "backend" }
+  - { name: "REST APIs", category: "backend" }
+  - { name: "Firebase", category: "backend" }
+  - { name: "Git", category: "tools" }
+  - { name: "Figma", category: "tools" }
+  - { name: "Zod", category: "tools" }
+  - { name: "Clerk", category: "tools" }
+  - { name: "Three.js", category: "tools" }
+  - { name: "AI APIs (Groq, Gemini)", category: "tools" }
 
 experience:
   - company: "Aeoflo"

@@ -3,51 +3,70 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import { z } from 'zod';
 
 const portfolioDirectory = path.join(process.cwd(), 'src/content');
 
-export type Skill = {
-  name: string;
-  proficiency: number;
-};
+// ---------------------------------------------------------------------------
+// Front-matter schemas — portfolio.md is validated at build time, so a typo in
+// the content file fails the build instead of silently rendering broken pages.
+// ---------------------------------------------------------------------------
 
-export type Experience = {
-  company: string;
-  title: string;
-  date: string;
-  duties: string[];
-  link?: string;
-};
+const SkillSchema = z.object({
+  name: z.string().min(1),
+  category: z.enum(['frontend', 'backend', 'tools']),
+});
 
-export type Project = {
-  title: string;
-  description: string;
-  date?: string; // YYYY-MM-DD — when the project was added to the portfolio
-  tags: string[];
-  image: string;
-  link: string;
-  github?: string;
-  figma?: string;
+const ExperienceSchema = z.object({
+  company: z.string().min(1),
+  title: z.string().min(1),
+  date: z.string().min(1),
+  duties: z.array(z.string().min(1)).min(1),
+  link: z.string().url().optional(),
+});
+
+const RawProjectSchema = z.object({
+  title: z.string().min(1),
+  description: z.string().min(1),
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'expected YYYY-MM-DD')
+    .optional(),
+  tags: z.array(z.string().min(1)).min(1),
+  link: z.string(), // may be "", "#", or a URL
+  github: z.string().optional(), // may be "#"
+  figma: z.string().url().optional(),
+  image: z.string().min(1),
+  content: z.string().optional(),
+});
+
+const SocialsSchema = z.object({
+  github: z.string().url(),
+  linkedin: z.string().url(),
+  instagram: z.string().url(),
+  tiktok: z.string().url().optional(),
+});
+
+const FrontMatterSchema = z.object({
+  name: z.string().min(1),
+  title: z.string().min(1),
+  subtitle: z.string().min(1),
+  email: z.string().email(),
+  socials: SocialsSchema,
+  skills: z.array(SkillSchema).min(1),
+  experience: z.array(ExperienceSchema).min(1),
+  projects: z.array(RawProjectSchema).min(1),
+});
+
+export type Skill = z.infer<typeof SkillSchema>;
+export type Experience = z.infer<typeof ExperienceSchema>;
+export type Socials = z.infer<typeof SocialsSchema>;
+export type Project = z.infer<typeof RawProjectSchema> & {
   slug: string;
   contentHtml: string;
 };
-
-export type Socials = {
-  github: string;
-  linkedin: string;
-  instagram: string;
-  tiktok?: string;
-};
-
-export type PortfolioData = {
-  name: string;
-  title: string;
-  subtitle: string;
-  email: string;
-  skills: Skill[];
-  experience: Experience[];
+export type PortfolioData = Omit<z.infer<typeof FrontMatterSchema>, 'projects'> & {
   projects: Project[];
-  socials: Socials;
   aboutHtml: string;
 };
 
@@ -57,28 +76,38 @@ export async function getPortfolioData(): Promise<PortfolioData> {
 
   const matterResult = matter(fileContents);
 
+  const parsed = FrontMatterSchema.safeParse(matterResult.data);
+  if (!parsed.success) {
+    throw new Error(
+      `Invalid portfolio.md front-matter:\n${parsed.error.issues
+        .map((i) => `  - ${i.path.join('.')}: ${i.message}`)
+        .join('\n')}`
+    );
+  }
+
   const processedContent = await remark()
     .use(html)
     .process(matterResult.content);
   const aboutHtml = processedContent.toString();
 
-  const projects = await Promise.all(matterResult.data.projects.map(async (project: any) => {
-    const processedContent = await remark()
-      .use(html)
-      .process(project.content || '');
-    const contentHtml = processedContent.toString();
-    return {
-      ...project,
-      slug: (project.title as string).toLowerCase().replace(/\s+/g, '-'),
-      contentHtml,
-    };
-  }));
+  const projects: Project[] = await Promise.all(
+    parsed.data.projects.map(async (project) => {
+      const processed = await remark()
+        .use(html)
+        .process(project.content || '');
+      return {
+        ...project,
+        slug: project.title.toLowerCase().replace(/\s+/g, '-'),
+        contentHtml: processed.toString(),
+      };
+    })
+  );
 
   return {
-    ...matterResult.data,
+    ...parsed.data,
     aboutHtml,
     projects,
-  } as PortfolioData;
+  };
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
