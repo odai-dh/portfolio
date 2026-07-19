@@ -1,5 +1,6 @@
 import { getPortfolioData } from '@/lib/markdown';
 import { HeroWithGame } from '@/components/HeroWithGame';
+import { HeroMode } from '@/components/HeroMode';
 import { ChatWidget } from '@/components/ChatWidget';
 import { ExperienceSection } from '@/components/ExperienceSection';
 import { ProjectsSection } from '@/components/ProjectsSection';
@@ -32,12 +33,14 @@ export default async function Home() {
                 <div className="font-headline text-2xl font-bold">{portfolioData.name}</div>
                 <SidebarTrigger />
               </div>
-              <HeroWithGame
-                name={portfolioData.name}
-                title={portfolioData.title}
-                subtitle={portfolioData.subtitle}
-                email={portfolioData.email}
-              />
+              <HeroMode>
+                <HeroWithGame
+                  name={portfolioData.name}
+                  title={portfolioData.title}
+                  subtitle={portfolioData.subtitle}
+                  email={portfolioData.email}
+                />
+              </HeroMode>
               <AboutSection
                 aboutHtml={portfolioData.aboutHtml}
                 tiktokUrl={portfolioData.socials.tiktok}
