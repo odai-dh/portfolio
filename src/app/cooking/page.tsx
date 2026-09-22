@@ -28,7 +28,7 @@ export default function CookingLandingPage() {
           </div>
           <div className="mx-auto mt-10 max-w-xl text-center">
             <p className="font-[family-name:var(--font-fraunces)] text-[22px] italic text-[#78716C]">
-              A small, quiet cooking journal.
+              Powered by carbs and bad decisions.
             </p>
             <p className="mt-2 font-[family-name:var(--font-manrope)] text-base text-[#78716C]">
               Stockholm, mostly weekends.
