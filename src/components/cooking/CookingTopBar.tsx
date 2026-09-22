@@ -26,7 +26,7 @@ export function CookingTopBar({ aboutHref }: { aboutHref: string }) {
           href="/cooking"
           className="font-[family-name:var(--font-fraunces)] text-[20px] font-normal text-[#1C1917]"
         >
-          Odai cooks
+          Odai Cooks
         </Link>
         <nav className="flex items-center gap-6 font-[family-name:var(--font-manrope)] text-sm text-[#1C1917]">
           <Link href={aboutHref}>About</Link>
