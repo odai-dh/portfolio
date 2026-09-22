@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { CookingTopBar } from '@/components/cooking/CookingTopBar';
+import { ImageMagnifier } from '@/components/cooking/ImageMagnifier';
 import {
   getAllCookingEntries,
   getAdjacentCookingEntries,
@@ -40,22 +40,14 @@ export default async function CookingEntryPage({
   if (!entry) notFound();
 
   const { prev, next } = getAdjacentCookingEntries(slug);
-  const heroAspectClass = entry.heroAspect === '16:9' ? 'aspect-[16/9]' : 'aspect-[4/5]';
 
   return (
     <>
       <CookingTopBar aboutHref="/cooking#about" />
 
       <div className="md:grid md:grid-cols-2 md:items-stretch">
-        <div className={`relative w-full bg-[#FAF7F2] ${heroAspectClass} md:aspect-auto md:min-h-[70vh]`}>
-          <Image
-            src={entry.heroPhoto}
-            alt={entry.title}
-            fill
-            priority
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-contain"
-          />
+        <div className="flex w-full items-center bg-[#FAF7F2] md:min-h-[70vh]">
+          <ImageMagnifier src={entry.heroPhoto} alt={entry.title} className="w-full" />
         </div>
 
         <main className="flex flex-col justify-center px-6 py-12 md:px-12 md:py-16 lg:px-20">
@@ -84,15 +76,7 @@ export default async function CookingEntryPage({
       {entry.photos.length > 0 && (
         <div className="mx-auto flex max-w-[720px] flex-col gap-8 px-6 pb-16 md:px-10">
           {entry.photos.map((photo) => (
-            <div key={photo} className="relative aspect-[4/5] w-full">
-              <Image
-                src={photo}
-                alt={entry.title}
-                fill
-                sizes="(min-width: 768px) 720px, 100vw"
-                className="object-cover"
-              />
-            </div>
+            <ImageMagnifier key={photo} src={photo} alt={entry.title} className="w-full" />
           ))}
         </div>
       )}
