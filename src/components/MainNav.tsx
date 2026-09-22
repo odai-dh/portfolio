@@ -1,6 +1,7 @@
 'use client';
 
-import { Github, Linkedin, Instagram, PanelLeft } from 'lucide-react';
+import Link from 'next/link';
+import { Github, Linkedin, Instagram, CookingPot, PanelLeft } from 'lucide-react';
 import type { Socials } from '@/lib/markdown';
 import { useSidebar } from './ui/sidebar';
 import { Button } from './ui/button';
@@ -95,6 +96,9 @@ export function MainNav({ name, socials }: { name: string; socials: Socials }) {
         <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
           <Instagram className="h-5 w-5" />
         </a>
+        <Link href="/cooking" aria-label="Odai cooks" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
+          <CookingPot className="h-5 w-5" />
+        </Link>
       </div>
     </div>
   );
