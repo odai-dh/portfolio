@@ -46,8 +46,8 @@ export default async function CookingEntryPage({
       <CookingTopBar aboutHref="/cooking#about" />
 
       <div className="md:grid md:grid-cols-2 md:items-stretch">
-        <div className="flex w-full items-center bg-[#FAF7F2] md:min-h-[70vh]">
-          <ImageMagnifier src={entry.heroPhoto} alt={entry.title} className="w-full" />
+        <div className="flex w-full items-center justify-center bg-[#FAF7F2] md:min-h-[70vh]">
+          <ImageMagnifier src={entry.heroPhoto} alt={entry.title} />
         </div>
 
         <main className="flex flex-col justify-center px-6 py-12 md:px-12 md:py-16 lg:px-20">
@@ -74,9 +74,9 @@ export default async function CookingEntryPage({
       </div>
 
       {entry.photos.length > 0 && (
-        <div className="mx-auto flex max-w-[720px] flex-col gap-8 px-6 pb-16 md:px-10">
+        <div className="mx-auto flex max-w-[720px] flex-col items-center gap-8 px-6 pb-16 md:px-10">
           {entry.photos.map((photo) => (
-            <ImageMagnifier key={photo} src={photo} alt={entry.title} className="w-full" />
+            <ImageMagnifier key={photo} src={photo} alt={entry.title} />
           ))}
         </div>
       )}

@@ -44,12 +44,17 @@ export function ImageMagnifier({
   return (
     <div
       ref={containerRef}
-      className={`relative ${className ?? ''}`}
+      className={`relative inline-block ${className ?? ''}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setLens(null)}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} className="block h-auto w-full select-none" draggable={false} />
+      <img
+        src={src}
+        alt={alt}
+        className="block h-auto max-h-[70vh] w-auto max-w-full select-none"
+        draggable={false}
+      />
       {lens && (
         <div
           className="pointer-events-none absolute hidden rounded-full border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.25)] md:block"
