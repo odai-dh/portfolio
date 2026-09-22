@@ -47,14 +47,14 @@ export default async function CookingEntryPage({
       <CookingTopBar aboutHref="/cooking#about" />
 
       <div className="md:grid md:grid-cols-2 md:items-stretch">
-        <div className={`relative w-full ${heroAspectClass} md:aspect-auto md:min-h-[70vh]`}>
+        <div className={`relative w-full bg-[#FAF7F2] ${heroAspectClass} md:aspect-auto md:min-h-[70vh]`}>
           <Image
             src={entry.heroPhoto}
             alt={entry.title}
             fill
             priority
             sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-cover"
+            className="object-contain"
           />
         </div>
 
