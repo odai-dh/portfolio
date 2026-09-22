@@ -50,12 +50,13 @@ export default function CookingLandingPage() {
 
         <section id="about" className="mx-auto max-w-[560px] pb-24 text-center">
           <p className="font-[family-name:var(--font-fraunces)] text-[18px] leading-[1.7]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam.
+            I write code most days, and somewhere along the way cooking became the thing that
+            isn&apos;t that. No plan, no theme — some nights it&apos;s kafta and kabsa, some
+            nights it&apos;s carbonara, whatever&apos;s around or whatever I&apos;m craving.
           </p>
           <p className="mt-6 font-[family-name:var(--font-fraunces)] text-[18px] leading-[1.7]">
-            Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat,
-            duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+            This page exists because I take a photo before every plate gets wrecked, and they
+            were just sitting in my camera roll doing nothing. So — a small archive, mostly for me.
           </p>
         </section>
       </main>
