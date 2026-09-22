@@ -18,8 +18,8 @@ export default function CookingLandingPage() {
         <section className="py-12 md:py-24">
           <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[4px]">
             <Image
-              src="/images/cooking/kabsa.jpg"
-              alt="Kabsa, a Middle Eastern spiced rice dish"
+              src="/images/cooking/Hero.jpg"
+              alt="Ramen with egg and beef slices in a bowl on a wooden table"
               fill
               priority
               sizes="100vw"
