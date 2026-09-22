@@ -50,13 +50,15 @@ export default function CookingLandingPage() {
 
         <section id="about" className="mx-auto max-w-[560px] pb-24 text-center">
           <p className="font-[family-name:var(--font-fraunces)] text-[18px] leading-[1.7]">
-            I write code most days, and somewhere along the way cooking became the thing that
-            isn&apos;t that. No plan, no theme — some nights it&apos;s kafta and kabsa, some
-            nights it&apos;s carbonara, whatever&apos;s around or whatever I&apos;m craving.
+            Some days I write code. Other days I make kafta. The days I do both are the good ones.
           </p>
           <p className="mt-6 font-[family-name:var(--font-fraunces)] text-[18px] leading-[1.7]">
-            This page exists because I take a photo before every plate gets wrecked, and they
-            were just sitting in my camera roll doing nothing. So — a small archive, mostly for me.
+            There&apos;s no theme here. Kabsa on Monday, carbonara on Wednesday, whatever&apos;s
+            in the fridge on Sunday. I take a photo before I eat because otherwise the plate gets
+            wrecked in ninety seconds and I have nothing to show for it.
+          </p>
+          <p className="mt-6 font-[family-name:var(--font-fraunces)] text-[18px] leading-[1.7]">
+            This is where the photos live now. Mostly for me. You can look.
           </p>
         </section>
       </main>
