@@ -7,8 +7,9 @@ const securityHeaders = [
   { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
   { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
   {
-    // Report-only first: watch the console for violations, then enforce (P1 follow-up)
-    key: 'Content-Security-Policy-Report-Only',
+    // Enforced since 2026-09-25, after a crawl of every route (incl. 3D mode, chat,
+    // cooking) found zero violations. Cloudflare's email-decode script is same-origin.
+    key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline'",

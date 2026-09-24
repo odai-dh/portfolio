@@ -12,6 +12,20 @@ interface WebsitePreviewProps {
   imageUrl: string;
 }
 
+// allow-same-origin lets an embedded site keep its own origin (fonts, localStorage, its own
+// fetches). It's only unsafe for pages on *this* domain, which could then lift their own
+// sandbox — so it's never granted to odaidh.dev URLs.
+function previewSandbox(url: string) {
+  const base = 'allow-scripts allow-forms allow-popups';
+  try {
+    const host = new URL(url).hostname;
+    if (host === 'odaidh.dev' || host.endsWith('.odaidh.dev')) return base;
+    return `${base} allow-same-origin`;
+  } catch {
+    return base;
+  }
+}
+
 export function WebsitePreview({ url, title, imageUrl }: WebsitePreviewProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -127,7 +141,7 @@ export function WebsitePreview({ url, title, imageUrl }: WebsitePreviewProps) {
             className={`w-full h-full border-0 ${isLoading || iframeError ? 'opacity-0' : 'opacity-100'}`}
             onLoad={handleIframeLoad}
             onError={handleIframeError}
-            sandbox="allow-scripts allow-forms allow-popups"
+            sandbox={previewSandbox(url)}
             referrerPolicy="no-referrer"
             loading="lazy"
           />
