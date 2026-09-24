@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import Image from 'next/image';
 
 const LENS_SIZE = 180;
 const ZOOM = 2.5;
@@ -8,10 +9,16 @@ const ZOOM = 2.5;
 export function ImageMagnifier({
   src,
   alt,
+  width,
+  height,
+  priority,
   className,
 }: {
   src: string;
   alt: string;
+  width: number;
+  height: number;
+  priority?: boolean;
   className?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,11 +55,15 @@ export function ImageMagnifier({
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setLens(null)}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={src}
         alt={alt}
+        width={width}
+        height={height}
+        priority={priority}
+        sizes="(min-width: 768px) 50vw, 100vw"
         className="block h-auto max-h-[70vh] w-auto max-w-full select-none"
+        style={{ height: 'auto', width: 'auto' }}
         draggable={false}
       />
       {lens && (

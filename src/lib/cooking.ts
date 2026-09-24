@@ -1,9 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { imageSize } from 'image-size';
 import { z } from 'zod';
 
 const cookingDirectory = path.join(process.cwd(), 'content/cooking');
+
+export function getImageDimensions(publicPath: string): { width: number; height: number } {
+  const filePath = path.join(process.cwd(), 'public', publicPath);
+  const { width, height } = imageSize(fs.readFileSync(filePath));
+  return { width, height };
+}
 
 const CookingFrontMatterSchema = z.object({
   title: z.string().min(1),

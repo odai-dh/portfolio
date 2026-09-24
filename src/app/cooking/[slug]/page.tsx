@@ -8,6 +8,7 @@ import {
   getAllCookingEntries,
   getAdjacentCookingEntries,
   getCookingEntryBySlug,
+  getImageDimensions,
   formatCookingDate,
 } from '@/lib/cooking';
 
@@ -40,6 +41,7 @@ export default async function CookingEntryPage({
   if (!entry) notFound();
 
   const { prev, next } = getAdjacentCookingEntries(slug);
+  const heroDimensions = getImageDimensions(entry.heroPhoto);
 
   return (
     <>
@@ -47,7 +49,13 @@ export default async function CookingEntryPage({
 
       <div className="md:grid md:grid-cols-2 md:items-stretch">
         <div className="flex w-full items-center justify-center bg-[#FAF7F2] md:min-h-[70vh]">
-          <ImageMagnifier src={entry.heroPhoto} alt={entry.title} />
+          <ImageMagnifier
+            src={entry.heroPhoto}
+            alt={entry.title}
+            width={heroDimensions.width}
+            height={heroDimensions.height}
+            priority
+          />
         </div>
 
         <main className="flex flex-col justify-center px-6 py-12 md:px-12 md:py-16 lg:px-20">
@@ -75,9 +83,18 @@ export default async function CookingEntryPage({
 
       {entry.photos.length > 0 && (
         <div className="mx-auto flex max-w-[720px] flex-col items-center gap-8 px-6 pb-16 md:px-10">
-          {entry.photos.map((photo) => (
-            <ImageMagnifier key={photo} src={photo} alt={entry.title} />
-          ))}
+          {entry.photos.map((photo) => {
+            const dimensions = getImageDimensions(photo);
+            return (
+              <ImageMagnifier
+                key={photo}
+                src={photo}
+                alt={entry.title}
+                width={dimensions.width}
+                height={dimensions.height}
+              />
+            );
+          })}
         </div>
       )}
 
