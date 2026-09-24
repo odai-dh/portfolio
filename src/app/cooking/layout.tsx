@@ -19,6 +19,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: 'Odai cooks',
   description: 'Powered by carbs and bad decisions. Stockholm, mostly weekends.',
+  robots: { index: false, follow: false },
 };
 
 export default function CookingLayout({ children }: { children: React.ReactNode }) {
