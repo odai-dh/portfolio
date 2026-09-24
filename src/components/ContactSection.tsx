@@ -11,7 +11,8 @@ import { useToast } from '@/hooks/use-toast';
 import { submitContactFormAction } from '@/app/actions';
 import { SectionWrapper } from './SectionWrapper';
 import { FadeIn } from './FadeIn';
-import { CheckCircle2, Send, Mail } from 'lucide-react';
+import { CheckCircle2, Send, Mail, Github, Linkedin, FileText, MapPin } from 'lucide-react';
+import type { Socials } from '@/lib/markdown';
 import { useState } from 'react';
 
 const contactFormSchema = z.object({
@@ -21,7 +22,7 @@ const contactFormSchema = z.object({
   website: z.string().optional(), // honeypot — hidden from humans
 });
 
-export function ContactSection() {
+export function ContactSection({ socials }: { socials: Socials }) {
   const { toast } = useToast();
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -64,7 +65,7 @@ export function ContactSection() {
       <FadeIn>
         <div className="flex items-center gap-4 mb-12">
           <h2 className="font-headline text-3xl font-bold tracking-tight text-foreground whitespace-nowrap">
-            <span className="text-primary font-mono text-2xl">05.</span> Get In Touch
+            <span className="text-primary font-mono text-2xl">04.</span> Get In Touch
           </h2>
           <div className="w-full h-px bg-border"></div>
         </div>
@@ -79,14 +80,31 @@ export function ContactSection() {
               </p>
             </div>
             
-            <div className="pt-6 border-t border-border">
-              <a 
-                href="mailto:odai@odaidh.dev"
-                className="inline-flex items-center gap-3 text-lg text-muted-foreground hover:text-primary transition-all duration-300 group"
-              >
-                <Mail className="h-6 w-6 transition-transform group-hover:scale-110 group-hover:rotate-12" />
-                <span className="group-hover:translate-x-1 transition-transform">odai@odaidh.dev</span>
-              </a>
+            <div className="pt-6 border-t border-border space-y-4">
+              {[
+                { href: 'mailto:odai@odaidh.dev', label: 'odai@odaidh.dev', Icon: Mail },
+                { href: socials.linkedin, label: 'LinkedIn', Icon: Linkedin, external: true },
+                { href: socials.github, label: 'GitHub', Icon: Github, external: true },
+                { href: '/OdaiDahi-CV-En.pdf', label: 'CV (English)', Icon: FileText, external: true },
+              ].map(({ href, label, Icon, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
+                  className="flex w-fit items-center gap-3 text-lg text-muted-foreground hover:text-primary transition-all duration-300 group"
+                >
+                  <Icon className="h-6 w-6 transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                  <span className="group-hover:translate-x-1 transition-transform">{label}</span>
+                </a>
+              ))}
+            </div>
+
+            <div className="flex items-start gap-3 rounded-lg border border-border/60 bg-card/50 p-4 text-sm text-muted-foreground">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span>
+                Based in <span className="text-foreground">Stockholm, Sweden</span>. Open to full-time roles
+                (remote, hybrid or on-site) and freelance projects.
+              </span>
             </div>
           </div>
 

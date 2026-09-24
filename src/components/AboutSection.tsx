@@ -25,6 +25,8 @@ export function AboutSection({ aboutHtml, tiktokUrl }: AboutSectionProps) {
     let node;
     while ((node = walker.nextNode())) {
       const text = node.textContent || '';
+      // Already linked (effects can run twice in dev) — don't wrap it again
+      if (node.parentElement?.closest('.lemon-link')) break;
       if (text.includes('🍋')) {
         const parent = node.parentElement;
         if (parent) {
@@ -51,7 +53,7 @@ export function AboutSection({ aboutHtml, tiktokUrl }: AboutSectionProps) {
         </div>
         <div 
           ref={contentRef}
-          className="prose prose-lg max-w-none text-muted-foreground prose-p:mb-4 prose-strong:text-foreground
+          className="text-lg leading-relaxed text-muted-foreground [&_p]:mb-5 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_strong]:text-foreground [&_a:not(.lemon-link)]:text-foreground [&_a:not(.lemon-link)]:underline [&_a:not(.lemon-link)]:decoration-primary [&_a:not(.lemon-link)]:underline-offset-4 [&_a:not(.lemon-link):hover]:text-primary
           [&_.lemon-link]:inline-block 
           [&_.lemon-link]:text-2xl 
           [&_.lemon-link]:transition-all 

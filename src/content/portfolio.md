@@ -1,7 +1,7 @@
 ---
 name: "Odai Dahi"
 title: "Full Stack Developer"
-subtitle: "Full Stack Developer with a frontend focus — freelancing & open to new opportunities."
+subtitle: "I build production Next.js apps — most recently a multi-client dashboard platform at Aeoflo. Based in Stockholm, freelancing and open to full-time roles."
 email: "odai@odaidh.dev"
 socials:
   github: "https://github.com/odai-dh"
@@ -421,6 +421,6 @@ Hey, I’m Odai — a Full Stack Developer who leans frontend, with hands-on exp
 
 I’ve worked across the stack: from Shopify apps and dashboards at **Aeoflo**, to responsive UIs at **Sportly**, to personal projects spanning **iOS apps**, **AI-powered games**, and **3D web experiences**. Each one taught me something new about code, design, and how people experience the web.
 
-Right now I’m taking on **freelance projects** while actively looking for my next full-time role. I love solving problems that mix creativity and logic, and when I’m not coding, you’ll probably find me cooking 🍋.
+Right now I’m taking on **freelance projects** while actively looking for my next full-time role. I love solving problems that mix creativity and logic, and when I’m not coding, you’ll probably find me [cooking](/cooking) 🍋.
 
 If you’re working on something interesting, I’d love to hear about it.

@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { Button } from '@/components/ui/button';
 
 const CELL = 32;
 const COLS = 14;
@@ -277,7 +276,7 @@ export function SnakeGame({ onClose }: { onClose?: () => void }) {
     return () => window.removeEventListener('keydown', handle);
   }, []);
 
-  // Idle screen
+  // Title screen — a resting snake and a blinking PRESS START
   useEffect(() => {
     if (gameState !== 'idle') return;
     const canvas = canvasRef.current;
@@ -285,21 +284,44 @@ export function SnakeGame({ onClose }: { onClose?: () => void }) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    ctx.fillStyle = '#0f172a';
-    ctx.fillRect(0, 0, W, H);
-    ctx.fillStyle = '#1e293b';
-    for (let x = 0; x < COLS; x++)
-      for (let y = 0; y < ROWS; y++)
-        ctx.fillRect(x * CELL + CELL / 2 - 1, y * CELL + CELL / 2 - 1, 2, 2);
+    let blinkOn = true;
+    const draw = () => {
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#1e293b';
+      for (let x = 0; x < COLS; x++)
+        for (let y = 0; y < ROWS; y++)
+          ctx.fillRect(x * CELL + CELL / 2 - 1, y * CELL + CELL / 2 - 1, 2, 2);
 
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.font = 'bold 16px monospace';
-    ctx.fillStyle = '#3B82F6';
-    ctx.fillText('Click to play', W / 2, H / 2 - 18);
-    ctx.font = '12px monospace';
-    ctx.fillStyle = '#475569';
-    ctx.fillText('Collect skills · earn your title', W / 2, H / 2 + 12);
+      [4, 5, 6, 7, 8].forEach((x, i) => {
+        ctx.fillStyle = i === 4 ? '#3B82F6' : `rgba(59,130,246,${0.35 + i * 0.12})`;
+        drawRoundRect(ctx, x * CELL + 2, 9 * CELL + 2, CELL - 4, CELL - 4, 6);
+        ctx.fill();
+      });
+      ctx.font = '22px serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('🍋', 10 * CELL + CELL / 2, 9 * CELL + CELL / 2 + 1);
+
+      ctx.font = 'bold 34px monospace';
+      ctx.fillStyle = '#e2e8f0';
+      ctx.fillText('SKILL·BOY', W / 2, H / 2 - 70);
+      ctx.font = '12px monospace';
+      ctx.fillStyle = '#475569';
+      ctx.fillText('collect skills · earn your title', W / 2, H / 2 - 36);
+      if (blinkOn) {
+        ctx.font = 'bold 16px monospace';
+        ctx.fillStyle = '#3B82F6';
+        ctx.fillText('▶ PRESS START', W / 2, H / 2 + 14);
+      }
+    };
+
+    draw();
+    const blink = setInterval(() => {
+      blinkOn = !blinkOn;
+      draw();
+    }, 600);
+    return () => clearInterval(blink);
   }, [gameState]);
 
   const handleDirButton = useCallback((dx: number, dy: number) => {
@@ -387,21 +409,42 @@ export function SnakeGame({ onClose }: { onClose?: () => void }) {
           <div />
         </div>
 
-        {/* Right side: status + button */}
-        <div className="flex flex-col items-center gap-3">
-          {gameState === 'gameover' && (
-            <Button variant="outline" size="sm" onClick={startGame}
-              className="border-[#3B82F6] text-[#3B82F6] hover:bg-[#3B82F6] hover:text-white text-xs">
-              Restart
-            </Button>
-          )}
-          {/* Speaker grille */}
-          <div className="flex gap-0.5">
-            {[0,1,2,3].map(i => (
-              <div key={i} className="w-0.5 h-6 bg-[#2d2d4e] rounded-full" />
-            ))}
-          </div>
+        {/* A / B — A starts the game too */}
+        <div className="flex -rotate-[20deg] items-start gap-3">
+          <span aria-hidden className="mt-6 flex flex-col items-center gap-1">
+            <span className="h-11 w-11 rounded-full bg-[#2d2d4e]" />
+            <span className="font-mono text-[9px] text-[#475569]">B</span>
+          </span>
+          <span className="flex flex-col items-center gap-1">
+            <button
+              onClick={() => { if (gameState !== 'playing') startGame(); }}
+              aria-label="A — start"
+              className="h-11 w-11 rounded-full bg-[#3B82F6] shadow-[inset_0_-3px_0_rgba(0,0,0,0.3)] transition-transform active:scale-90"
+            />
+            <span aria-hidden className="font-mono text-[9px] text-[#94a3b8]">A</span>
+          </span>
         </div>
+      </div>
+
+      {/* SELECT / START */}
+      <div className="flex items-center gap-5">
+        <span aria-hidden className="flex flex-col items-center gap-1">
+          <span className="h-2.5 w-10 -rotate-[20deg] rounded-full bg-[#2d2d4e]" />
+          <span className="font-mono text-[9px] tracking-widest text-[#475569]">SELECT</span>
+        </span>
+        <button
+          onClick={() => { if (gameState !== 'playing') startGame(); }}
+          className="group flex flex-col items-center gap-1"
+        >
+          <span
+            className={`h-2.5 w-10 -rotate-[20deg] rounded-full transition-colors ${
+              gameState === 'playing' ? 'bg-[#2d2d4e]' : 'bg-[#3B82F6] group-hover:bg-[#60A5FA]'
+            }`}
+          />
+          <span className="font-mono text-[9px] tracking-widest text-[#94a3b8] group-hover:text-white">
+            {gameState === 'gameover' ? 'RESTART' : 'START'}
+          </span>
+        </button>
       </div>
     </div>
   );

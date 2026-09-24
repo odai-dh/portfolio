@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown, Gamepad2, X } from 'lucide-react';
 import { SnakeGame } from './SnakeGame';
+import { useHeroMode } from './HeroMode';
 
 type Props = {
   name: string;
@@ -22,17 +23,21 @@ type Props = {
 
 export function HeroWithGame({ name, title, subtitle, email }: Props) {
   const [gameOpen, setGameOpen] = useState(false);
+  const mode = useHeroMode();
 
   return (
     <>
-      {/* Hero — layout completely unchanged */}
-      <SectionWrapper id="hero" className="flex min-h-[60vh] flex-col justify-center py-12 md:py-0">
+      {/* Wide screens: Skill·Boy sits in the hero's right half. Narrower: the Play button opens it as an overlay. */}
+      <SectionWrapper
+        id="hero"
+        className="flex min-h-[60vh] flex-col justify-center py-12 md:py-0 xl:-mr-16 xl:grid xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center xl:gap-12 2xl:-mr-32"
+      >
         <FadeIn>
           <p className="mb-4 font-mono text-primary">Hi, my name is</p>
           <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
             {name}.
           </h1>
-          <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-muted-foreground sm:text-5xl lg:text-6xl">
+          <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-muted-foreground sm:text-5xl lg:text-6xl xl:text-[2.6rem] 2xl:text-6xl">
             {title}.
           </h2>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
@@ -66,6 +71,7 @@ export function HeroWithGame({ name, title, subtitle, email }: Props) {
               size="lg"
               variant={gameOpen ? 'destructive' : 'outline'}
               onClick={() => setGameOpen(v => !v)}
+              className="xl:hidden"
             >
               {gameOpen ? (
                 <><X className="mr-2 h-4 w-4" /> Stop</>
@@ -75,6 +81,15 @@ export function HeroWithGame({ name, title, subtitle, email }: Props) {
             </Button>
           </div>
         </FadeIn>
+
+        {/* Powered off while 3D mode runs its own snake over the hero */}
+        {mode === '2d' && (
+          <FadeIn className="hidden xl:block">
+            <div className="w-[320px] rotate-[4deg] 2xl:w-[380px] drop-shadow-[0_30px_60px_rgba(0,153,255,0.18)] transition-transform duration-500 focus-within:rotate-0 hover:rotate-0">
+              <SnakeGame />
+            </div>
+          </FadeIn>
+        )}
       </SectionWrapper>
 
       {/* Game — fixed overlay, touches nothing in the layout.

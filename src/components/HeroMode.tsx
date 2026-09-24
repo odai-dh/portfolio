@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { cn } from '@/lib/utils';
 
@@ -17,6 +17,10 @@ const World3D = dynamic<{ onExit?: () => void }>(() => import('./three/World3D')
 });
 
 type Mode = '2d' | '3d';
+
+// Lets the hero know when 3D mode is on, so only one snake game runs at a time
+const HeroModeContext = createContext<Mode>('2d');
+export const useHeroMode = () => useContext(HeroModeContext);
 
 export function HeroMode({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<Mode>('2d');
@@ -70,7 +74,7 @@ export function HeroMode({ children }: { children: React.ReactNode }) {
   }, [mode, toggle]);
 
   return (
-    <>
+    <HeroModeContext.Provider value={mode}>
       {eligible && (
         <button
           onClick={toggle}
@@ -79,10 +83,6 @@ export function HeroMode({ children }: { children: React.ReactNode }) {
           {mode === '2d' ? '▸ 3D MODE' : '▸ 2D MODE'}
         </button>
       )}
-
-      <p className="pt-2 font-mono text-[10px] text-muted-foreground md:hidden">
-        ▸ 3D mode available on desktop
-      </p>
 
       {/* the hero stays — in 3D mode the game floats transparently above it */}
       <div className="relative">
@@ -101,6 +101,6 @@ export function HeroMode({ children }: { children: React.ReactNode }) {
           fading ? 'opacity-100' : 'opacity-0'
         )}
       />
-    </>
+    </HeroModeContext.Provider>
   );
 }
