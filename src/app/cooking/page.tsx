@@ -1,66 +1,67 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { CookingTopBar } from '@/components/cooking/CookingTopBar';
 import { CookingFooter } from '@/components/cooking/CookingFooter';
-import { EntryGrid } from '@/components/cooking/EntryGrid';
-import { getAllCookingEntries } from '@/lib/cooking';
+import { PlateHero } from '@/components/cooking/PlateHero';
+import { DishTicker } from '@/components/cooking/DishTicker';
+import { MenuList, type MenuGroup } from '@/components/cooking/MenuList';
+import { KitchenReceipt } from '@/components/cooking/KitchenReceipt';
+import { getAllCookingEntries, groupByMonth, toCookingTicket } from '@/lib/cooking';
 
 const LANDING_COUNT = 12;
 
 export default function CookingLandingPage() {
-  const entries = getAllCookingEntries().slice(0, LANDING_COUNT);
+  const allEntries = getAllCookingEntries();
+  const groups: MenuGroup[] = groupByMonth(
+    allEntries
+      .slice(0, LANDING_COUNT)
+      .map((entry, index) => toCookingTicket(entry, index, allEntries.length))
+  );
 
   return (
     <>
       <CookingTopBar aboutHref="#about" />
 
-      <main className="mx-auto max-w-6xl px-6 md:px-10">
-        <section className="py-12 md:py-24">
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[4px]">
-            <Image
-              src="/images/cooking/Hero.jpg"
-              alt="Ramen with egg and beef slices in a bowl on a wooden table"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
-          <div className="mx-auto mt-10 max-w-xl text-center">
-            <p className="font-[family-name:var(--font-fraunces)] text-[22px] italic text-[#78716C]">
-              Powered by carbs and bad decisions.
-            </p>
-            <p className="mt-2 font-[family-name:var(--font-manrope)] text-base text-[#78716C]">
-              Stockholm, mostly weekends.
-            </p>
-          </div>
-        </section>
+      <main>
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
+          <PlateHero />
+        </div>
 
-        <section className="pb-24">
-          <EntryGrid entries={entries} />
-          <div className="mt-16 text-center">
+        <DishTicker dishes={allEntries.map((entry) => entry.title.toLowerCase())} />
+
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
+          <MenuList groups={groups} />
+          <div className="pb-24 text-center">
             <Link
               href="/cooking/archive"
-              className="font-[family-name:var(--font-manrope)] text-sm text-[#1C1917] hover:text-[#B45309]"
+              className="font-[family-name:var(--font-fraunces)] text-[20px] italic text-[#1C1917] underline decoration-[#B4532A] decoration-1 underline-offset-8 hover:text-[#B4532A]"
             >
-              See earlier →
+              The full archive →
             </Link>
           </div>
-        </section>
 
-        <section id="about" className="mx-auto max-w-[560px] pb-24 text-center">
-          <p className="font-[family-name:var(--font-fraunces)] text-[18px] leading-[1.7]">
-            Some days I write code. Other days I make kafta. The days I do both are the good ones.
-          </p>
-          <p className="mt-6 font-[family-name:var(--font-fraunces)] text-[18px] leading-[1.7]">
-            There&apos;s no theme here. Kabsa on Monday, carbonara on Wednesday, whatever&apos;s
-            in the fridge on Sunday. I take a photo before I eat because otherwise the plate gets
-            wrecked in ninety seconds and I have nothing to show for it.
-          </p>
-          <p className="mt-6 font-[family-name:var(--font-fraunces)] text-[18px] leading-[1.7]">
-            This is where the photos live now. Mostly for me. You can look.
-          </p>
-        </section>
+          <section
+            id="about"
+            className="grid scroll-mt-24 items-center gap-16 border-t border-[#1C1917]/15 py-24 md:grid-cols-[1.2fr_1fr]"
+          >
+            <div className="max-w-[560px]">
+              <p className="font-[family-name:var(--font-manrope)] text-[11px] uppercase tracking-[0.3em] text-[#B4532A]">
+                About the cook
+              </p>
+              <p className="mt-8 font-[family-name:var(--font-fraunces)] text-[20px] leading-[1.7] first-letter:float-left first-letter:mr-3 first-letter:font-[family-name:var(--font-fraunces)] first-letter:text-[88px] first-letter:italic first-letter:leading-[0.8] first-letter:text-[#B4532A]">
+                Some days I write code. Other days I make kafta. The days I do both are the good ones.
+              </p>
+              <p className="mt-6 font-[family-name:var(--font-fraunces)] text-[20px] leading-[1.7]">
+                There&apos;s no theme here. Kabsa on Monday, carbonara on Wednesday, whatever&apos;s
+                in the fridge on Sunday. I take a photo before I eat because otherwise the plate gets
+                wrecked in ninety seconds and I have nothing to show for it.
+              </p>
+              <p className="mt-6 font-[family-name:var(--font-fraunces)] text-[20px] italic leading-[1.7]">
+                This is where the photos live now. Mostly for me. You can look.
+              </p>
+            </div>
+            <KitchenReceipt entries={allEntries} />
+          </section>
+        </div>
       </main>
 
       <CookingFooter />

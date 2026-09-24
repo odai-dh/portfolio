@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { Fraunces, Manrope } from 'next/font/google';
+import './cooking.css';
 
 const fraunces = Fraunces({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
+  axes: ['SOFT', 'WONK', 'opsz'],
   variable: '--font-fraunces',
   display: 'swap',
 });
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
 export default function CookingLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={`${fraunces.variable} ${manrope.variable} min-h-screen bg-[#FAF7F2] font-[family-name:var(--font-manrope)] text-[#1C1917]`}
+      className={`cooking-grain ${fraunces.variable} ${manrope.variable} min-h-screen bg-[#FAF7F2] font-[family-name:var(--font-manrope)] text-[#1C1917]`}
     >
       {children}
     </div>

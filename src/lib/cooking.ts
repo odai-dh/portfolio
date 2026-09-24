@@ -72,6 +72,30 @@ export function getAdjacentCookingEntries(slug: string): {
   };
 }
 
+// Entries are numbered in the order they were cooked: the oldest is No.1
+export function toCookingTicket(entry: CookingEntry, index: number, total: number) {
+  return {
+    slug: entry.slug,
+    number: total - index,
+    title: entry.title,
+    caption: entry.caption,
+    date: entry.date,
+    dateLabel: formatCookingDate(entry.date),
+    heroPhoto: entry.heroPhoto,
+  };
+}
+
+export function groupByMonth<T extends { date: string }>(items: T[]): { label: string; items: T[] }[] {
+  const groups: { label: string; items: T[] }[] = [];
+  for (const item of items) {
+    const label = formatCookingDate(item.date, { month: 'long', year: 'numeric', day: undefined });
+    const group = groups.at(-1);
+    if (group?.label === label) group.items.push(item);
+    else groups.push({ label, items: [item] });
+  }
+  return groups;
+}
+
 export function formatCookingDate(date: string, options?: Intl.DateTimeFormatOptions): string {
   const [year, month, day] = date.split('-').map(Number);
   return new Date(Date.UTC(year, month - 1, day)).toLocaleDateString('en-US', {
