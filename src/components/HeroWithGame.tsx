@@ -40,7 +40,7 @@ export function HeroWithGame({ name, title, subtitle, email }: Props) {
           <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-muted-foreground sm:text-5xl lg:text-6xl xl:text-[2.6rem] 2xl:text-6xl">
             {title}.
           </h2>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+          <p className={`mt-6 text-lg text-muted-foreground ${mode === '3d' ? 'max-w-sm' : 'max-w-2xl'}`}>
             {subtitle}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
@@ -71,7 +71,7 @@ export function HeroWithGame({ name, title, subtitle, email }: Props) {
               size="lg"
               variant={gameOpen ? 'destructive' : 'outline'}
               onClick={() => setGameOpen(v => !v)}
-              className="xl:hidden"
+              className={mode === '3d' ? 'hidden' : 'xl:hidden'}
             >
               {gameOpen ? (
                 <><X className="mr-2 h-4 w-4" /> Stop</>

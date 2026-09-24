@@ -1,11 +1,11 @@
 'use client';
 
-import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { cn } from '@/lib/utils';
 
 // 3D code stays out of the initial payload — loads only when 3D mode is entered
-const World3D = dynamic<{ onExit?: () => void }>(() => import('./three/World3D'), {
+const World3D = dynamic<{ onExit?: () => void; framing?: Framing }>(() => import('./three/World3D'), {
   ssr: false,
   loading: () => (
     <div className="flex h-full w-full items-center justify-center">
@@ -17,6 +17,27 @@ const World3D = dynamic<{ onExit?: () => void }>(() => import('./three/World3D')
 });
 
 type Mode = '2d' | '3d';
+export type Framing = 'side' | 'full';
+
+// Below this, the space right of the hero text is too small for the board
+const MIN_SIDE_WIDTH = 520;
+const GAP = 32;
+
+// Where the hero text actually ends, measured on the text itself (block
+// elements span the full column, so their boxes would say nothing useful)
+function heroTextRight(root: HTMLElement): number {
+  let right = 0;
+  const range = document.createRange();
+  root.querySelectorAll('#hero h1, #hero h2, #hero p').forEach((el) => {
+    range.selectNodeContents(el);
+    right = Math.max(right, range.getBoundingClientRect().right);
+  });
+  root.querySelectorAll('#hero a, #hero button').forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.width > 0) right = Math.max(right, rect.right);
+  });
+  return right;
+}
 
 // Lets the hero know when 3D mode is on, so only one snake game runs at a time
 const HeroModeContext = createContext<Mode>('2d');
@@ -26,6 +47,27 @@ export function HeroMode({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<Mode>('2d');
   const [fading, setFading] = useState(false);
   const [eligible, setEligible] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  // the 3D canvas takes the space right of the hero text when there's room for it
+  const [area, setArea] = useState<{ left: number; width: number } | null>(null);
+
+  useLayoutEffect(() => {
+    if (mode !== '3d') return;
+    const measure = () => {
+      const wrap = wrapRef.current;
+      if (!wrap) return;
+      const textRight = heroTextRight(wrap);
+      const width = document.documentElement.clientWidth - textRight - GAP;
+      setArea(width >= MIN_SIDE_WIDTH ? { left: textRight + GAP - wrap.getBoundingClientRect().left, width } : null);
+    };
+    measure();
+    const late = window.setTimeout(measure, 400); // after fonts and the fade settle
+    window.addEventListener('resize', measure);
+    return () => {
+      window.clearTimeout(late);
+      window.removeEventListener('resize', measure);
+    };
+  }, [mode]);
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -85,11 +127,18 @@ export function HeroMode({ children }: { children: React.ReactNode }) {
       )}
 
       {/* the hero stays — in 3D mode the game floats transparently above it */}
-      <div className="relative">
+      <div ref={wrapRef} className="relative">
         {children}
+        {/* one wrapper whose box changes, so a resize never restarts the game */}
         {mode === '3d' && (
-          <div className="pointer-events-none absolute inset-y-0 left-1/2 z-40 w-screen -translate-x-1/2">
-            <World3D onExit={toggle} />
+          <div
+            className={cn(
+              'pointer-events-none absolute inset-y-0 z-40',
+              !area && 'left-1/2 w-screen -translate-x-1/2'
+            )}
+            style={area ? { left: area.left, width: area.width } : undefined}
+          >
+            <World3D onExit={toggle} framing={area ? 'side' : 'full'} />
           </div>
         )}
       </div>

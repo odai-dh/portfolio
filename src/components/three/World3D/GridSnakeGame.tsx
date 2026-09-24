@@ -1,35 +1,43 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { RoundedBox } from '@react-three/drei';
+import { Html, RoundedBox } from '@react-three/drei';
 import * as THREE from 'three';
+import { SKILLS, type SkillItem } from '@/lib/skillboy';
 import { PALETTE } from './palette';
+import { sfx } from './sfx';
 
 // ---------------------------------------------------------------------------
-// Ported from rock-biter/three-snake-live (Odai's local clone) — faithfully:
-// - grid cells, 240ms tick, dot-product direction lock (no 180° turns)
-// - candy attaches to the HEAD on eat, rides backward one node per tick at
-//   1.15× scale, and the tail grows only when it arrives at the end
-// - candies are worth 1–3 points and are sized 0.5 + points*0.5/3
-// - self-collision AND rock collision = death; edges wrap
-// - entities spawn with an elastic pop (gsap elastic.out → hand-rolled)
-// - Space pauses/resumes, like the reference
+// Grid snake, first ported from rock-biter/three-snake-live:
+// - grid cells, perpendicular-only turns, self and rock collisions kill, edges wrap
+// - an eaten pickup rides down the body and the tail grows when it arrives
+// On top of that: skill pickups shared with the 2D Skill·Boy, a turn buffer,
+// speed that ramps with length, and effects (bursts, portals, shatter).
+// All per-frame animation goes through refs: React only re-renders on real
+// changes (length, pickups), never per frame.
 // ---------------------------------------------------------------------------
 
 export const GRID = {
   cols: 14,
   rows: 14,
   cell: 0.9,
-  tickMs: 240,
   startLength: 3,
-  lemonCount: 2,
+  pickupCount: 2,
+  tickStartMs: 240,
+  tickMinMs: 125,
+  tickStepMs: 7, // faster by this much per segment grown
+  maxQueuedTurns: 3,
 } as const;
+
+export type Phase = 'ready' | 'countdown' | 'playing' | 'dead';
+export type Fx = { shakeAt: number };
 
 type Cell = { x: number; z: number };
 type Dir = { x: number; z: number };
-type Lemon = { cell: Cell; points: number; bornAt: number };
-type Ride = { index: number }; // candy position along the body
+type Pickup = { id: number; cell: Cell; skill: SkillItem; points: number; bornAt: number };
+type Ride = { index: number };
+type Floater = { id: number; x: number; z: number; text: string; color: string };
 
 const DIRS: Record<string, Dir> = {
   ArrowUp: { x: 0, z: -1 }, w: { x: 0, z: -1 }, W: { x: 0, z: -1 },
@@ -37,13 +45,23 @@ const DIRS: Record<string, Dir> = {
   ArrowLeft: { x: -1, z: 0 }, a: { x: -1, z: 0 }, A: { x: -1, z: 0 },
   ArrowRight: { x: 1, z: 0 }, d: { x: 1, z: 0 }, D: { x: 1, z: 0 },
 };
+export const isGameKey = (key: string) => key in DIRS;
 
-// deadly obstacles, reference-style — parked off the start row and lemon lanes
 export const ROCKS: Cell[] = [
   { x: 2, z: 2 },
   { x: 11, z: 4 },
   { x: 4, z: 11 },
 ];
+
+const START_ROW = 10;
+// Off the start row, so nothing gets eaten before the player moves
+const FIRST_PICKUP_CELLS: Cell[] = [
+  { x: 10, z: 6 },
+  { x: 5, z: 6 },
+];
+
+const HALF_W = (GRID.cols * GRID.cell) / 2;
+const HALF_H = (GRID.rows * GRID.cell) / 2;
 
 export function cellToWorld(c: Cell): [number, number] {
   return [
@@ -52,9 +70,7 @@ export function cellToWorld(c: Cell): [number, number] {
   ];
 }
 
-function sameCell(a: Cell, b: Cell): boolean {
-  return a.x === b.x && a.z === b.z;
-}
+const sameCell = (a: Cell, b: Cell) => a.x === b.x && a.z === b.z;
 
 // gsap elastic.out(1.5, 0.5), hand-rolled — the reference spawn-in feel
 export function elasticOut(t: number): number {
@@ -63,283 +79,482 @@ export function elasticOut(t: number): number {
   return 1 + 1.5 * Math.pow(2, -10 * t) * Math.sin(((t * 10 - 0.75) * (2 * Math.PI)) / 3);
 }
 
-// spawn row — sits in the clear lane between the hero subtitle and the buttons
-const START_ROW = 10;
-
-const INITIAL_LEMON_CELLS: Cell[] = [
-  { x: 10, z: START_ROW },
-  { x: 12, z: START_ROW },
-];
-
-function rollPoints(): number {
-  return Math.floor(Math.random() * 3) + 1; // 1..3, reference Candy.points
-}
-
-function lemonScale(points: number): number {
-  return 0.5 + (points * 0.5) / 3; // reference Candy scale
+// Skills are served in the 2D game's order (basics first); later ones are worth more
+function skillAt(n: number): { skill: SkillItem; points: number } {
+  const i = n % SKILLS.length;
+  return { skill: SKILLS[i], points: i < 4 ? 1 : i < 9 ? 2 : 3 };
 }
 
 function randomFreeCell(occupied: Cell[]): Cell {
   let c: Cell;
   do {
-    c = {
-      x: Math.floor(Math.random() * GRID.cols),
-      z: Math.floor(Math.random() * GRID.rows),
-    };
+    c = { x: Math.floor(Math.random() * GRID.cols), z: Math.floor(Math.random() * GRID.rows) };
   } while (occupied.some((o) => sameCell(o, c)) || ROCKS.some((r) => sameCell(r, c)));
   return c;
 }
 
-function usePop() {
-  const ctxRef = useRef<AudioContext | null>(null);
-  useEffect(() => () => { ctxRef.current?.close().catch(() => undefined); }, []);
-  return useCallback((freq = 520) => {
-    try {
-      ctxRef.current ??= new AudioContext();
-      const ctx = ctxRef.current;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(freq * 1.8, ctx.currentTime + 0.09);
-      gain.gain.setValueAtTime(0.1, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.16);
-      osc.connect(gain).connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.18);
-    } catch {
-      // no audio — fine
-    }
-  }, []);
+// Step between two cells, accounting for the wrap: always a unit move
+function unitStep(from: Cell, to: Cell): Dir {
+  let dx = to.x - from.x;
+  let dz = to.z - from.z;
+  if (Math.abs(dx) > 1) dx = -Math.sign(dx);
+  if (Math.abs(dz) > 1) dz = -Math.sign(dz);
+  return { x: dx, z: dz };
 }
 
-function LemonMesh({ lemon, now }: { lemon: Lemon; now: number }) {
-  const [wx, wz] = cellToWorld(lemon.cell);
-  const s = lemonScale(lemon.points) * elasticOut(Math.min(1, (now - lemon.bornAt) / 1));
+// 1 well inside the board, 0 at the edge line — used to shrink blocks through a portal
+function edgeFade(x: number, z: number): number {
+  const inside = Math.min(HALF_W - Math.abs(x), HALF_H - Math.abs(z));
+  return THREE.MathUtils.clamp(inside / (GRID.cell * 0.5), 0, 1);
+}
+
+// ---------------------------------------------------------------------------
+
+function PickupMesh({ pickup }: { pickup: Pickup }) {
+  const group = useRef<THREE.Group>(null);
+  const gem = useRef<THREE.Mesh>(null);
+  const [wx, wz] = cellToWorld(pickup.cell);
+  const size = 0.3 + pickup.points * 0.06;
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    const s = elasticOut(Math.min(1, (t - pickup.bornAt) / 1)) || 0.0001;
+    group.current?.scale.setScalar(s);
+    if (gem.current) {
+      gem.current.position.y = 0.5 + Math.sin(t * 2.4 + pickup.cell.x) * 0.08;
+      gem.current.rotation.y = t * 1.3;
+    }
+  });
+
   return (
-    <group
-      position={[wx, 0.45 + Math.sin(now * 2.4 + lemon.cell.x) * 0.07, wz]}
-      rotation={[0, now * 1.2, 0]}
-      scale={s}
-    >
-      <mesh castShadow scale={[1, 1.22, 1]}>
-        <sphereGeometry args={[0.38, 14, 12]} />
-        <meshStandardMaterial color={PALETTE.lemon} flatShading roughness={0.5} />
+    <group ref={group} position={[wx, 0, wz]}>
+      <mesh ref={gem} castShadow>
+        <octahedronGeometry args={[size, 0]} />
+        <meshStandardMaterial
+          color={pickup.skill.color}
+          emissive={pickup.skill.color}
+          emissiveIntensity={0.35}
+          roughness={0.3}
+          flatShading
+        />
       </mesh>
-      <mesh position={[0, 0.52, 0]}>
-        <cylinderGeometry args={[0.04, 0.055, 0.15, 6]} />
-        <meshStandardMaterial color={PALETTE.trunk} roughness={1} />
+      {/* glow ring on the board under the gem */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.02, 0]}>
+        <ringGeometry args={[0.28, 0.38, 24]} />
+        <meshBasicMaterial color={pickup.skill.color} transparent opacity={0.55} depthWrite={false} />
       </mesh>
-      <mesh position={[0.12, 0.57, 0]} rotation={[0, 0, -0.9]}>
-        <coneGeometry args={[0.1, 0.24, 6]} />
-        <meshStandardMaterial color={PALETTE.lemonLeaf} flatShading roughness={0.8} />
-      </mesh>
+      <Html position={[0, 1.15, 0]} center zIndexRange={[5, 0]} style={{ pointerEvents: 'none' }}>
+        <span
+          className="whitespace-nowrap rounded border bg-background/80 px-1.5 py-0.5 font-mono text-[10px] text-foreground backdrop-blur"
+          style={{ borderColor: pickup.skill.color }}
+        >
+          {pickup.skill.name}
+        </span>
+      </Html>
     </group>
   );
 }
 
-function RockMesh({
-  cell,
-  index,
-  bornAt,
-  now,
-  isDark,
-}: {
-  cell: Cell;
-  index: number;
-  bornAt: number;
-  now: number;
-  isDark: boolean;
-}) {
+function RockMesh({ cell, index, isDark }: { cell: Cell; index: number; isDark: boolean }) {
+  const ref = useRef<THREE.Mesh>(null);
   const [wx, wz] = cellToWorld(cell);
-  // reference off-white rocks vanish on a light page — go slate there
   const color = isDark ? PALETTE.rock : '#94a3b8';
-  // reference rocks: squashed/rotated icosahedrons
   const variants = [
     { scale: [0.8, 0.9, 1] as const, rotY: 0.8 },
     { scale: [0.65, 1.4, 1] as const, rotY: 2.1 },
     { scale: [0.95, 0.7, 1] as const, rotY: 4.4 },
   ];
   const v = variants[index % variants.length];
-  const s = elasticOut(Math.min(1, (now - bornAt) / 1));
+  useFrame((state) => {
+    const s = elasticOut(Math.min(1, (state.clock.elapsedTime - (0.2 + index * 0.15)) / 1)) || 0.0001;
+    ref.current?.scale.set(v.scale[0] * s, v.scale[1] * s, v.scale[2] * s);
+  });
   return (
-    <mesh
-      position={[wx, 0.25, wz]}
-      rotation={[0.08, v.rotY, 0]}
-      scale={[v.scale[0] * s, v.scale[1] * s, v.scale[2] * s]}
-      castShadow
-    >
+    <mesh ref={ref} position={[wx, 0.25, wz]} rotation={[0.08, v.rotY, 0]} castShadow>
       <icosahedronGeometry args={[0.5, 0]} />
       <meshStandardMaterial color={color} flatShading roughness={0.9} />
     </mesh>
   );
 }
 
+// One instanced mesh for every burst particle on the board
+const MAX_PARTICLES = 200;
+type Particle = { p: THREE.Vector3; v: THREE.Vector3; life: number; color: THREE.Color };
+
+function Bursts({ spawnRef }: { spawnRef: RefObject<(x: number, z: number, color: string) => void> }) {
+  const mesh = useRef<THREE.InstancedMesh>(null);
+  const particles = useRef<Particle[]>([]);
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+
+  useEffect(() => {
+    spawnRef.current = (x, z, color) => {
+      const c = new THREE.Color(color);
+      for (let i = 0; i < 18; i++) {
+        const a = (i / 18) * Math.PI * 2 + Math.random() * 0.4;
+        const speed = 2 + Math.random() * 2.5;
+        particles.current.push({
+          p: new THREE.Vector3(x, 0.5, z),
+          v: new THREE.Vector3(Math.cos(a) * speed, 2.5 + Math.random() * 3, Math.sin(a) * speed),
+          life: 0.7 + Math.random() * 0.3,
+          color: c,
+        });
+      }
+      if (particles.current.length > MAX_PARTICLES) {
+        particles.current.splice(0, particles.current.length - MAX_PARTICLES);
+      }
+    };
+  }, [spawnRef]);
+
+  useFrame((_, rawDt) => {
+    const m = mesh.current;
+    if (!m) return;
+    const dt = Math.min(rawDt, 0.05);
+    particles.current = particles.current.filter((pt) => (pt.life -= dt) > 0);
+    for (let i = 0; i < MAX_PARTICLES; i++) {
+      const pt = particles.current[i];
+      if (pt) {
+        pt.v.y -= 9.8 * dt;
+        pt.p.addScaledVector(pt.v, dt);
+        if (pt.p.y < 0.05) {
+          pt.p.y = 0.05;
+          pt.v.y *= -0.4;
+        }
+        dummy.position.copy(pt.p);
+        dummy.scale.setScalar(Math.min(1, pt.life * 1.6) * 0.09);
+        m.setColorAt(i, pt.color);
+      } else {
+        dummy.scale.setScalar(0);
+      }
+      dummy.updateMatrix();
+      m.setMatrixAt(i, dummy.matrix);
+    }
+    m.instanceMatrix.needsUpdate = true;
+    if (m.instanceColor) m.instanceColor.needsUpdate = true;
+  });
+
+  return (
+    <instancedMesh ref={mesh} args={[undefined, undefined, MAX_PARTICLES]} frustumCulled={false}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshBasicMaterial toneMapped={false} />
+    </instancedMesh>
+  );
+}
+
+// Glowing slabs where the head leaves one edge and comes in at the other
+function Portals({ wrapRef }: { wrapRef: RefObject<{ at: number; exit: Cell; enter: Cell; dir: Dir } | null> }) {
+  const a = useRef<THREE.Mesh>(null);
+  const b = useRef<THREE.Mesh>(null);
+  useFrame((state) => {
+    const w = wrapRef.current;
+    const k = w ? Math.max(0, 1 - (state.clock.elapsedTime - w.at) / 0.5) : 0;
+    for (const [mesh, cell, sign] of [
+      [a.current, w?.exit, 1],
+      [b.current, w?.enter, -1],
+    ] as const) {
+      if (!mesh) continue;
+      mesh.visible = k > 0 && !!cell;
+      if (!mesh.visible || !cell || !w) continue;
+      const [cx, cz] = cellToWorld(cell);
+      mesh.position.set(cx + w.dir.x * sign * GRID.cell * 0.5, 0.45, cz + w.dir.z * sign * GRID.cell * 0.5);
+      mesh.rotation.y = w.dir.x !== 0 ? Math.PI / 2 : 0;
+      mesh.scale.set(1, 0.4 + k * 0.6, 1);
+      (mesh.material as THREE.MeshBasicMaterial).opacity = k * 0.8;
+    }
+  });
+  return (
+    <>
+      {[a, b].map((ref, i) => (
+        <mesh key={i} ref={ref} visible={false}>
+          <planeGeometry args={[GRID.cell, GRID.cell]} />
+          <meshBasicMaterial
+            color={PALETTE.snakeBelly}
+            transparent
+            opacity={0}
+            side={THREE.DoubleSide}
+            depthWrite={false}
+            toneMapped={false}
+          />
+        </mesh>
+      ))}
+    </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+
 export function GridSnakeGame({
-  running,
+  phase,
   paused,
-  onScore,
-  onDeath,
   runId,
   isDark = true,
+  fx,
+  onCollect,
+  onDeath,
 }: {
-  running: boolean;
+  phase: Phase;
   paused: boolean;
-  onScore: (score: number) => void;
-  onDeath: () => void;
   runId: number;
   isDark?: boolean;
+  fx: RefObject<Fx>;
+  onCollect: (skill: SkillItem, points: number) => void;
+  onDeath: () => void;
 }) {
   const snakeRef = useRef<Cell[]>([]);
   const prevSnakeRef = useRef<Cell[]>([]);
   const dirRef = useRef<Dir>({ x: 1, z: 0 });
-  const queuedRef = useRef<Dir | null>(null);
+  const queueRef = useRef<Dir[]>([]);
   const tickAccum = useRef(0);
-  const aliveRef = useRef(true);
-  const scoreRef = useRef(0);
-  const ridesRef = useRef<Ride[]>([]); // candies traveling down the body
-  const bornAtRef = useRef<number[]>([]); // per-segment spawn time (elastic in)
+  const ridesRef = useRef<Ride[]>([]);
+  const bornAtRef = useRef<number[]>([]);
   const clockRef = useRef(0);
+  const skillCountRef = useRef(0);
+  const pickupsRef = useRef<Pickup[]>([]);
+  const headAngle = useRef(Math.PI / 2);
+  const wrapRef = useRef<{ at: number; exit: Cell; enter: Cell; dir: Dir } | null>(null);
+  const spawnBurst = useRef<(x: number, z: number, color: string) => void>(() => undefined);
+  const scatterRef = useRef<{ v: THREE.Vector3; spin: THREE.Vector3 }[]>([]);
+  const phaseRef = useRef(phase);
+  phaseRef.current = phase;
 
   const [length, setLength] = useState<number>(GRID.startLength);
-  const [lemons, setLemons] = useState<Lemon[]>([]);
-  const [clock, setClock] = useState(0);
+  const [pickups, setPickups] = useState<Pickup[]>([]);
+  const [floaters, setFloaters] = useState<Floater[]>([]);
 
   const segRefs = useRef<(THREE.Group | null)[]>([]);
-  const pop = usePop();
+  const bodyMat = useMemo(
+    () => new THREE.MeshStandardMaterial({ color: PALETTE.snake, roughness: 0.55, emissive: new THREE.Color(PALETTE.snake), emissiveIntensity: 0.07 }),
+    []
+  );
+  const headMat = useMemo(
+    () => new THREE.MeshStandardMaterial({ color: PALETTE.snake, roughness: 0.5, emissive: new THREE.Color(PALETTE.snake), emissiveIntensity: 0.16 }),
+    []
+  );
+
+  const replacePickups = (next: Pickup[]) => {
+    pickupsRef.current = next;
+    setPickups(next);
+  };
 
   // (re)spawn on mount / restart
   useEffect(() => {
-    snakeRef.current = Array.from({ length: GRID.startLength }, (_, i) => ({
-      x: 7 - i,
-      z: START_ROW,
-    }));
+    snakeRef.current = Array.from({ length: GRID.startLength }, (_, i) => ({ x: 6 - i, z: START_ROW }));
     prevSnakeRef.current = snakeRef.current.map((c) => ({ ...c }));
     dirRef.current = { x: 1, z: 0 };
-    queuedRef.current = null;
-    aliveRef.current = true;
-    scoreRef.current = 0;
+    queueRef.current = [];
     ridesRef.current = [];
     tickAccum.current = 0;
+    skillCountRef.current = 0;
+    headAngle.current = Math.PI / 2;
+    wrapRef.current = null;
+    scatterRef.current = [];
     bornAtRef.current = Array.from({ length: GRID.startLength }, () => clockRef.current);
+    bodyMat.emissive.set(PALETTE.snake);
+    headMat.emissive.set(PALETTE.snake);
+    bodyMat.emissiveIntensity = 0.07;
+    headMat.emissiveIntensity = 0.16;
     setLength(GRID.startLength);
-    setLemons(
-      INITIAL_LEMON_CELLS.map((cell) => ({ cell, points: rollPoints(), bornAt: clockRef.current }))
+    setFloaters([]);
+    replacePickups(
+      FIRST_PICKUP_CELLS.map((cell) => {
+        const { skill, points } = skillAt(skillCountRef.current++);
+        return { id: Math.random(), cell, skill, points, bornAt: clockRef.current };
+      })
     );
-  }, [runId]);
+  }, [runId, bodyMat, headMat]);
 
-  // keyboard — perpendicular turns only, like the reference setDirection
+  // Turn buffer: each press is checked against the previous queued turn, so a quick
+  // "up then left" plays out over two ticks instead of reversing into the neck
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       const dir = DIRS[e.key];
-      if (!dir) return;
+      if (!dir || phaseRef.current === 'dead') return;
       e.preventDefault();
-      const cur = queuedRef.current ?? dirRef.current;
-      const dot = cur.x * dir.x + cur.z * dir.z;
-      if (dot === 0) queuedRef.current = dir;
+      const queue = queueRef.current;
+      const last = queue[queue.length - 1] ?? dirRef.current;
+      if (last.x * dir.x + last.z * dir.z === 0 && queue.length < GRID.maxQueuedTurns) {
+        queue.push(dir);
+      }
     };
     window.addEventListener('keydown', down);
     return () => window.removeEventListener('keydown', down);
   }, []);
 
-  const step = useCallback(() => {
+  const die = () => {
+    const now = clockRef.current;
+    fx.current.shakeAt = now;
+    sfx.die();
+    bodyMat.emissive.set('#ef4444');
+    headMat.emissive.set('#ef4444');
+    bodyMat.emissiveIntensity = 0.7;
+    headMat.emissiveIntensity = 0.8;
+    scatterRef.current = snakeRef.current.map(() => ({
+      v: new THREE.Vector3((Math.random() - 0.5) * 6, 3 + Math.random() * 4, (Math.random() - 0.5) * 6),
+      spin: new THREE.Vector3(Math.random() * 8 - 4, Math.random() * 8 - 4, Math.random() * 8 - 4),
+    }));
+    onDeath();
+  };
+
+  const step = () => {
     const snake = snakeRef.current;
     prevSnakeRef.current = snake.map((c) => ({ ...c }));
 
-    if (queuedRef.current) {
-      dirRef.current = queuedRef.current;
-      queuedRef.current = null;
-    }
+    const turn = queueRef.current.shift();
+    if (turn) dirRef.current = turn;
     const dir = dirRef.current;
     const head = snake[0];
     const next: Cell = { x: head.x + dir.x, z: head.z + dir.z };
 
-    // wrap — hit the border, come out the other side
-    if (next.x < 0) next.x = GRID.cols - 1;
-    else if (next.x > GRID.cols - 1) next.x = 0;
-    if (next.z < 0) next.z = GRID.rows - 1;
-    else if (next.z > GRID.rows - 1) next.z = 0;
+    let wrapped = false;
+    if (next.x < 0) { next.x = GRID.cols - 1; wrapped = true; }
+    else if (next.x > GRID.cols - 1) { next.x = 0; wrapped = true; }
+    if (next.z < 0) { next.z = GRID.rows - 1; wrapped = true; }
+    else if (next.z > GRID.rows - 1) { next.z = 0; wrapped = true; }
 
-    // death: self bite or rock
+    // the tail cell frees up this tick, so it's safe to move into
     const body = snake.slice(0, -1);
     if (body.some((c) => sameCell(c, next)) || ROCKS.some((r) => sameCell(r, next))) {
-      aliveRef.current = false;
-      onDeath();
+      die();
       return;
+    }
+
+    if (wrapped) {
+      wrapRef.current = { at: clockRef.current, exit: head, enter: next, dir };
+      sfx.wrap();
     }
 
     snake.unshift(next);
 
-    // rides move backward one node per tick; at the end → the tail grows
-    let grewThisTick = false;
+    let grew = false;
     ridesRef.current = ridesRef.current
       .map((r) => ({ index: r.index + 1 }))
       .filter((r) => {
         if (r.index >= snake.length - 1) {
-          grewThisTick = true;
+          grew = true;
           return false;
         }
         return true;
       });
-
-    if (grewThisTick) {
-      // keep the tail cell — that's the growth (reference addTailNode)
+    if (grew) {
       bornAtRef.current.push(clockRef.current);
       setLength(snake.length);
     } else {
       snake.pop();
     }
 
-    const lemonIdx = lemons.findIndex((l) => sameCell(l.cell, next));
-    if (lemonIdx >= 0) {
-      const lemon = lemons[lemonIdx];
-      scoreRef.current += lemon.points; // reference: score += candy.points at eat
+    const hit = pickupsRef.current.findIndex((p) => sameCell(p.cell, next));
+    if (hit >= 0) {
+      const eaten = pickupsRef.current[hit];
+      const [wx, wz] = cellToWorld(eaten.cell);
       ridesRef.current.push({ index: 0 });
-      pop(420 + lemon.points * 120);
-      onScore(scoreRef.current);
-      setLemons((prev) => {
-        const nextLemons = [...prev];
-        nextLemons[lemonIdx] = {
-          cell: randomFreeCell([...snake, ...prev.map((p) => p.cell)]),
-          points: rollPoints(),
-          bornAt: clockRef.current,
-        };
-        return nextLemons;
-      });
+      sfx.eat(eaten.points);
+      spawnBurst.current(wx, wz, eaten.skill.color);
+      onCollect(eaten.skill, eaten.points);
+
+      const floater: Floater = {
+        id: Math.random(),
+        x: wx,
+        z: wz,
+        text: `+${eaten.points} ${eaten.skill.name}`,
+        color: eaten.skill.color,
+      };
+      setFloaters((f) => [...f, floater]);
+      setTimeout(() => setFloaters((f) => f.filter((x) => x.id !== floater.id)), 1000);
+
+      const { skill, points } = skillAt(skillCountRef.current++);
+      const next2 = [...pickupsRef.current];
+      next2[hit] = {
+        id: Math.random(),
+        cell: randomFreeCell([...snake, ...pickupsRef.current.map((p) => p.cell)]),
+        skill,
+        points,
+        bornAt: clockRef.current,
+      };
+      replacePickups(next2);
     }
-  }, [lemons, onDeath, onScore, pop]);
+  };
 
-  useFrame((state, dt) => {
-    clockRef.current = state.clock.elapsedTime;
-    setClock(state.clock.elapsedTime);
-    if (!running || paused || !aliveRef.current) return;
-
-    tickAccum.current += Math.min(dt, 0.1) * 1000;
-    while (tickAccum.current >= GRID.tickMs) {
-      tickAccum.current -= GRID.tickMs;
-      step();
-    }
-
-    const t = Math.min(1, tickAccum.current / (GRID.tickMs * 0.8));
+  useFrame((state, rawDt) => {
+    const now = state.clock.elapsedTime;
+    clockRef.current = now;
+    const dt = Math.min(rawDt, 0.1);
     const snake = snakeRef.current;
+
+    if (phase === 'playing' && !paused) {
+      const tickMs = Math.max(
+        GRID.tickMinMs,
+        GRID.tickStartMs - (snake.length - GRID.startLength) * GRID.tickStepMs
+      );
+      tickAccum.current += dt * 1000;
+      while (tickAccum.current >= tickMs && phaseRef.current === 'playing') {
+        tickAccum.current -= tickMs;
+        step();
+        if (scatterRef.current.length) break; // died this tick
+      }
+    }
+
+    const tickMs = Math.max(GRID.tickMinMs, GRID.tickStartMs - (snake.length - GRID.startLength) * GRID.tickStepMs);
+    const t = phase === 'playing' ? Math.min(1, tickAccum.current / (tickMs * 0.8)) : 1;
     const prev = prevSnakeRef.current;
+    const dying = scatterRef.current.length > 0;
+
     for (let i = 0; i < snake.length; i++) {
       const g = segRefs.current[i];
       if (!g) continue;
-      const [cx, cz] = cellToWorld(snake[i]);
-      const from = prev[i] ?? prev[prev.length - 1] ?? snake[i];
-      const [px, pz] = cellToWorld(from);
-      const jump = Math.abs(cx - px) > GRID.cell * 1.5 || Math.abs(cz - pz) > GRID.cell * 1.5;
-      g.position.x = jump ? cx : px + (cx - px) * t;
-      g.position.z = jump ? cz : pz + (cz - pz) * t;
 
-      // scale: elastic spawn-in × candy ride bump (1.15, reference)
+      if (dying) {
+        // shatter: every block flies off, spins and falls
+        const s = scatterRef.current[i];
+        if (s) {
+          s.v.y -= 12 * dt;
+          g.position.addScaledVector(s.v, dt);
+          g.rotation.x += s.spin.x * dt;
+          g.rotation.y += s.spin.y * dt;
+          g.rotation.z += s.spin.z * dt;
+          g.scale.multiplyScalar(Math.max(0, 1 - dt * 1.4));
+        }
+        continue;
+      }
+
+      const cell = snake[i];
+      const from = prev[i] ?? prev[prev.length - 1] ?? cell;
+      const d = unitStep(from, cell);
+      const [cx, cz] = cellToWorld(cell);
+      const [fx0, fz0] = cellToWorld(from);
+      const crossing = Math.abs(cx - fx0) > GRID.cell * 1.5 || Math.abs(cz - fz0) > GRID.cell * 1.5;
+
+      // wrap: slide out through one edge for the first half, in through the other for the second
+      let x: number;
+      let z: number;
+      if (crossing) {
+        if (t < 0.5) {
+          x = fx0 + d.x * GRID.cell * t;
+          z = fz0 + d.z * GRID.cell * t;
+        } else {
+          x = cx - d.x * GRID.cell * (1 - t);
+          z = cz - d.z * GRID.cell * (1 - t);
+        }
+      } else {
+        x = fx0 + (cx - fx0) * t;
+        z = fz0 + (cz - fz0) * t;
+      }
+      g.position.set(x, GRID.cell / 2 + 0.02, z);
+      g.rotation.set(0, i === 0 ? headAngle.current : 0, 0);
+
       const born = bornAtRef.current[i] ?? 0;
-      let scale = elasticOut(Math.min(1, (clockRef.current - born) / 1));
+      let scale = elasticOut(Math.min(1, (now - born) / 1)) || 0.0001;
       if (ridesRef.current.some((r) => r.index === i)) scale *= 1.15;
-      g.scale.setScalar(scale);
+      // tapered tail
+      const fromEnd = snake.length - 1 - i;
+      if (i > 0 && fromEnd < 3) scale *= 0.76 + fromEnd * 0.08;
+      scale *= edgeFade(x, z);
+      g.scale.setScalar(Math.max(scale, 0.0001));
+    }
 
-      if (i === 0) g.rotation.y = Math.atan2(dirRef.current.x, dirRef.current.z);
+    // head turns smoothly toward its heading instead of snapping
+    if (!dying) {
+      const target = Math.atan2(dirRef.current.x, dirRef.current.z);
+      const diff = Math.atan2(Math.sin(target - headAngle.current), Math.cos(target - headAngle.current));
+      headAngle.current += diff * Math.min(1, dt * 16);
     }
   });
 
@@ -349,22 +564,18 @@ export function GridSnakeGame({
   return (
     <group>
       {segments.map((i) => {
-        // visible gaps between segments so the body reads as a snake, not a slab
         const bodySize = i === 0 ? size * 0.95 : size * 0.8;
         return (
-          <group key={`${runId}-${i}`} ref={(el) => { segRefs.current[i] = el; }} position={[0, size / 2 + 0.02, 0]}>
-            <RoundedBox args={[bodySize, bodySize, bodySize]} radius={0.14} smoothness={5} castShadow>
-              <meshStandardMaterial
-                color={PALETTE.snake}
-                roughness={0.55}
-                emissive={PALETTE.snake}
-                emissiveIntensity={i === 0 ? 0.16 : 0.07}
-              />
-            </RoundedBox>
+          <group key={`${runId}-${i}`} ref={(el) => { segRefs.current[i] = el; }}>
+            <RoundedBox
+              args={[bodySize, bodySize, bodySize]}
+              radius={0.14}
+              smoothness={5}
+              castShadow
+              material={i === 0 ? headMat : bodyMat}
+            />
             {i === 0 && (
               <group>
-                {/* eyes on TOP of the head — this camera looks down, so the face
-                    must read from above (reference's side-eyes vanish from here) */}
                 {[-1, 1].map((side) => (
                   <group key={side} position={[side * 0.2, bodySize / 2, 0.16]}>
                     <mesh castShadow>
@@ -377,12 +588,7 @@ export function GridSnakeGame({
                     </mesh>
                   </group>
                 ))}
-                {/* tongue tip peeking forward — readable from above */}
-                <RoundedBox
-                  args={[0.16, 0.06, 0.3]}
-                  radius={0.03}
-                  position={[0, 0.05, bodySize / 2 + 0.12]}
-                >
+                <RoundedBox args={[0.16, 0.06, 0.3]} radius={0.03} position={[0, 0.05, bodySize / 2 + 0.12]}>
                   <meshStandardMaterial color="#f87171" roughness={0.6} />
                 </RoundedBox>
               </group>
@@ -391,13 +597,27 @@ export function GridSnakeGame({
         );
       })}
 
-      {lemons.map((lemon, i) => (
-        <LemonMesh key={`lemon-${i}-${lemon.cell.x}-${lemon.cell.z}`} lemon={lemon} now={clock} />
+      {pickups.map((pickup) => (
+        <PickupMesh key={pickup.id} pickup={pickup} />
       ))}
 
       {ROCKS.map((cell, i) => (
-        <RockMesh key={`rock-${i}`} cell={cell} index={i} bornAt={0.2 + i * 0.15} now={clock} isDark={isDark} />
+        <RockMesh key={`rock-${i}`} cell={cell} index={i} isDark={isDark} />
       ))}
+
+      {floaters.map((f) => (
+        <Html key={f.id} position={[f.x, 1.3, f.z]} center zIndexRange={[6, 0]} style={{ pointerEvents: 'none' }}>
+          <span
+            className="block whitespace-nowrap font-mono text-sm font-bold animate-out fade-out-0 slide-out-to-top-8 duration-1000 fill-mode-forwards"
+            style={{ color: f.color, textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}
+          >
+            {f.text}
+          </span>
+        </Html>
+      ))}
+
+      <Bursts spawnRef={spawnBurst} />
+      <Portals wrapRef={wrapRef} />
     </group>
   );
 }
