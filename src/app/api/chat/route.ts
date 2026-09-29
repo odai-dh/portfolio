@@ -43,17 +43,18 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
    - Technical support for staff and students, hardware/software troubleshooting
 
 --- PROJECTS ---
-1. Aeoflo — Next.js dashboard platform for an AI analytics startup (real production work)
-2. Death Calendar — iOS app (SwiftUI) that visualizes your entire life as a dot grid to encourage intentional living
-3. BuzzyJeopardy — Real-time multiplayer Jeopardy game with AI-generated questions (Next.js, Firebase, Google Gemini)
-4. Jeopardy AI — Earlier Jeopardy clone with Hugging Face AI question generation
-5. E-commerce Platform — Full-stack shop with Next.js frontend and Node.js/Express/MongoDB backend
-6. Litorina School Website — Collaborative team project built for a real school client (React, Tailwind, Vite)
-7. StremVibe — Movie database app using TMDB API
-8. SpaceToon 3D — VR solar system experience with Three.js, A-Frame, WebXR
-9. myHealth ID — UX/UI Figma prototype for a digital healthcare app
-10. HyperKart — Mario Kart–inspired tournament website (team hackathon)
-11. Naiman — Upcoming startup project, details not yet public
+1. Vidare — Concept app that gets stranded SL travellers home by taxi and claims the fare back from SL, wrapped in a scroll-driven 3D website of Stockholm at night (Next.js, React Three Fiber, GSAP, Zod, Vitest; built in five days)
+2. Aeoflo — Next.js dashboard platform for an AI analytics startup (real production work)
+3. Death Calendar — iOS app (SwiftUI) that visualizes your entire life as a dot grid to encourage intentional living
+4. BuzzyJeopardy — Real-time multiplayer Jeopardy game with AI-generated questions (Next.js, Firebase, Google Gemini)
+5. Jeopardy AI — Earlier Jeopardy clone with Hugging Face AI question generation
+6. E-commerce Platform — Full-stack shop with Next.js frontend and Node.js/Express/MongoDB backend
+7. Litorina School Website — Collaborative team project built for a real school client (React, Tailwind, Vite)
+8. StremVibe — Movie database app using TMDB API
+9. SpaceToon 3D — VR solar system experience with Three.js, A-Frame, WebXR
+10. myHealth ID — UX/UI Figma prototype for a digital healthcare app
+11. HyperKart — Mario Kart–inspired tournament website (team hackathon)
+12. Naiman — Upcoming startup project, details not yet public
 
 --- EDUCATION ---
 Hyper Island — Code & Collaborate program (where he studied before graduating)

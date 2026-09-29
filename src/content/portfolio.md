@@ -77,6 +77,48 @@ experience:
       - "Supported digital learning environments."
 projects:
 
+  - title: "Vidare"
+    date: "2026-09-29"
+    description: "A concept app that gets stranded SL travellers home by taxi and claims the fare back from SL for them: a fully clickable demo wrapped in a scroll-driven 3D website."
+    tags: ["Next.js", "TypeScript", "React", "React Three Fiber", "three.js", "GSAP", "Lenis", "Tailwind CSS", "Framer Motion", "Zustand", "Zod", "Vitest", "Leaflet", "Netlify Blobs", "Web Audio API"]
+    link: "https://sl-compensation.netlify.app/"
+    github: "https://github.com/odai-dh/sl-compensation"
+    image: "/images/projects/vidare.jpg"
+    content: |
+      ### Overview
+      When SL traffic in Stockholm breaks down, Swedish law (Lag 2015:953) lets travellers who risk arriving at least 20 minutes late take a taxi, and SL pays up to 1 480 kr. Almost nobody uses it: few people know, and those who do rarely want to pay hundreds of kronor upfront and wait weeks for the refund.
+
+      Vidare removes that friction. You tap **"I'm stranded"**, Vidare checks your trip against SL's rules, orders and pays the taxi, then files the claim with SL for you under a power of attorney (fullmakt) you signed once with BankID. SL pays Vidare, and you pay nothing.
+
+      Built in five days as a clickable demo: about 10,800 lines of TypeScript and 108 unit tests.
+
+      ### The App
+      A mobile-first web app covering the whole journey:
+      - Onboarding: identity check and fullmakt signing (mock BankID), a card as guarantee, and your SL ticket type
+      - An eligibility engine that applies SL's rules, including the 20-minute threshold, pre-announced disruptions and the Uppsala county exception
+      - A fixed-price taxi quote showing what Vidare covers and anything you'd pay above the cap, before you order
+      - Live ride tracking on an OpenStreetMap map, a receipt, and a claim timeline from "filed" to "paid"
+      - English and Swedish, light and dark mode
+
+      ### Built to Become Real
+      Every external service (SL disruption data, taxi booking, payments, BankID and SL's claims API) is mocked behind a TypeScript interface, so a real integration can replace a mock without touching the UI. All business logic lives in pure, framework-free TypeScript that is unit tested with Vitest and exposed through Zod-validated API routes, ready for a planned SwiftUI iOS client. SL's numbers live in one rules file, so the yearly change to the cap is a one-line update. On Netlify, each visitor gets a private demo sandbox stored in Netlify Blobs, so one person's clicks never affect another's.
+
+      ### The 3D Showcase Website
+      A cinematic, scroll-driven story set in a procedural low-poly Stockholm at night: an instanced city with a custom window shader, an elevated railway, GPU rain, a reflective wet street and bloom. The camera flies a spline driven by scroll, and the chapter text runs on a GSAP timeline tied to the scroll position, so any scroll speed or direction shows the same frame.
+
+      The real app is embedded in a phone mockup and talks to the website through typed, validated postMessage events: tap "I'm stranded" and the train in the city stops and the signal turns red; order a taxi and it drives in, picks you up and heads home. "Play it for me" runs the whole flow automatically.
+
+      ### Polish and Debugging
+      - Tracked down why the 3D scene vanished after about 12 seconds: a performance monitor was counting healthy frames as instability and swapping the scene for its fallback. Confirmed the fix in a headless browser.
+      - Replaced a train animation that could reverse or teleport with a small forward-only simulation, shared by the 3D scene and the illustrated fallback and covered by randomised tests.
+      - Made every section fit phones from 360 px wide, and added reduced-motion support and an illustrated fallback for devices without WebGL.
+
+      ### Tech Stack
+      Next.js 16, React, TypeScript, Tailwind CSS, React Three Fiber, three.js, drei, postprocessing, GSAP ScrollTrigger, Lenis, Framer Motion, Zustand, Zod, Vitest, react-leaflet, OpenStreetMap, Netlify Blobs, Web Audio API
+
+      ### Learning Outcome
+      Vidare taught me to design for a real integration from day one: keeping business rules pure and testable, and hiding every outside service behind an interface, made the demo fast to build and straightforward to make real. It also pushed my frontend work into 3D, where performance, accessibility and phone support take as much work as the visuals. Building it with an AI pair programmer (Claude Code), I learned to specify behaviour precisely and to verify every change in a real browser rather than trusting "the tests pass".
+
   - title: "Aeoflo"
     date: "2026-04-21"
     description: "As the sole frontend developer at a venture-backed AI analytics startup, built the company website from scratch and a multi-client dashboard platform used by real brands."
