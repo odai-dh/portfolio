@@ -30,7 +30,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      <Link
+      <Link prefetch={false}
         href={`/projects/${project.slug}`}
         tabIndex={-1}
         aria-hidden
@@ -56,7 +56,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
       <div className="relative z-10 flex flex-grow flex-col p-6">
         <div className="flex items-start justify-between gap-2">
-          <Link href={`/projects/${project.slug}`} className="relative after:absolute after:inset-0">
+          <Link prefetch={false} href={`/projects/${project.slug}`} className="relative after:absolute after:inset-0">
             <h3 className="font-headline text-xl font-bold text-card-foreground transition-all duration-300 group-hover:text-primary group-hover:translate-x-1">
               {project.title}
             </h3>

@@ -35,7 +35,7 @@ export default function NotFound() {
         </div>
 
         <Button asChild size="lg" className="mt-6 w-full font-mono">
-          <Link href="/">▶ CONTINUE — BACK HOME</Link>
+          <Link prefetch={false} href="/">▶ CONTINUE — BACK HOME</Link>
         </Button>
       </div>
     </main>

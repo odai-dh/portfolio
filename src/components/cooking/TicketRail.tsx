@@ -31,7 +31,7 @@ export function TicketRail({ label, tickets }: { label: string; tickets: Ticket[
       <ul className="-mt-1.5 flex snap-x gap-6 overflow-x-auto px-2 pb-6 pt-1 sm:flex-wrap sm:gap-x-8 sm:gap-y-12 sm:overflow-visible sm:px-6 sm:pb-0">
         {tickets.map((ticket, index) => (
           <li key={ticket.slug} className={`w-[72vw] shrink-0 snap-center sm:w-[230px] ${TILTS[ticket.number % TILTS.length]}`}>
-            <Link href={`/cooking/${ticket.slug}`} className="cooking-ticket group block outline-none">
+            <Link prefetch={false} href={`/cooking/${ticket.slug}`} className="cooking-ticket group block outline-none">
               <span aria-hidden className="relative z-10 mx-auto block h-5 w-12 rounded-sm bg-[#44403C]" />
               <span className="cooking-torn-bottom -mt-2 block bg-[#FFFDF8] px-4 pb-7 pt-5 font-mono text-[11px] uppercase text-[#1C1917] ring-1 ring-inset ring-[#1C1917]/10">
                 <span className="flex justify-between">

@@ -63,7 +63,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
         />
         <div className="mb-8">
           <Button variant="link" asChild className="pl-0">
-            <Link href="/">
+            <Link prefetch={false} href="/">
               <ArrowLeft className="mr-2" />
               Back to Portfolio
             </Link>

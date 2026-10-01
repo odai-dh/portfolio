@@ -43,7 +43,7 @@ function orderNumber(entries: CookingEntry[], slug: string) {
 function Neighbour({ entry, number, direction }: { entry: CookingEntry; number: string; direction: 'prev' | 'next' }) {
   const isNext = direction === 'next';
   return (
-    <Link
+    <Link prefetch={false}
       href={`/cooking/${entry.slug}`}
       className={`group flex items-center gap-4 ${isNext ? 'flex-row-reverse text-right' : ''}`}
     >

@@ -31,7 +31,7 @@ export default function CookingLandingPage() {
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <MenuList groups={groups} />
           <div className="pb-24 text-center">
-            <Link
+            <Link prefetch={false}
               href="/cooking/archive"
               className="font-[family-name:var(--font-fraunces)] text-[20px] italic text-[#1C1917] underline decoration-[#B4532A] decoration-1 underline-offset-8 hover:text-[#B4532A]"
             >

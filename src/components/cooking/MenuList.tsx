@@ -77,7 +77,7 @@ export function MenuList({ groups }: { groups: MenuGroup[] }) {
             <ul>
               {group.items.map((item) => (
                 <li key={item.slug}>
-                  <Link
+                  <Link prefetch={false}
                     href={`/cooking/${item.slug}`}
                     onPointerEnter={() => setActive(item.slug)}
                     onFocus={() => setActive(item.slug)}
