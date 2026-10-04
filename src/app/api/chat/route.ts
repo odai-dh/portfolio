@@ -23,7 +23,7 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
 1. Aeoflo (Frontend Developer Intern, Sep 2025 – Mar 2026)
    - Sole frontend developer at a venture-backed AI analytics startup
    - Built the entire company website from scratch (Next.js, TypeScript, Tailwind CSS) — 20,000+ lines of code with scroll animations, dark mode, HubSpot booking integration, and a blog system
-   - Built a multi-client analytics dashboard used by real brands: Oatly, Stiga, Billhop, Norstedts, CRA-YON, X-peng
+   - Built a multi-client analytics dashboard platform with per-brand dashboards created for prospective clients (Oatly, Stiga, Billhop, Norstedts, CRA-YON, X-peng). Do not describe them as paying customers.
    - Refactored a ~4,000-line monolithic Shopify app into modular React components
    - Integrated HubSpot API, Cloudflare R2, Clerk auth
    - Recommendation from Antoine Abribat (Co-Founder & COO): "He grew from a talented intern into a dependable developer capable of shipping production-ready features independently."

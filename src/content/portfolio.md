@@ -1,7 +1,7 @@
 ---
 name: "Odai Dahi"
 title: "Full Stack Developer"
-subtitle: "I build production Next.js apps, from client dashboards at Aeoflo to Vidare, a 3D concept app for Stockholm. Stockholm-based and open to full-time roles."
+subtitle: "I build production Next.js apps, from a dashboard platform at Aeoflo to Vidare, a 3D concept app for Stockholm. Stockholm-based and open to full-time roles."
 email: "odai@odaidh.dev"
 socials:
   github: "https://github.com/odai-dh"
@@ -44,7 +44,7 @@ experience:
     link: "https://aeoflo.com/"
     duties:
       - "Sole frontend developer at a venture-backed AI analytics startup. Built the 20,000+ line company website from scratch with Next.js, TypeScript and Tailwind CSS, including scroll animations, dark mode, a blog and HubSpot booking."
-      - "Designed and built a multi-client analytics dashboard platform used by Oatly, Stiga, Billhop, Norstedts, CRA-YON and X-peng, with KPI cards, Chart.js charts and a JSON data model where adding a client needs no component changes."
+      - "Designed and built a multi-client analytics dashboard platform with per-brand dashboards for prospective clients such as Oatly, Stiga, Billhop, Norstedts, CRA-YON and X-peng, with KPI cards, Chart.js charts and a JSON data model where adding a client needs no component changes."
       - "Refactored a ~4,000-line Shopify app into modular React components with error boundaries, custom hooks and documentation."
       - "Integrated the HubSpot API and Cloudflare R2, and added Clerk authentication for client project submissions."
 
@@ -138,7 +138,7 @@ projects:
 
   - title: "Aeoflo"
     date: "2026-04-21"
-    description: "As the sole frontend developer at a venture-backed AI analytics startup, built the company website from scratch and a multi-client dashboard platform used by real brands."
+    description: "As the sole frontend developer at a venture-backed AI analytics startup, built the company website from scratch and a multi-client dashboard platform with per-brand dashboards for prospective clients."
     tags: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Framer Motion", "Chart.js", "HubSpot API", "Cloudflare R2", "Clerk", "Zod", "shadcn/ui"]
     link: "https://aeoflo-web.netlify.app/"
     github: "#"
@@ -153,7 +153,7 @@ projects:
       Built the entire marketing website from scratch — 20,000+ lines of code. Features scroll-triggered animations, dark/light mode, a HubSpot booking integration, Cloudflare R2 CDN for image hosting, a blog system with 16+ posts, an animated testimonial marquee, and a full AI visibility audit lead generation form.
 
       ### Client Analytics Dashboards
-      Designed and built a multi-client AI visibility dashboard platform used by real brands including **Oatly, Stiga, Billhop, Norstedts, CRA-YON, and X-peng**. Key features:
+      Designed and built a multi-client AI visibility dashboard platform, with per-brand dashboards created for prospective clients including **Oatly, Stiga, Billhop, Norstedts, CRA-YON, and X-peng**. Key features:
       - Expandable KPI cards with slide-out analytics panels and backdrop blur
       - Chart.js doughnut charts and circular gauge indicators
       - AI model breakdowns per client (ChatGPT, Gemini, Claude, Perplexity)
@@ -173,7 +173,7 @@ projects:
       Next.js 15/16, React, TypeScript, Tailwind CSS, Framer Motion, Chart.js, shadcn/ui, HubSpot API, Cloudflare R2, Clerk, react-hook-form, Zod, Formspree, JSON data architecture
 
       ### Learning Outcome
-      This was my deepest production experience to date — shipping real features for real clients, iterating on designs based on stakeholder feedback, and owning the entire frontend independently. I learned how to design scalable data architectures, balance visual polish with performance, and communicate effectively across technical and non-technical boundaries.
+      This was my deepest production experience to date — shipping production features, iterating on designs based on stakeholder feedback, and owning the entire frontend independently. I learned how to design scalable data architectures, balance visual polish with performance, and communicate effectively across technical and non-technical boundaries.
 
   - title: "Death Calendar"
     date: "2026-02-27"
@@ -478,7 +478,7 @@ projects:
 
 Hey, I’m Odai — a Full Stack Developer who leans frontend, with hands-on experience building real products for startups and clients.
 
-I’ve worked across the stack and across very different users: dashboards for brands like Oatly at **Aeoflo**, a sports-tech platform at **Sportly**, a website redesign for European heritage railways at **FEDECRAIL**, and projects like **Vidare**, a 3D concept app built around Swedish travel law, plus **iOS apps** and **AI-powered multiplayer games**. The range is the point: designing for FEDECRAIL's mostly 55+ audience is a different problem from building analytics dashboards for brands, and I enjoy both.
+I’ve worked across the stack and across very different users: a multi-client analytics dashboard platform at **Aeoflo**, a sports-tech platform at **Sportly**, a website redesign for European heritage railways at **FEDECRAIL**, and projects like **Vidare**, a 3D concept app built around Swedish travel law, plus **iOS apps** and **AI-powered multiplayer games**. The range is the point: designing for FEDECRAIL's mostly 55+ audience is a different problem from building analytics dashboards, and I enjoy both.
 
 Right now I’m taking on **freelance projects** while actively looking for my next full-time role. I love solving problems that mix creativity and logic, and when I’m not coding, you’ll probably find me [cooking](/cooking) 🍋.
 

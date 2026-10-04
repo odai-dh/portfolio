@@ -146,7 +146,7 @@ export default function RootLayout({
                 "name": "Full Stack Developer",
                 "occupationalCategory": "15-1254.00",
                 "skills": "React, Next.js, TypeScript, Node.js, Express, MongoDB, SQL, Tailwind CSS, SwiftUI, AI integrations (Groq, Gemini, Hugging Face), REST APIs, full-stack feature development",
-                "responsibilities": "Building production web applications, AI-powered features, dashboards, and frontend systems for startups and clients.",
+                "responsibilities": "Building production web applications, AI-powered features, dashboards, and frontend systems for startups.",
                 "occupationLocation": {
                   "@type": "City",
                   "name": "Stockholm"
