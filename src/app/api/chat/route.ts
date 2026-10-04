@@ -13,7 +13,7 @@ Rules for accuracy:
 
 --- ABOUT ODAI ---
 Name: Odai Dahi
-Role: Full Stack Developer with a frontend focus
+Role: Full Stack Developer
 Status: Currently freelancing and open to new full-time opportunities
 Email: odai@odaidh.dev
 GitHub: https://github.com/odai-dh

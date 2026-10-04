@@ -31,7 +31,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Odai Dahi | Full Stack Developer',
-  description: 'Full Stack Developer with a frontend focus — building production apps with Next.js, TypeScript, and AI integrations. Freelancing and open to work.',
+  description: 'Full Stack Developer — building production apps with Next.js, TypeScript, and AI integrations. Freelancing and open to work.',
   keywords: [
     'full stack developer',
     'frontend developer',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.odaidh.dev',
     title: 'Odai Dahi | Full Stack Developer',
-    description: 'Full Stack Developer with a frontend focus — Next.js, TypeScript, Node.js, and AI integrations. Freelancing & open to work.',
+    description: 'Full Stack Developer — Next.js, TypeScript, Node.js, and AI integrations. Freelancing & open to work.',
     siteName: 'Odai Dahi Portfolio',
     images: [
       {
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Odai Dahi | Full Stack Developer',
-    description: 'Full Stack Developer with a frontend focus — Next.js, TypeScript, Node.js, and AI integrations.',
+    description: 'Full Stack Developer — Next.js, TypeScript, Node.js, and AI integrations.',
     images: ['/og-image.png'],
   },
   icons: {
@@ -123,7 +123,7 @@ export default function RootLayout({
               "name": "Odai Dahi",
               "url": "https://www.odaidh.dev",
               "jobTitle": "Full Stack Developer",
-              "description": "Full Stack Developer with a frontend focus, building production apps with Next.js, TypeScript, Node.js, and AI integrations.",
+              "description": "Full Stack Developer building production apps with Next.js, TypeScript, Node.js, and AI integrations.",
               "image": "https://www.odaidh.dev/og-image.png",
               "email": "mailto:odai@odaidh.dev",
               "address": {
@@ -155,7 +155,7 @@ export default function RootLayout({
               "seeks": {
                 "@type": "Demand",
                 "name": "Open to new opportunities",
-                "description": "Open to full-time Full Stack or Frontend Developer roles (remote, hybrid, or Stockholm-based) and freelance web/mobile projects."
+                "description": "Open to full-time Full Stack Developer roles (remote, hybrid, or Stockholm-based) and freelance web/mobile projects."
               },
               "alumniOf": {
                 "@type": "EducationalOrganization",

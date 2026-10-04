@@ -448,7 +448,7 @@ projects:
       In active development. Not yet public.
 ---
 
-Hey, I’m Odai — a Full Stack Developer who leans frontend, with hands-on experience building real products for startups and clients.
+Hey, I’m Odai — a Full Stack Developer with hands-on experience building real products for startups and teams.
 
 I’ve worked across the stack and across very different users: a multi-client analytics dashboard platform at **Aeoflo**, a sports-tech platform at **Sportly**, a website redesign for European heritage railways at **FEDECRAIL**, and projects like **Vidare**, a 3D concept app built around Swedish travel law, plus **iOS apps** and **AI-powered multiplayer games**. The range is the point: designing for FEDECRAIL's mostly 55+ audience is a different problem from building analytics dashboards, and I enjoy both.
 
