@@ -52,6 +52,14 @@ Odai is a Full Stack Developer who has shipped real products for venture-backed 
 - [myHealth ID](https://www.figma.com/proto/03juTRyTDZDbuKr9cbY18k/myHealth-ID): UX/UI Figma prototype for a digital healthcare app. Multi-profile support, accessibility-focused.
 - [HyperKart](https://maybejod.github.io/hyperkart/): Mario Kart-inspired tournament site built collaboratively at a hackathon. Stack: HTML, CSS, JavaScript.
 
+## Notes
+
+Short write-ups of problems Odai ran into while building, and how he solved them:
+
+- [The 3D city that vanished after 12 seconds](https://www.odaidh.dev/notes/vidare-vanishing-scene): a performance monitor counted healthy frames as instability and removed Vidare's 3D scene; found by reading drei's source.
+- [Why my portfolio sent 476 requests a minute](https://www.odaidh.dev/notes/prefetch-loop): a production-only Next.js prefetch loop caused by how the host answered segment-prefetch requests.
+- [My portfolio chatbot started getting my email address wrong](https://www.odaidh.dev/notes/chatbot-email): after a model retirement, testing with real questions found a model that corrupted email addresses.
+
 ## Recommendations
 
 > "He grew from a talented intern into a dependable developer capable of shipping production-ready features independently. Any team would benefit from his work ethic, technical skill, and positive attitude."

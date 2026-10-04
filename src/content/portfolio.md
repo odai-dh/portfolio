@@ -124,7 +124,7 @@ projects:
       The real app is embedded in a phone mockup and talks to the website through typed, validated postMessage events: tap "I'm stranded" and the train in the city stops and the signal turns red; order a taxi and it drives in, picks you up and heads home. "Play it for me" runs the whole flow automatically.
 
       ### Polish and Debugging
-      - Tracked down why the 3D scene vanished after about 12 seconds: a performance monitor was counting healthy frames as instability and swapping the scene for its fallback. Confirmed the fix in a headless browser.
+      - Tracked down why the 3D scene vanished after about 12 seconds: a performance monitor was counting healthy frames as instability and swapping the scene for its fallback. Confirmed the fix in a headless browser. Full write-up: [The 3D city that vanished after 12 seconds](/notes/vidare-vanishing-scene).
       - Replaced a train animation that could reverse or teleport with a small forward-only simulation, shared by the 3D scene and the illustrated fallback and covered by randomised tests.
       - Made every section fit phones from 360 px wide, and added reduced-motion support and an illustrated fallback for devices without WebGL.
 

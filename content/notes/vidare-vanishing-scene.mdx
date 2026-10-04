@@ -1,0 +1,36 @@
+---
+title: "The 3D city that vanished after 12 seconds"
+slug: "vidare-vanishing-scene"
+date: "2026-09-29"
+summary: "Vidare's 3D Stockholm worked, then disappeared. The culprit was the safety net I set up to protect it."
+tags: ["Three.js", "Performance", "Debugging"]
+draft: false
+---
+
+Vidare is a concept app for stranded SL travellers, shown inside a scroll-driven 3D Stockholm. It was running fine, and then roughly 12 to 15 seconds after the 3D appeared, the whole scene disappeared.
+
+## The symptom
+
+Healthy at first, gone after roughly 12 to 15 seconds, and an illustrated 2D fallback took its place. It happened every time on my M3 Mac, and a refresh always brought the 3D back for another few seconds. I first blamed scrolling, because I usually noticed it after scrolling down and back up.
+
+## How I found it
+
+Working with Claude Code, I started by taking scrolling out of the equation: we loaded the page in headless Chrome, didn't touch it, and logged the scene's quality setting every few seconds. The 3D canvas appeared at about 5 seconds, and at about 20 seconds the quality flipped to "fallback" and the canvas was removed. No scrolling involved. Something was running on a timer.
+
+The only thing in the code that switches to the fallback on its own is the performance monitor: drei's `PerformanceMonitor`, which I'd set up with `flipflops={4}` and an `onFallback` that swaps in the illustration. The idea was to catch devices whose frame rate keeps swinging between good and bad.
+
+Reading drei's source showed the problem. It adds to its flip-flop counter on every check that comes out "good" as well as every "bad" one, and it checks every 2.5 seconds. So on a healthy machine, five good checks in a row, about 12.5 seconds, were enough to cross my limit of four, and the 3D was swapped out.
+
+The cause was the safety net itself. It counted perfectly healthy frames as instability and, after enough of them, swapped the 3D scene for the fallback.
+
+## The fix
+
+I removed `flipflops` and `onFallback`, so a healthy scene can never trip the fallback. Then I rebuilt the step-down for genuinely slow devices: below a fixed 24 fps it turns off effects first, then lowers the resolution in steps, and only gives up on 3D if it's still choppy at the lowest resolution.
+
+I didn't trust "the tests pass". I confirmed the fix in a headless browser, running the scene past the point where it used to vanish: it stayed 3D for 45 seconds. I also simulated a genuinely slow device to check the fallback still kicks in when it should.
+
+## What I took from it
+
+- A safety net can become the bug. A fallback that triggers wrongly is worse than no fallback.
+- For anything visual or timing-based, verify in a real browser, not only with unit tests.
+- When a library's behaviour surprises you, read its source. Here, the answer was one line: a counter that went up on good news too.

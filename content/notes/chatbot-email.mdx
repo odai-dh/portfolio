@@ -1,0 +1,38 @@
+---
+title: "My portfolio chatbot started getting my email address wrong"
+slug: "chatbot-email"
+date: "2026-10-04"
+summary: "The model behind my site's chat was retired. Replacing it fixed the crash, then testing with real questions found a worse bug."
+tags: ["AI", "Groq", "Testing"]
+draft: false
+---
+
+The chat assistant on my portfolio answers questions about my background. One day every message failed.
+
+## First problem: the model was gone
+
+Groq had retired the model I used, and my code didn't handle that error. Every request came back as a plain 500. I checked the provider's model list, swapped in a replacement and wrapped the call so a provider failure now returns a clear error instead of crashing.
+
+## Second problem: markdown in a plain-text box
+
+The new model formatted answers with `**bold**` and bullet lists. My chat widget shows plain text, so visitors saw raw asterisks. I added a rule to the system prompt asking for plain text only.
+
+## Third problem, the one that mattered
+
+I didn't trust that fix, so, working with Claude Code, I asked the bot about ten realistic questions and compared the answers to my site. The email address came back wrong, and in different ways each time:
+
+- a plausible but incorrect domain
+- a stray control token right after the `@`
+- on the smaller model, the same broken token repeated over and over
+
+A contact bot that gives out the wrong email is worse than no bot. The model handled my email badly specifically, so I tested other models with the same prompt. One returned the correct address on every try, and I switched to it.
+
+## Tightening the prompt
+
+The same test run showed the bot inventing details: tools I never mentioned, extra responsibilities, a claim that I have no degree. I added rules: talk about me in the third person, use only the facts in the prompt, say "I don't know" and point to my email otherwise, and never say who paid for or used my work.
+
+## What I took from it
+
+- After any model change, run real questions through the real prompt. The first fix looked fine and was still wrong.
+- Check the exact strings that matter, such as the email, the dates and the links, not just whether the answer sounds good.
+- Handle provider errors in code. A retired model should be a clear message, not a crash.

@@ -1,0 +1,33 @@
+---
+title: "Why my portfolio sent 476 requests a minute"
+slug: "prefetch-loop"
+date: "2026-10-01"
+summary: "DevTools showed the network tab flooded with the same request. It only happened in production, and the cause was between Next.js and my host."
+tags: ["Next.js", "Netlify", "Debugging"]
+draft: false
+---
+
+I opened DevTools on my portfolio and the network tab was flooded: 476 requests to `cooking?_rsc=…` in a minute, and it kept going while I did nothing.
+
+## Narrowing it down
+
+Working with Claude Code, I reproduced it with a headless browser so I could count requests instead of eyeballing them.
+
+- **Production only.** Against the live site: about 40 requests every 10 seconds. Against `next start` locally: the normal three prefetches, then silence.
+- **Same hash every time.** The `_rsc` value never changed, so the browser was asking for the same thing over and over.
+- **Every link, not one page.** It happened for every `next/link` target: the home page, `/cooking` and each entry.
+
+That ruled out my own code. Something differed between local and production, and the only moving part in between was the host.
+
+## The cause
+
+Next.js 16.3 prefetches with a "segment prefetch" request, sent with a `next-router-segment-prefetch` header. A correct response is a small piece of the route tree. Through the Netlify runtime it came back as a full page payload instead, so the client never got what it expected and kept asking again.
+
+## The fix
+
+I set `prefetch={false}` on every `<Link>` in the app. Navigation works exactly as before and pages simply aren't prefetched. I left a note to retest after the next Next.js or Netlify plugin upgrade and remove the workaround if it's fixed.
+
+## What I took from it
+
+- When something only breaks in production, test the same request locally and in production and compare. That one comparison told me the bug wasn't in my code.
+- A workaround should carry its own expiry date. Mine is written down next to the fix, so it doesn't become permanent by accident.
