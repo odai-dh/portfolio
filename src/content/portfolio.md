@@ -50,7 +50,7 @@ experience:
 
   - company: "FEDECRAIL"
     title: "Volunteer Full Stack Developer & Digital Lead"
-    date: "2026 – Present"
+    date: "Jun 2026 – Present"
     link: "https://www.fedecrail.org/"
     duties:
       - "Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways."
@@ -478,7 +478,7 @@ projects:
 
 Hey, I’m Odai — a Full Stack Developer who leans frontend, with hands-on experience building real products for startups and clients.
 
-I’ve worked across the stack and across very different users: dashboards for brands like Oatly at **Aeoflo**, a sports-tech platform at **Sportly**, a website redesign for European heritage railways at **FEDECRAIL**, and projects like **Vidare**, a 3D concept app built around Swedish travel law, plus **iOS apps** and **AI-powered multiplayer games**. Each one taught me something new about code, design, and how people experience the web.
+I’ve worked across the stack and across very different users: dashboards for brands like Oatly at **Aeoflo**, a sports-tech platform at **Sportly**, a website redesign for European heritage railways at **FEDECRAIL**, and projects like **Vidare**, a 3D concept app built around Swedish travel law, plus **iOS apps** and **AI-powered multiplayer games**. The range is the point: designing for FEDECRAIL's mostly 55+ audience is a different problem from building analytics dashboards for brands, and I enjoy both.
 
 Right now I’m taking on **freelance projects** while actively looking for my next full-time role. I love solving problems that mix creativity and logic, and when I’m not coding, you’ll probably find me [cooking](/cooking) 🍋.
 
