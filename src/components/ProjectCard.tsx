@@ -45,7 +45,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
             className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary/15 via-card to-card">
+          <div className="relative flex h-full items-center justify-center bg-gradient-to-br from-primary/15 via-card to-card">
+            <span className="absolute left-3 top-3 rounded border border-primary/40 bg-background/70 px-2 py-0.5 font-mono text-[11px] text-primary">
+              {project.figma ? 'Design concept' : 'In development'}
+            </span>
             <Folder className={cn(
               "h-12 w-12 text-primary transition-all duration-500",
               isHovered && "scale-110 rotate-12"

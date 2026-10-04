@@ -7,6 +7,7 @@ import { ProjectsSection } from '@/components/ProjectsSection';
 import { Footer } from '@/components/Footer';
 import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
 import { MainNav } from '@/components/MainNav';
+import { ProofStrip } from '@/components/ProofStrip';
 import { AboutSection } from '@/components/AboutSection';
 import { ContactSection } from '@/components/ContactSection';
 import { ScrollProgress } from '@/components/ScrollProgress';
@@ -40,6 +41,7 @@ export default async function Home() {
                   email={portfolioData.email}
                 />
               </HeroMode>
+              <ProofStrip />
               <AboutSection
                 aboutHtml={portfolioData.aboutHtml}
                 tiktokUrl={portfolioData.socials.tiktok}
