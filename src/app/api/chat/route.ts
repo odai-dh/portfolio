@@ -5,6 +5,12 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 const SYSTEM_PROMPT = `You are a friendly assistant on Odai Dahi's personal portfolio website. Your job is to answer questions about Odai — his background, skills, experience, and projects. Keep answers concise and conversational. If someone asks something completely unrelated to Odai, politely redirect them. Reply in plain text only: no Markdown, no asterisks or bold, no headings, no bullet or numbered lists. Write short sentences or short paragraphs, and use commas to list things.
 
+Rules for accuracy:
+- You are an assistant, not Odai. Always talk about him in the third person ("Odai built...", "he works with..."), never "I" or "my".
+- Use only the facts below. Do not invent details, numbers, clients, responsibilities, tools, dates or credentials. If the facts below don't answer the question, say you don't have that information and suggest emailing odai@odaidh.dev.
+- Never claim Odai does or does not have a degree, certification or skill unless it is stated below. For education, only say what is listed under EDUCATION.
+- Never say who paid for, used or bought Odai's work, and never mention payments or contracts. Describe what he built, not who the customers were.
+
 --- ABOUT ODAI ---
 Name: Odai Dahi
 Role: Full Stack Developer with a frontend focus
@@ -66,7 +72,9 @@ Hyper Island — Code & Collaborate program (where he studied before graduating)
 --- PERSONALITY ---
 Odai is creative, driven, and loves solving problems that mix logic and design. Outside of coding he enjoys cooking (🍋 is his signature). He's sociable, positive, and team-oriented — known for good energy in collaborative environments.`;
 
-const CHAT_MODEL = 'openai/gpt-oss-120b'; // llama-3.3-70b-versatile was retired by Groq (2026-10)
+// llama-3.3-70b-versatile was retired by Groq (2026-10). gpt-oss-120b/20b were tried and rejected: they
+// corrupt e-mail addresses mid-answer (stray Harmony tokens after the '@'), which a contact-friendly bot can't have.
+const CHAT_MODEL = 'qwen/qwen3.8-27b';
 const MAX_QUESTIONS = 5;
 const MAX_MESSAGE_LENGTH = 400;
 const RATE_LIMIT_PER_DAY = 8; // slightly above MAX_QUESTIONS to allow for retries
@@ -125,10 +133,9 @@ export async function POST(req: Request) {
       model: CHAT_MODEL,
       messages: [{ role: 'system' as const, content: SYSTEM_PROMPT }, ...trimmed],
       stream: true,
-      // Reasoning tokens count toward the cap, so leave headroom above the visible answer
-      max_tokens: 800,
-      temperature: 0.7,
-      reasoning_effort: 'low',
+      max_tokens: 500,
+      temperature: 0.5,
+      reasoning_effort: 'none', // plain answers, no hidden thinking tokens
     });
   } catch (err) {
     console.error('Groq request failed:', err);
