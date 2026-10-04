@@ -4,6 +4,9 @@
 
 [build.environment]
   NEXT_TELEMETRY_DISABLED = "1"
+  # Turbopack's persistent build cache can contain env values read at build time.
+  # It is never served, so exclude it from the secrets scan (the scan still covers real output).
+  SECRETS_SCAN_OMIT_PATHS = ".netlify/.next/cache/**,.next/cache/**"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
