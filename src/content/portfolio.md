@@ -311,11 +311,6 @@ projects:
       ### Deployment
       Deployed on **Netlify** with serverless function support for AI API calls.
       Features environment variable configuration for secure API key management.
-
-      ### Learning Outcome
-      This project gave me hands-on experience with **AI API integration, real-time state management, localStorage persistence**, and building interactive multiplayer game logic.
-      I learned how to optimize API calls to reduce token usage, implement sequential AI generation with progress tracking, and create an engaging user experience with modern UI/UX patterns.
-      The project also taught me valuable lessons in **error handling, async operations**, and **responsive game design**.
   - title: "E-commerce Platform"
     date: "2025-08-24"
     description: "A full-stack e-commerce application built with Next.js, Node.js/Express, and MongoDB."
@@ -335,10 +330,7 @@ projects:
         - RESTful API with **Node.js & Express**  
         - Data storage with **MongoDB & Mongoose**  
         - Accessibility and SEO optimized with **Next.js Metadata API**  
-        - Deployed on **Netlify** (frontend) and **Heroku/Render** (backend)  
-
-        ### Learning Outcome
-        This project gave me hands-on experience with full-stack development, authentication, API design, accessibility, and deployment workflows.
+        - Deployed on **Netlify** (frontend) and **Heroku/Render** (backend)
   - title: "Litorina School Website"
     date: "2025-08-24"
     description: "A modern school website built with React, TailwindCSS, and Vite for Litorina Folkhögskola."
@@ -359,9 +351,6 @@ projects:
 
       ### My Contribution
       I worked on building and styling key sections of the site, translating the design team's mockups into responsive, accessible components. The project gave me hands-on experience delivering a real client solution under time constraints while collaborating across design, development, and project management roles.
-
-      ### Learning Outcome
-      This project gave me hands-on experience with **team collaboration, agile workflows, and delivering a real-world client solution**.
   - title: "StremVibe"
     date: "2025-08-24"
     description: "A movie database web app using the TMDB API, allowing users to browse, search, and watch trailers."
@@ -379,10 +368,7 @@ projects:
       - View cast, details, and trailers  
       - Liked movies list and saved favorites  
       - Responsive design for all devices  
-      - Deployed on **Netlify**  
-
-      ### Learning Outcome
-      This project helped me practice **API integration, state management, and building a multi-page React application with reusable components**.
+      - Deployed on **Netlify**
   - title: "SpaceToon 3D"
     date: "2025-08-24"
     description: "An interactive VR solar system experience, where users explore space from inside a cockpit spaceship."
@@ -400,10 +386,7 @@ projects:
       - Realistic 3D planets, orbits, and sun  
       - Boost system, smooth flying, and free movement  
       - VR raycasting interaction for clickable UI  
-      - Optimized and user-tested for comfort  
-
-      ### Learning Outcome
-      This project gave me hands-on experience with **3D rendering, VR interactions, and WebXR integration**, combining creative design with technical implementation.
+      - Optimized and user-tested for comfort
   - title: "myHealth ID Digital Healthcare App"
     date: "2025-09-18"
     description: "A responsive UX/UI design for a digital healthcare platform where users can manage appointments, prescriptions, and family health cases."
@@ -449,10 +432,7 @@ projects:
       - Rules and bracket pages for tournament structure  
       - Playful design with animations and themed styling  
       - Built collaboratively with **HTML, CSS, and JavaScript**  
-      - Deployed via **GitHub Pages**  
-
-      ### Learning Outcome
-      This project was a chance to practice **team collaboration, creative frontend design, and interactive UI development** while keeping a playful theme.
+      - Deployed via **GitHub Pages**
   - title: "Naiman"
     date: "2025-08-24"
     description: "A startup project in active development. Details are under wraps for now."
@@ -462,18 +442,10 @@ projects:
     image: "https://placehold.co/1200x630.png"
     content: |
       ### Overview
-      Naiman is a project I’m currently building — but it’s not time to reveal everything just yet.  
-      What I can share is that it’s an ambitious idea with the potential to change how people interact with everyday services.  
+      Naiman is a startup project I'm currently building. The details aren't public yet.
 
       ### Status
-      Still in active development.  
-      Not yet public.  
-
-      ### Sneak Peek
-      While I’m keeping the details under wraps for now, Naiman is more than just another app.  
-      It’s about **connection, convenience, and rethinking an experience people use every day**.  
-
-      Stay tuned — the full story is coming soon.
+      In active development. Not yet public.
 ---
 
 Hey, I’m Odai — a Full Stack Developer who leans frontend, with hands-on experience building real products for startups and clients.
