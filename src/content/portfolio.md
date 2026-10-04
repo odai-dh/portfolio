@@ -92,7 +92,7 @@ projects:
 
   - title: "Vidare"
     date: "2026-09-29"
-    description: "SL breaks down, Vidare books your taxi home and claims the fare back from SL for you. A clickable concept app inside a scroll-driven 3D Stockholm, built solo in five days."
+    description: "SL breaks down, Vidare books your taxi home and claims the fare back from SL for you. A clickable concept app inside a scroll-driven 3D Stockholm, prototyped solo in one night at a hackathon and finished in five days."
     tags: ["Next.js", "TypeScript", "React Three Fiber", "GSAP", "Zustand", "Zod", "Vitest", "Tailwind CSS"]
     link: "https://sl-compensation.netlify.app/"
     github: "https://github.com/odai-dh/sl-compensation"
@@ -103,7 +103,7 @@ projects:
 
       Vidare removes that friction. You tap **"I'm stranded"**, Vidare checks your trip against SL's rules, orders and pays the taxi, then files the claim with SL for you under a power of attorney (fullmakt) you signed once with BankID. SL pays Vidare, and you pay nothing.
 
-      I designed and built it solo in five days as a clickable demo: about 10,800 lines of TypeScript and 108 unit tests.
+      I designed and built it solo as a clickable demo. The first prototype came together in one night at a hackathon, and I finished it over five days: about 10,800 lines of TypeScript and 108 unit tests.
 
       *Concept project. Not affiliated with or endorsed by SL.*
 

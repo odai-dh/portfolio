@@ -47,7 +47,7 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
    - Technical support for staff and students, hardware/software troubleshooting
 
 --- PROJECTS ---
-1. Vidare — Concept app that gets stranded SL travellers home by taxi and claims the fare back from SL, wrapped in a scroll-driven 3D website of Stockholm at night (Next.js, React Three Fiber, GSAP, Zod, Vitest; built in five days)
+1. Vidare — Concept app that gets stranded SL travellers home by taxi and claims the fare back from SL, wrapped in a scroll-driven 3D website of Stockholm at night (Next.js, React Three Fiber, GSAP, Zod, Vitest; prototyped solo in one night at a hackathon, then finished over five days)
 2. Aeoflo — Next.js dashboard platform for an AI analytics startup (real production work)
 3. Death Calendar — iOS app (SwiftUI) that visualizes your entire life as a dot grid to encourage intentional living
 4. BuzzyJeopardy — Real-time multiplayer Jeopardy game with AI-generated questions (Next.js, Firebase, Google Gemini)
