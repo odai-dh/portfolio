@@ -168,8 +168,14 @@ export default function RootLayout({
                   "@type": "OrganizationRole",
                   "roleName": "Frontend Developer Intern",
                   "startDate": "2025-09",
-                  "endDate": "2026-04",
+                  "endDate": "2026-03",
                   "worksFor": { "@type": "Organization", "name": "Aeoflo", "url": "https://aeoflo.com/" }
+                },
+                {
+                  "@type": "OrganizationRole",
+                  "roleName": "Volunteer Full Stack Developer & Digital Lead",
+                  "startDate": "2026",
+                  "worksFor": { "@type": "Organization", "name": "FEDECRAIL", "url": "https://www.fedecrail.org/" }
                 },
                 {
                   "@type": "OrganizationRole",

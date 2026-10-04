@@ -14,13 +14,13 @@ GitHub: https://github.com/odai-dh
 LinkedIn: https://www.linkedin.com/in/odai-dahi/
 
 --- SKILLS ---
-Frontend: HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, SwiftUI, Framer Motion
-Backend: Node.js, Express, MongoDB, SQL, REST APIs
-Tools: Firebase, Chart.js, Clerk, HubSpot API, Cloudflare R2, shadcn/ui, Zod, react-hook-form, Figma, Git
+Frontend: HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, SwiftUI, Framer Motion, GSAP, React Three Fiber, Zustand
+Backend: Node.js, Express, MongoDB, SQL, REST APIs, Firebase, Supabase
+Tools: Docker, Vitest, Chart.js, Clerk, HubSpot API, Cloudflare R2, shadcn/ui, Zod, react-hook-form, Figma, Git
 Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, WebXR)
 
 --- EXPERIENCE ---
-1. Aeoflo (Frontend Developer Intern, Sep 2025 – Apr 2026)
+1. Aeoflo (Frontend Developer Intern, Sep 2025 – Mar 2026)
    - Sole frontend developer at a venture-backed AI analytics startup
    - Built the entire company website from scratch (Next.js, TypeScript, Tailwind CSS) — 20,000+ lines of code with scroll animations, dark mode, HubSpot booking integration, and a blog system
    - Built a multi-client analytics dashboard used by real brands: Oatly, Stiga, Billhop, Norstedts, CRA-YON, X-peng
@@ -28,18 +28,22 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
    - Integrated HubSpot API, Cloudflare R2, Clerk auth
    - Recommendation from Antoine Abribat (Co-Founder & COO): "He grew from a talented intern into a dependable developer capable of shipping production-ready features independently."
 
-2. Sportly (Frontend Developer Intern, Jun 2025 – Oct 2025)
+2. FEDECRAIL (Volunteer Full Stack Developer & Digital Lead, 2026 – present)
+   - Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways
+   - Running UX research for a user base that is predominantly 55+, and designing around their needs
+
+3. Sportly (Frontend Developer Intern, Jun 2025 – Oct 2025)
    - Built frontend for a sports tech platform using React, TypeScript, Tailwind CSS
    - Built responsive UI components, collaborated in agile team with developers and designers
 
-3. RAW Comedy Club (Event Assistant, Sep 2024 – Dec 2025)
+4. RAW Comedy Club (Event Assistant, Sep 2024 – Dec 2025)
    - Supporting event operations, assisting artists, coordinating logistics
 
-4. Max Burgers (Assistant Restaurant Manager, Mar 2020 – Aug 2024)
+5. Max Burgers (Assistant Restaurant Manager, Mar 2020 – Aug 2024)
    - Managed daily operations, supervised staff, recruited and trained team members
    - Financial reporting, inventory control, staff scheduling
 
-5. Stockholm Stad (IT Support Assistant, 2018–2019)
+6. Stockholm Stad (IT Support Assistant, 2018–2019)
    - Technical support for staff and students, hardware/software troubleshooting
 
 --- PROJECTS ---

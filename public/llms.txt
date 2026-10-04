@@ -19,15 +19,16 @@ Odai is a Full Stack Developer who has shipped real products for venture-backed 
 
 ## Skills
 
-**Frontend:** React, Next.js, TypeScript, JavaScript, Tailwind CSS, HTML, CSS, SwiftUI, Framer Motion, shadcn/ui
-**Backend:** Node.js, Express, MongoDB, SQL, REST APIs
-**Tools & Services:** Firebase, Clerk, Chart.js, HubSpot API, Cloudflare R2, Zod, react-hook-form, Figma, Git
+**Frontend:** React, Next.js, TypeScript, JavaScript, Tailwind CSS, HTML, CSS, SwiftUI, Framer Motion, GSAP, React Three Fiber, Zustand, shadcn/ui
+**Backend:** Node.js, Express, MongoDB, SQL, REST APIs, Firebase, Supabase
+**Tools & Services:** Firebase, Clerk, Chart.js, HubSpot API, Cloudflare R2, Zod, Vitest, Docker, react-hook-form, Figma, Git
 **AI Integration:** Groq, Google Gemini, Hugging Face APIs, prompt engineering, streaming responses, rate limiting
 **Other:** UX/UI design (Figma), 3D/VR web (Three.js, A-Frame, WebXR), iOS development
 
 ## Experience
 
-- **Aeoflo** — Frontend Developer Intern (Sep 2025 – Apr 2026). Sole frontend developer at a venture-backed AI analytics startup. Built the entire company website (20,000+ lines of code) and a multi-client analytics dashboard used by real brands including Oatly, Stiga, Billhop, Norstedts, CRA-YON, and X-peng. Refactored a 4,000-line monolithic Shopify app into modular React components. Integrated HubSpot API, Cloudflare R2, and Clerk authentication.
+- **Aeoflo** — Frontend Developer Intern (Sep 2025 – Mar 2026). Sole frontend developer at a venture-backed AI analytics startup. Built the entire company website (20,000+ lines of code) and a multi-client analytics dashboard used by real brands including Oatly, Stiga, Billhop, Norstedts, CRA-YON, and X-peng. Refactored a 4,000-line monolithic Shopify app into modular React components. Integrated HubSpot API, Cloudflare R2, and Clerk authentication.
+- **FEDECRAIL** — Volunteer Full Stack Developer & Digital Lead (2026 – Present). Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways, and running UX research for a user base that is predominantly 55+.
 - **Sportly** — Frontend Developer Intern (Jun 2025 – Oct 2025). Built the frontend of a sports tech platform using React, TypeScript, and Tailwind CSS. Delivered responsive UI components and collaborated in an agile team.
 - **RAW Comedy Club** — Event Assistant (Sep 2024 – Dec 2025). Event operations, artist coordination, logistics.
 - **Max Burgers** — Assistant Restaurant Manager (Mar 2020 – Aug 2024). Managed daily operations, staff, financial reporting, and scheduling.

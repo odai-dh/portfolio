@@ -1,7 +1,7 @@
 ---
 name: "Odai Dahi"
 title: "Full Stack Developer"
-subtitle: "I build production Next.js apps — most recently a multi-client dashboard platform at Aeoflo. Based in Stockholm, freelancing and open to full-time roles."
+subtitle: "I build production Next.js apps, from client dashboards at Aeoflo to Vidare, a 3D concept app for Stockholm. Stockholm-based and open to full-time roles."
 email: "odai@odaidh.dev"
 socials:
   github: "https://github.com/odai-dh"
@@ -18,15 +18,21 @@ skills:
   - { name: "Tailwind CSS", category: "frontend" }
   - { name: "SwiftUI", category: "frontend" }
   - { name: "Framer Motion", category: "frontend" }
+  - { name: "GSAP", category: "frontend" }
+  - { name: "React Three Fiber", category: "frontend" }
+  - { name: "Zustand", category: "frontend" }
   - { name: "Node.js", category: "backend" }
   - { name: "Express", category: "backend" }
   - { name: "MongoDB", category: "backend" }
   - { name: "SQL", category: "backend" }
   - { name: "REST APIs", category: "backend" }
   - { name: "Firebase", category: "backend" }
+  - { name: "Supabase", category: "backend" }
   - { name: "Git", category: "tools" }
   - { name: "Figma", category: "tools" }
   - { name: "Zod", category: "tools" }
+  - { name: "Vitest", category: "tools" }
+  - { name: "Docker", category: "tools" }
   - { name: "Clerk", category: "tools" }
   - { name: "Three.js", category: "tools" }
   - { name: "AI APIs (Groq, Gemini)", category: "tools" }
@@ -34,53 +40,60 @@ skills:
 experience:
   - company: "Aeoflo"
     title: "Frontend Developer Intern"
-    date: "Sep 2025 – Apr 2026"
+    date: "Sep 2025 – Mar 2026"
     link: "https://aeoflo.com/"
     duties:
-      - "Built the company website from scratch with Next.js, TypeScript, and Tailwind CSS, featuring scroll animations and dark mode."
-      - "Refactored a ~4,000-line Shopify app into modular React components with error handling and documentation."
-      - "Developed interactive dashboards with dynamic KPI cards, expandable tables, and Chart.js visualizations for investor presentations."
-      - "Integrated third-party services including HubSpot API and Cloudflare R2 CDN."
+      - "Sole frontend developer at a venture-backed AI analytics startup. Built the 20,000+ line company website from scratch with Next.js, TypeScript and Tailwind CSS, including scroll animations, dark mode, a blog and HubSpot booking."
+      - "Designed and built a multi-client analytics dashboard platform used by Oatly, Stiga, Billhop, Norstedts, CRA-YON and X-peng, with KPI cards, Chart.js charts and a JSON data model where adding a client needs no component changes."
+      - "Refactored a ~4,000-line Shopify app into modular React components with error boundaries, custom hooks and documentation."
+      - "Integrated the HubSpot API and Cloudflare R2, and added Clerk authentication for client project submissions."
+
+  - company: "FEDECRAIL"
+    title: "Volunteer Full Stack Developer & Digital Lead"
+    date: "2026 – Present"
+    link: "https://www.fedecrail.org/"
+    duties:
+      - "Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways."
+      - "Running UX research for a user base that is predominantly 55+, and designing around their needs."
 
   - company: "Sportly"
     title: "Frontend Developer Intern"
     date: "Jun 2025 – Oct 2025"
     link: "https://sportly.se/"
     duties:
-      - "Helped build the frontend of a sports tech platform using React, TypeScript, and Tailwind CSS."
-      - "Built and improved responsive UI components, ensuring consistency with the design system."
-      - "Collaborated with developers and designers in an agile team to deliver new features."
-      - "Maintained design consistency and usability across the platform while adding new functionality."
-      
+      - "Built frontend features for a sports tech platform with React, TypeScript and Tailwind CSS."
+      - "Shipped responsive UI components that stayed consistent with the design system."
+      - "Worked in an agile team with developers and designers to deliver new features."
+
   - company: "RAW Comedy Club"
     title: "Event Assistant"
     date: "Sep 2024 – Dec 2025"
     duties:
-      - "Supporting event operations to create memorable guest experiences."
-      - "Assisting artists, coordinating logistics, and ensuring smooth execution."
+      - "Supported event operations to create memorable guest experiences."
+      - "Assisted artists, coordinated logistics and kept events running smoothly."
 
   - company: "Max Burgers"
     title: "Assistant Restaurant Manager"
     date: "Mar 2020 – Aug 2024"
     duties:
-      - "Managed daily operations and supervised staff in absence of the manager."
-      - "Recruited, trained, and coached team members and shift leaders."
-      - "Handled financial reporting, closing, and monthly inventory control."
-      - "Planned and optimized staff schedules for efficient workflow."
+      - "Ran daily operations and supervised staff when the manager was away."
+      - "Recruited, trained and coached team members and shift leaders."
+      - "Handled financial reporting, closing and monthly inventory control."
+      - "Planned and optimized staff schedules."
 
   - company: "Stockholm Stad"
-    title: "IT-supportassistent"
+    title: "IT Support Assistant"
     date: "2018 – 2019"
     duties:
-      - "Provided technical support to staff and students."
+      - "Gave technical support to staff and students."
       - "Troubleshot hardware and software issues."
       - "Supported digital learning environments."
 projects:
 
   - title: "Vidare"
     date: "2026-09-29"
-    description: "A concept app that gets stranded SL travellers home by taxi and claims the fare back from SL for them: a fully clickable demo wrapped in a scroll-driven 3D website."
-    tags: ["Next.js", "TypeScript", "React", "React Three Fiber", "three.js", "GSAP", "Lenis", "Tailwind CSS", "Framer Motion", "Zustand", "Zod", "Vitest", "Leaflet", "Netlify Blobs", "Web Audio API"]
+    description: "SL breaks down, Vidare books your taxi home and claims the fare back from SL for you. A clickable concept app inside a scroll-driven 3D Stockholm, built solo in five days."
+    tags: ["Next.js", "TypeScript", "React Three Fiber", "GSAP", "Zustand", "Zod", "Vitest", "Tailwind CSS"]
     link: "https://sl-compensation.netlify.app/"
     github: "https://github.com/odai-dh/sl-compensation"
     image: "/images/projects/vidare.jpg"
@@ -90,7 +103,9 @@ projects:
 
       Vidare removes that friction. You tap **"I'm stranded"**, Vidare checks your trip against SL's rules, orders and pays the taxi, then files the claim with SL for you under a power of attorney (fullmakt) you signed once with BankID. SL pays Vidare, and you pay nothing.
 
-      Built in five days as a clickable demo: about 10,800 lines of TypeScript and 108 unit tests.
+      I designed and built it solo in five days as a clickable demo: about 10,800 lines of TypeScript and 108 unit tests.
+
+      *Concept project. Not affiliated with or endorsed by SL.*
 
       ### The App
       A mobile-first web app covering the whole journey:
@@ -117,7 +132,9 @@ projects:
       Next.js 16, React, TypeScript, Tailwind CSS, React Three Fiber, three.js, drei, postprocessing, GSAP ScrollTrigger, Lenis, Framer Motion, Zustand, Zod, Vitest, react-leaflet, OpenStreetMap, Netlify Blobs, Web Audio API
 
       ### Learning Outcome
-      Vidare taught me to design for a real integration from day one: keeping business rules pure and testable, and hiding every outside service behind an interface, made the demo fast to build and straightforward to make real. It also pushed my frontend work into 3D, where performance, accessibility and phone support take as much work as the visuals. Building it with an AI pair programmer (Claude Code), I learned to specify behaviour precisely and to verify every change in a real browser rather than trusting "the tests pass".
+      Vidare taught me to design for a real integration from day one. Keeping business rules pure and tested, and hiding every outside service behind an interface, made the demo fast to build and straightforward to make real. It also pushed my frontend work into 3D, where performance, accessibility and phone support take as much work as the visuals.
+
+      I built it with Claude Code as a pair programmer, which mostly taught me discipline: specify behaviour precisely, then verify every change in a real browser instead of trusting "the tests pass".
 
   - title: "Aeoflo"
     date: "2026-04-21"
@@ -167,7 +184,7 @@ projects:
     image: "/images/projects/death-calendar.jpg"
     content: |
       ### Overview
-      > **Note:** The app is not yet available on the App Store — Apple's $99/year Developer Program fee is a real barrier when you're a broke student. A web preview is live at the link above.
+      > **Note:** The app isn't on the App Store yet because of Apple's $99/year Developer Program fee. A web preview is live at the link above.
 
       LifeCircle is an iOS app inspired by the "death calendar" concept, reimagined as a **motivational reflection tool** rather than a morbid reminder.
       It renders your entire life as a grid of dots — each one representing a year, month, week, or day — filled to show the time you've lived, and outlined to show what remains.
@@ -438,7 +455,7 @@ projects:
       This project was a chance to practice **team collaboration, creative frontend design, and interactive UI development** while keeping a playful theme.
   - title: "Naiman"
     date: "2025-08-24"
-    description: "An upcoming project — still under development, but something truly unique is on the way."
+    description: "A startup project in active development. Details are under wraps for now."
     tags: ["Next.js", "TypeScript", "Tailwind", "Startup Project"]
     link: "#"
     github: "#"
@@ -461,7 +478,7 @@ projects:
 
 Hey, I’m Odai — a Full Stack Developer who leans frontend, with hands-on experience building real products for startups and clients.
 
-I’ve worked across the stack: from Shopify apps and dashboards at **Aeoflo**, to responsive UIs at **Sportly**, to personal projects spanning **iOS apps**, **AI-powered games**, and **3D web experiences**. Each one taught me something new about code, design, and how people experience the web.
+I’ve worked across the stack and across very different users: dashboards for brands like Oatly at **Aeoflo**, a sports-tech platform at **Sportly**, a website redesign for European heritage railways at **FEDECRAIL**, and projects like **Vidare**, a 3D concept app built around Swedish travel law, plus **iOS apps** and **AI-powered multiplayer games**. Each one taught me something new about code, design, and how people experience the web.
 
 Right now I’m taking on **freelance projects** while actively looking for my next full-time role. I love solving problems that mix creativity and logic, and when I’m not coding, you’ll probably find me [cooking](/cooking) 🍋.
 
