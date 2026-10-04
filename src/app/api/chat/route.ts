@@ -62,6 +62,7 @@ Hyper Island — Code & Collaborate program (where he studied before graduating)
 --- PERSONALITY ---
 Odai is creative, driven, and loves solving problems that mix logic and design. Outside of coding he enjoys cooking (🍋 is his signature). He's sociable, positive, and team-oriented — known for good energy in collaborative environments.`;
 
+const CHAT_MODEL = 'openai/gpt-oss-120b'; // llama-3.3-70b-versatile was retired by Groq (2026-10)
 const MAX_QUESTIONS = 5;
 const MAX_MESSAGE_LENGTH = 400;
 const RATE_LIMIT_PER_DAY = 8; // slightly above MAX_QUESTIONS to allow for retries
@@ -114,22 +115,35 @@ export async function POST(req: Request) {
 
   const trimmed = messages.slice(-MAX_QUESTIONS * 2);
 
-  const stream = await groq.chat.completions.create({
-    model: 'llama-3.3-70b-versatile',
-    messages: [{ role: 'system' as const, content: SYSTEM_PROMPT }, ...trimmed],
-    stream: true,
-    max_tokens: 400,
-    temperature: 0.7,
-  });
+  let stream;
+  try {
+    stream = await groq.chat.completions.create({
+      model: CHAT_MODEL,
+      messages: [{ role: 'system' as const, content: SYSTEM_PROMPT }, ...trimmed],
+      stream: true,
+      // Reasoning tokens count toward the cap, so leave headroom above the visible answer
+      max_tokens: 800,
+      temperature: 0.7,
+      reasoning_effort: 'low',
+    });
+  } catch (err) {
+    console.error('Groq request failed:', err);
+    return new Response('Chat is unavailable right now.', { status: 502 });
+  }
 
   const encoder = new TextEncoder();
   const readable = new ReadableStream({
     async start(controller) {
-      for await (const chunk of stream) {
-        const text = chunk.choices[0]?.delta?.content ?? '';
-        if (text) controller.enqueue(encoder.encode(text));
+      try {
+        for await (const chunk of stream) {
+          const text = chunk.choices[0]?.delta?.content ?? '';
+          if (text) controller.enqueue(encoder.encode(text));
+        }
+        controller.close();
+      } catch (err) {
+        console.error('Groq stream failed:', err);
+        controller.error(err);
       }
-      controller.close();
     },
   });
 
