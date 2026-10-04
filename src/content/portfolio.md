@@ -411,7 +411,7 @@ projects:
     link: "https://www.figma.com/proto/03juTRyTDZDbuKr9cbY18k/myHealth-ID?node-id=1-4&p=f&m=draw&scaling=scale-down&content-scaling=fixed&page-id=0%3A1"
     figma: "https://www.figma.com/file/03juTRyTDZDbuKr9cbY18k/myHealth-ID"
     github: "#"
-    image: "https://placehold.co/1200x630.png"
+    image: "/images/projects/myhealth-id.jpg"
     content: |
       ### Overview
       **myHealth ID** is a digital healthcare UX/UI concept designed to simplify the way individuals and guardians access and manage healthcare services.  
