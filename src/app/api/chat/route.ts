@@ -26,18 +26,21 @@ Tools: Docker, Vitest, Chart.js, Clerk, HubSpot API, Cloudflare R2, shadcn/ui, Z
 Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, WebXR)
 
 --- EXPERIENCE ---
-1. Art25 Consulting AB (Full Stack Developer, Oct 2026 – present)
+1. Art25 Defense AB (Full Stack Developer, Oct 2026 – present)
    - Develops features for a pre-seed startup building a unified AI governance and GRC platform (Next.js, React, TypeScript, Supabase)
    - Leads UI development for configurable forms and contributes UI work across core platform modules
    - Designed the logo and is building the website for NIARR (Nordic Institute for AI Risk and Resilience), the NGO founded by Art25
 
-2. AI Beauty Recommendation App (Founding Engineer, 2026 – present)
+2. NIARR (Web Developer & Designer, Oct 2026 – present)
+   - Designed the logo and built the website for the Nordic Institute for AI Risk and Resilience, an independent non-profit in Stockholm
+
+3. AI Beauty Recommendation App (Founding Engineer, 2026 – present)
    - Building an AI-powered app that helps shoppers find beauty products on in-store retail kiosks, owning the product end to end
 
-3. E-commerce App (Mobile Developer, 2026 – present)
+4. E-commerce App (Mobile Developer, 2026 – present)
    - Building a React Native e-commerce app for Android with a co-founder, plus the Node.js API behind it with a focus on security
 
-4. Aeoflo (Frontend Developer Intern, Sep 2025 – Mar 2026)
+5. Aeoflo (Frontend Developer Intern, Sep 2025 – Mar 2026)
    - Sole frontend developer at a venture-backed AI analytics startup
    - Built the entire company website from scratch (Next.js, TypeScript, Tailwind CSS) — 20,000+ lines of code with scroll animations, dark mode, HubSpot booking integration, and a blog system
    - Built a multi-client analytics dashboard platform with per-brand dashboards created for prospective clients (Oatly, Stiga, Billhop, Norstedts, CRA-YON, X-peng). Do not describe them as paying customers.
@@ -45,22 +48,22 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
    - Integrated HubSpot API, Cloudflare R2, Clerk auth
    - Recommendation from Antoine Abribat (Co-Founder & COO): "He grew from a talented intern into a dependable developer capable of shipping production-ready features independently."
 
-5. FEDECRAIL (Volunteer Full Stack Developer & Digital Lead, 2026 – present)
+6. FEDECRAIL (Volunteer Full Stack Developer & Digital Lead, 2026 – present)
    - Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways
    - Running UX research for a user base that is predominantly 55+, and designing around their needs
 
-6. Sportly (Frontend Developer Intern, Jun 2025 – Oct 2025)
+7. Sportly (Frontend Developer Intern, Jun 2025 – Oct 2025)
    - Built frontend for a sports tech platform using React, TypeScript, Tailwind CSS
    - Built responsive UI components, collaborated in agile team with developers and designers
 
-7. RAW Comedy Club (Event Assistant, Sep 2024 – Dec 2025)
+8. RAW Comedy Club (Event Assistant, Sep 2024 – Dec 2025)
    - Supporting event operations, assisting artists, coordinating logistics
 
-8. Max Burgers (Assistant Restaurant Manager, Mar 2020 – Aug 2024)
+9. Max Burgers (Assistant Restaurant Manager, Mar 2020 – Aug 2024)
    - Managed daily operations, supervised staff, recruited and trained team members
    - Financial reporting, inventory control, staff scheduling
 
-9. Stockholm Stad (IT Support Assistant, 2018–2019)
+10. Stockholm Stad (IT Support Assistant, 2018–2019)
    - Technical support for staff and students, hardware/software troubleshooting
 
 --- PROJECTS ---

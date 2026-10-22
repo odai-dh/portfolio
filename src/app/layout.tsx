@@ -168,7 +168,7 @@ export default function RootLayout({
                   "@type": "OrganizationRole",
                   "roleName": "Full Stack Developer",
                   "startDate": "2026-10",
-                  "worksFor": { "@type": "Organization", "name": "Art25 Consulting AB" }
+                  "worksFor": { "@type": "Organization", "name": "Art25 Defense AB" }
                 },
                 {
                   "@type": "OrganizationRole",

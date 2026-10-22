@@ -38,14 +38,23 @@ skills:
   - { name: "AI APIs (Groq, Gemini)", category: "tools" }
 
 experience:
-  - company: "Art25 Consulting AB"
+  - company: "Art25 Defense AB"
     title: "Full Stack Developer"
     date: "Oct 2026 – Present"
+    link: "https://art25.ai/"
     duties:
       - "Developing features for a pre-seed startup building a unified AI governance and GRC platform, with Next.js, React, TypeScript and Supabase (Postgres, Auth, Realtime, row-level security), deployed on Vercel."
       - "Leading UI development for configurable forms and contributing UI work across several core platform modules."
       - "Fixing and shipping tested issues in a review-based workflow with the core team (feature → develop → test → production)."
       - "Designed the logo and building the website for NIARR (Nordic Institute for AI Risk and Resilience), the NGO founded by Art25."
+
+  - company: "NIARR"
+    title: "Web Developer & Designer"
+    date: "Oct 2026 – Present"
+    link: "https://niarr.eu"
+    duties:
+      - "Designed the logo and built the website for the Nordic Institute for AI Risk and Resilience, an independent non-profit in Stockholm."
+      - "Built a scroll-driven story told by about 18,000 WebGL particles, to WCAG 2.1 AA with no analytics, no cookies and a strict Content Security Policy."
 
   - company: "AI Beauty Recommendation App"
     title: "Founding Engineer"
