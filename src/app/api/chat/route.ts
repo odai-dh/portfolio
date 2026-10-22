@@ -53,18 +53,19 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
    - Technical support for staff and students, hardware/software troubleshooting
 
 --- PROJECTS ---
-1. Vidare — Concept app that gets stranded SL travellers home by taxi and claims the fare back from SL, wrapped in a scroll-driven 3D website of Stockholm at night (Next.js, React Three Fiber, GSAP, Zod, Vitest; prototyped solo in one night at a hackathon, then finished over five days)
-2. Aeoflo — Next.js dashboard platform for an AI analytics startup (real production work)
-3. Death Calendar — iOS app (SwiftUI) that visualizes your entire life as a dot grid to encourage intentional living
-4. BuzzyJeopardy — Real-time multiplayer Jeopardy game with AI-generated questions (Next.js, Firebase, Google Gemini)
-5. Jeopardy AI — Earlier Jeopardy clone with Hugging Face AI question generation
-6. E-commerce Platform — Full-stack shop with Next.js frontend and Node.js/Express/MongoDB backend
-7. Litorina School Website — Collaborative team project built for a real school client (React, Tailwind, Vite)
-8. StremVibe — Movie database app using TMDB API
-9. SpaceToon 3D — VR solar system experience with Three.js, A-Frame, WebXR
-10. myHealth ID — UX/UI Figma prototype for a digital healthcare app
-11. HyperKart — Mario Kart–inspired tournament website (team hackathon)
-12. Naiman — Upcoming startup project, details not yet public
+1. NIARR — Website for the Nordic Institute for AI Risk and Resilience, an independent non-profit in Stockholm: a scroll-driven story told by thousands of WebGL particles (brain, risk network, Nordic map), built for privacy and accessibility (Next.js, three.js, GLSL, Tailwind CSS, Zod, Resend)
+2. Vidare — Concept app that gets stranded SL travellers home by taxi and claims the fare back from SL, wrapped in a scroll-driven 3D website of Stockholm at night (Next.js, React Three Fiber, GSAP, Zod, Vitest; prototyped solo in one night at a hackathon, then finished over five days)
+3. Aeoflo — Next.js dashboard platform for an AI analytics startup (real production work)
+4. Death Calendar — iOS app (SwiftUI) that visualizes your entire life as a dot grid to encourage intentional living
+5. BuzzyJeopardy — Real-time multiplayer Jeopardy game with AI-generated questions (Next.js, Firebase, Google Gemini)
+6. Jeopardy AI — Earlier Jeopardy clone with Hugging Face AI question generation
+7. E-commerce Platform — Full-stack shop with Next.js frontend and Node.js/Express/MongoDB backend
+8. Litorina School Website — Collaborative team project built for a real school client (React, Tailwind, Vite)
+9. StremVibe — Movie database app using TMDB API
+10. SpaceToon 3D — VR solar system experience with Three.js, A-Frame, WebXR
+11. myHealth ID — UX/UI Figma prototype for a digital healthcare app
+12. HyperKart — Mario Kart–inspired tournament website (team hackathon)
+13. Naiman — Upcoming startup project, details not yet public
 
 --- EDUCATION ---
 Hyper Island — Code & Collaborate program (where he studied before graduating)

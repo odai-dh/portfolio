@@ -90,6 +90,56 @@ experience:
       - "Supported digital learning environments."
 projects:
 
+  - title: "NIARR"
+    date: "2026-10-22"
+    description: "The website of the Nordic Institute for AI Risk and Resilience, an independent non-profit in Stockholm. A scroll-driven story told by thousands of particles that form a brain, a network of risks, isolated silos and a map of the Nordics, built to an institution's standards for privacy and accessibility."
+    tags: ["Next.js", "TypeScript", "three.js", "WebGL", "GLSL", "Tailwind CSS", "Zod", "Resend"]
+    link: "https://niarr.eu"
+    image: "/images/projects/niarr.jpg"
+    content: |
+      ### Overview
+      NIARR (Nordic Institute for AI Risk and Resilience) is an independent, non-profit and nonpartisan institute founded in Stockholm in 2026. It brings together researchers, public institutions, policymakers and industry around the risks of increasingly capable AI. Its audience expects a calm, credible institution, not a tech-startup landing page, but the founder wanted the homepage to tell a story.
+
+      I built the site from the founder's written brief: a homepage that tells NIARR's story as you scroll, a separate story page, and the inner pages (About, Focus areas, Initiatives, Insights & events, Get involved, People, Contact). It is about 7,000 lines of TypeScript, GLSL and CSS, with all copy kept in typed content files so the institution's wording never lives inside components.
+
+      ### The Particle Story
+      The homepage is a sequence of pinned scenes. Each statement cross-fades in as you scroll, and one WebGL particle system carries the story underneath:
+      - A brain, built from a CC BY 4.0 MRI model that a Node script resamples into about 18,000 surface points with fold depth, packed into a small binary file
+      - The brain breaks into a network of the six areas AI affects, which light up one by one, each in its own colour
+      - The network pulls apart into isolated silos, then comes back together, all connected
+      - A dot map of the Nordic countries, generated from Natural Earth data, with arcs reaching out to the world
+      - The brain again, small and calm, for the closing invitation
+
+      Pages place the shapes with plain `data-scene` boxes, so moving a scene means moving a `<div>`, not rewriting scroll maths. The particles stream between shapes as a wavy current, keep a rim light that makes the cloud read as a solid, and respond to hover, drag and clicks. A mood layer blends soft background gradients between calm, deep and bright sections as you scroll.
+
+      ### The Story Button and the Portal
+      The story was too long for a homepage, so I split it: the homepage asks "What happens now?" and offers a way into the rest on its own page. The button needed to feel like part of the particle world, not a marketing button:
+      - A glass pill with a thin spectrum ring, and a halo of tiny pyramids on a canvas that streams in, draws itself round the pill and flows round it
+      - On hover, the halo tightens and quickens, and the brain behind it leans towards the button and lights up, through custom window events into the shader
+      - On click, every particle rushes into the button, a dark circle edged with the spectrum opens from that point to fill the screen, and on the story page the particles come back out of the same point and settle into the next shape
+      - The same button at the end of the story leads back the same way
+
+      It is still a real link: it works without JavaScript, Cmd-click opens a new tab, and with reduced motion it simply navigates.
+
+      ### Built for an Institution
+      - **Privacy:** a strict Content Security Policy, no analytics, no cookies and no third-party scripts. A Nobel Prize speech is embedded as a click-to-load facade: nothing loads from YouTube until the visitor presses play. The player fades in only once it reports that it's playing, read from its postMessage events, so YouTube's black loading screen never shows.
+      - **Accessibility:** WCAG 2.1 AA with zero axe violations at phone and desktop sizes. Every animation has a reduced-motion version, and without JavaScript the whole story reads as a normal page.
+      - **Content integrity:** a rule-set for every developer and AI agent on the project (AGENTS.md) forbids invented facts, so missing content stays a marked placeholder until the institute supplies it.
+      - **Contact form:** a Next.js server action with Zod validation, a honeypot, a time trap and rate limiting, sent through Resend.
+
+      ### Polish and Debugging
+      - **The brain that moved after deploy:** in production the brain sat in the wrong place. React's hydration was stripping the `js` class that switches the story into its pinned layout. A tiny inline script that restores the class whenever it's removed fixed it.
+      - **Hidden pages left in the DOM:** with `cacheComponents`, Next.js 16 keeps visited pages in the document, hidden. After navigating, the particle system was reading the hidden page's scene boxes, and ids existed twice. Now it skips anything not rendered, and ids are unique across pages.
+      - **A transition out of step:** the spectrum ring ran ahead of the opening circle. The ring animated on the compositor, but the circle's `clip-path` ran on a main thread busy with 3D. I switched the circle to a scaled element so both run on the compositor, and checked the result frame by frame with the browser's screencast.
+
+      ### Tech Stack
+      Next.js 16 (App Router, cacheComponents), React 19, TypeScript, Tailwind CSS 4, three.js with custom GLSL shaders, Canvas 2D, Web Animations API, Zod, Resend, axe-core, Playwright for visual checks
+
+      ### Learning Outcome
+      NIARR taught me that an institution's site has to be credible first and impressive second. The 3D story only works because it never gets in the way of reading: every statement exists as real, accessible text, the motion can be switched off, and nothing tracks the visitor.
+
+      As with Vidare, I built it with Claude Code as a pair programmer. Here that meant writing the project's rules down for every agent, and checking each change in a real browser at phone and desktop sizes before calling it done.
+
   - title: "Vidare"
     date: "2026-09-29"
     description: "SL breaks down, Vidare books your taxi home and claims the fare back from SL for you. A clickable concept app inside a scroll-driven 3D Stockholm, prototyped solo in one night at a hackathon and finished in five days."
