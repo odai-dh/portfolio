@@ -8,6 +8,25 @@ import { useEffect, useState, useRef } from 'react';
 import { Link, Briefcase } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+// Duties are plain strings; [text](https://...) becomes an external link.
+function renderDuty(duty: string) {
+  return duty.split(/(\[[^\]]+\]\(https?:\/\/[^)\s]+\))/g).map((part, i) => {
+    const m = part.match(/^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/);
+    if (!m) return part;
+    return (
+      <a
+        key={i}
+        href={m[2]}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-primary underline-offset-4 hover:underline"
+      >
+        {m[1]}
+      </a>
+    );
+  });
+}
+
 type ExperienceSectionProps = {
   experiences: Experience[];
 };
@@ -153,7 +172,7 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
                           ▹
                         </span>
                         <span className="flex-1 transition-colors group-hover/duty:text-foreground">
-                          {duty}
+                          {renderDuty(duty)}
                         </span>
                       </li>
                     ))}
