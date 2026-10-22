@@ -166,6 +166,12 @@ export default function RootLayout({
               "workExperience": [
                 {
                   "@type": "OrganizationRole",
+                  "roleName": "Full Stack Developer",
+                  "startDate": "2026-10",
+                  "worksFor": { "@type": "Organization", "name": "Art25 Consulting AB" }
+                },
+                {
+                  "@type": "OrganizationRole",
                   "roleName": "Frontend Developer Intern",
                   "startDate": "2025-09",
                   "endDate": "2026-03",

@@ -38,6 +38,30 @@ skills:
   - { name: "AI APIs (Groq, Gemini)", category: "tools" }
 
 experience:
+  - company: "Art25 Consulting AB"
+    title: "Full Stack Developer"
+    date: "Oct 2026 – Present"
+    duties:
+      - "Developing features for a pre-seed startup building a unified AI governance and GRC platform, with Next.js, React, TypeScript and Supabase (Postgres, Auth, Realtime, row-level security), deployed on Vercel."
+      - "Leading UI development for configurable forms and contributing UI work across several core platform modules."
+      - "Fixing and shipping tested issues in a review-based workflow with the core team (feature → develop → test → production)."
+      - "Designed the logo and building the website for NIARR (Nordic Institute for AI Risk and Resilience), the NGO founded by Art25."
+
+  - company: "AI Beauty Recommendation App"
+    title: "Founding Engineer"
+    date: "2026 – Present"
+    duties:
+      - "Building an AI-powered app that helps shoppers find the right beauty products on in-store retail kiosks."
+      - "Owning the product end to end, from interface and AI flows to backend."
+
+  - company: "E-commerce App (React Native)"
+    title: "Mobile Developer"
+    date: "2026 – Present"
+    duties:
+      - "Building a React Native e-commerce app for Android users together with a co-founder."
+      - "Developing the API behind the app in Node.js, with a focus on security and protecting user data."
+      - "Optimizing product images so they load faster and use less data on mobile networks."
+
   - company: "Aeoflo"
     title: "Frontend Developer Intern"
     date: "Sep 2025 – Mar 2026"
