@@ -60,6 +60,7 @@ Short write-ups of problems Odai ran into while building, and how he solved them
 - [The 3D city that vanished after 12 seconds](https://www.odaidh.dev/notes/vidare-vanishing-scene): a performance monitor counted healthy frames as instability and removed Vidare's 3D scene; found by reading drei's source.
 - [Why my portfolio sent 476 requests a minute](https://www.odaidh.dev/notes/prefetch-loop): a production-only Next.js prefetch loop caused by how the host answered segment-prefetch requests.
 - [My portfolio chatbot started getting my email address wrong](https://www.odaidh.dev/notes/chatbot-email): after a model retirement, testing with real questions found a model that corrupted email addresses.
+- [I couldn't fake a brain with noise, so I used an MRI scan](https://www.odaidh.dev/notes/niarr-mri-brain): hand-built particle shapes never read as a brain, so NIARR's homepage samples 18,000 points from a CC BY 4.0 MRI model with a Node build script.
 
 ## Recommendations
 

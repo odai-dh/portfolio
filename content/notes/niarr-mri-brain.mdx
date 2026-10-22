@@ -1,0 +1,61 @@
+---
+title: "I couldn't fake a brain with noise, so I used an MRI scan"
+slug: "niarr-mri-brain"
+date: "2026-10-22"
+summary: "The NIARR homepage needed a particle brain that reads as a brain. Hand-built shapes never got there, so I sampled particles from a real MRI model instead."
+tags: ["three.js", "WebGL", "3D"]
+draft: false
+---
+
+The homepage of [NIARR](https://niarr.eu), an AI risk institute in Stockholm, opens with a brain made of thousands of tiny wireframe pyramids. You can drag it and hover over it, and as you scroll it turns into other shapes. The look came from a reference site where a brain of triangle particles feels solid and alive.
+
+## First attempt: build the brain in code
+
+I started procedurally: an ellipsoid for the cerebrum, two bulges for the temporal lobes, a cerebellum and a brain stem, with noise for the folds. To tie it to the brand, the outline seen from above was the NIARR logo, and the logo's squares sat on top as pyramids.
+
+It looked like a cloud. Over one day I kept adding detail:
+
+- more pyramids, from about 7,000 to 12,000
+- an invisible copy of the shape that hides the particles behind it, and a rim light, so the cloud reads as a solid
+- domain-warped noise so the folds wind instead of forming blobs
+- relief, so grooves sink and crests rise
+- the central sulcus and a deeper lateral fissure as landmarks
+
+Each step helped, and it still didn't look like a brain. Real folds follow anatomy, not noise, and people notice the difference instantly.
+
+## Second attempt: use a real brain
+
+I found an MRI-based model on NIH 3D, published by Nevit Dilmen under CC BY 4.0. It's a 21 MB file with 250,000 triangles, far too big to ship, so a Node build script turns it into what the page needs:
+
+1. **Weld** duplicate vertices so the mesh is one connected surface.
+2. **Measure fold depth** the way neuroimaging does: smooth a copy of the surface (150 coarse passes and 12 fine ones), then measure how far each point sits above or below it. Crests score high, grooves low.
+3. **Sample 18,000 points evenly by surface area**, so there are no holes or clumps.
+4. **Mark the points under the NIARR logo's squares**, so the mark still glows faintly when seen from above.
+5. **Build an occluder:** a small, smoothed copy of the brain, shrunk 0.07 units inward. It hides the far side while keeping about 98% of the points in front of it.
+
+Everything is packed into a binary file of 12 bytes per point, about 320 KB. The same model and settings always give the same file.
+
+In the browser, three.js draws each point as an instanced pyramid. Fold depth decides how: crests get larger, brighter pyramids, and grooves get smaller, dimmer and sparser ones. With the rim light and the occluder, it finally reads as a brain at a glance.
+
+## Making it behave
+
+A real brain brought new problems. The denser, brighter cloud sat as a bright blob behind the next section's text as it dispersed on scroll, and some pyramids flew close to the camera and crossed the copy. I kept the scattered particles behind the brain's front and dimmed them early in the scroll.
+
+The licence also needed care: CC BY 4.0 requires credit and a note that the model was changed, so it's credited in the footer. The raw model never goes in the repository, only the file the script derives from it.
+
+## The same particles tell the rest of the story
+
+Once the brain was data, the other shapes followed the same pattern:
+
+- a network of the six areas AI affects
+- six isolated silos
+- a dot map of the Nordic countries, built from Natural Earth data by a similar script
+
+A page places each shape with a plain `<div data-scene="nordic">`, and the particles stream from one to the next as you scroll. A button at the end of the homepage pulls every particle into itself when clicked, and on the next page they come back out of the same point.
+
+## What I took from it
+
+- When a shape has to be recognisable, start from real data. I spent a day tuning noise that a scan solved in an afternoon.
+- Do the heavy work offline. A build script can measure, sample and compress a 21 MB model into 320 KB, so the browser only draws.
+- Measure the feature you want to show. Fold depth made the brain read as a brain; more random detail never did.
+- Check the licence before you fall in love with a model.
