@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 export default function CookingLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={`cooking-grain ${fraunces.variable} ${manrope.variable} min-h-screen bg-[#FAF7F2] font-[family-name:var(--font-manrope)] text-[#1C1917]`}
+      className={`cooking-grain ${fraunces.variable} ${manrope.variable} min-h-screen overflow-x-clip bg-[#FAF7F2] font-[family-name:var(--font-manrope)] text-[#1C1917]`}
     >
       {children}
     </div>
