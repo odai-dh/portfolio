@@ -1,6 +1,6 @@
 # Odai Dahi
 
-> Full Stack Developer based in Stockholm. Currently freelancing and open to new full-time opportunities. Builds production web applications with Next.js, TypeScript, Node.js, and AI integrations.
+> Full Stack Developer based in Stockholm. Currently a Full Stack Developer at Art25 Defense AB and open to new full-time opportunities. Builds production web applications with Next.js, TypeScript, Node.js, and AI integrations.
 
 Odai is a Full Stack Developer who has shipped real products for venture-backed startups and teams. He works across the stack — strongest in React, Next.js, TypeScript, and Tailwind CSS, with backend experience in Node.js, Express, MongoDB, and SQL. He also builds iOS apps in SwiftUI and has shipped AI-powered features using Groq, Google Gemini, and Hugging Face APIs.
 
@@ -13,29 +13,30 @@ Odai is a Full Stack Developer who has shipped real products for venture-backed 
 
 ## Currently
 
-- Freelancing on web and mobile projects
+- Full Stack Developer at Art25 Defense AB (AI governance and GRC platform)
+- Building two products of his own: an AI beauty recommendation app and a React Native e-commerce app
 - Open to full-time roles (remote, hybrid, or Stockholm)
 - Most interested in product-focused teams shipping real features for real users
 
 ## Skills
 
-**Frontend:** React, Next.js, TypeScript, JavaScript, Tailwind CSS, HTML, CSS, SwiftUI, Framer Motion, GSAP, React Three Fiber, Zustand, shadcn/ui
-**Backend:** Node.js, Express, MongoDB, SQL, REST APIs, Firebase, Supabase
-**Tools & Services:** Firebase, Clerk, Chart.js, HubSpot API, Cloudflare R2, Zod, Vitest, Docker, react-hook-form, Figma, Git
+**Frontend:** React, Next.js, TypeScript, JavaScript, Tailwind CSS, HTML, CSS, SwiftUI, React Native, shadcn/ui, Framer Motion, GSAP, Three.js, React Three Fiber, WebGL & GLSL, Zustand
+**Backend:** Node.js, Express, MongoDB, PostgreSQL, REST APIs, Firebase, Supabase
+**Tools & Services:** Git, Figma, Zod, Vitest, Playwright, Docker, Clerk, Vercel, Claude Code, Chart.js, HubSpot API, Cloudflare R2, react-hook-form
 **AI Integration:** Groq, Google Gemini, Hugging Face APIs, prompt engineering, streaming responses, rate limiting
 **Other:** UX/UI design (Figma), 3D/VR web (Three.js, A-Frame, WebXR), iOS development
 
 ## Experience
 
-- **Art25 Defense AB** — Full Stack Developer (Oct 2026 – Present). Features for a pre-seed startup building a unified AI governance and GRC platform (Next.js, React, TypeScript, Supabase with Postgres, Auth, Realtime and row-level security, Vercel). Leads UI development for configurable forms; ships tested fixes in a review-based workflow. Designed the logo and is building the website for NIARR (https://niarr.eu), the NGO founded by Art25.
+- **Art25 Defense AB** — Full Stack Developer (Oct 2026 – Present). Features for a pre-seed startup building a unified AI governance and GRC platform (Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, Recharts, Supabase with Postgres, Auth, Realtime and row-level security, Vercel). Leads UI development for configurable forms; ships tested fixes in a review-based workflow; sets up agentic development (AI agents in the repo) and its security. Designed the logo and is building the website for NIARR (https://niarr.eu), the NGO founded by Art25.
+- **FEDECRAIL** — Volunteer Full Stack Developer & Digital Lead (Jun 2026 – Present). Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways, and running UX research for a user base that is predominantly 55+.
 - **AI Beauty Recommendation App** — Founding Engineer (2026 – Present). Building an AI-powered app that helps shoppers find beauty products on in-store retail kiosks; owns the product end to end.
 - **E-commerce App (React Native)** — Mobile Developer (2026 – Present). React Native e-commerce app for Android with a co-founder; Node.js API focused on security and user-data protection; image optimization for mobile networks.
 - **Aeoflo** — Frontend Developer Intern (Sep 2025 – Mar 2026). Sole frontend developer at a venture-backed AI analytics startup. Built the entire company website (20,000+ lines of code) and a multi-client analytics dashboard platform, with per-brand dashboards built for prospective clients including Oatly, Stiga, Billhop, Norstedts, CRA-YON, and X-peng. Refactored a 4,000-line monolithic Shopify app into modular React components. Integrated HubSpot API, Cloudflare R2, and Clerk authentication.
-- **FEDECRAIL** — Volunteer Full Stack Developer & Digital Lead (2026 – Present). Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways, and running UX research for a user base that is predominantly 55+.
 - **Sportly** — Frontend Developer Intern (Jun 2025 – Oct 2025). Built the frontend of a sports tech platform using React, TypeScript, and Tailwind CSS. Delivered responsive UI components and collaborated in an agile team.
 - **RAW Comedy Club** — Event Assistant (Sep 2024 – Dec 2025). Event operations, artist coordination, logistics.
 - **Max Burgers** — Assistant Restaurant Manager (Mar 2020 – Aug 2024). Managed daily operations, staff, financial reporting, and scheduling.
-- **Stockholm Stad** — IT Support Assistant (2018 – 2019). Technical support, hardware/software troubleshooting.
+- **Stockholm Stad** — IT Support Assistant (2018 – 2019). Helped citizens at Medborgarkontoret i Spånga-Tensta with digital tasks, and ran workshops on computers and digital services.
 
 ## Education
 

@@ -12,11 +12,6 @@ const portfolioDirectory = path.join(process.cwd(), 'src/content');
 // the content file fails the build instead of silently rendering broken pages.
 // ---------------------------------------------------------------------------
 
-const SkillSchema = z.object({
-  name: z.string().min(1),
-  category: z.enum(['frontend', 'backend', 'tools']),
-});
-
 const ExperienceSchema = z.object({
   company: z.string().min(1),
   title: z.string().min(1),
@@ -53,12 +48,10 @@ const FrontMatterSchema = z.object({
   subtitle: z.string().min(1),
   email: z.string().email(),
   socials: SocialsSchema,
-  skills: z.array(SkillSchema).min(1),
   experience: z.array(ExperienceSchema).min(1),
   projects: z.array(RawProjectSchema).min(1),
 });
 
-export type Skill = z.infer<typeof SkillSchema>;
 export type Experience = z.infer<typeof ExperienceSchema>;
 export type Socials = z.infer<typeof SocialsSchema>;
 export type Project = z.infer<typeof RawProjectSchema> & {

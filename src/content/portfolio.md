@@ -9,44 +9,25 @@ socials:
   instagram: "https://www.instagram.com/odai.dh1"
   tiktok: "https://www.tiktok.com/@limonboy96"
 
-skills:
-  - { name: "HTML & CSS", category: "frontend" }
-  - { name: "JavaScript", category: "frontend" }
-  - { name: "TypeScript", category: "frontend" }
-  - { name: "React", category: "frontend" }
-  - { name: "Next.js", category: "frontend" }
-  - { name: "Tailwind CSS", category: "frontend" }
-  - { name: "SwiftUI", category: "frontend" }
-  - { name: "Framer Motion", category: "frontend" }
-  - { name: "GSAP", category: "frontend" }
-  - { name: "React Three Fiber", category: "frontend" }
-  - { name: "Zustand", category: "frontend" }
-  - { name: "Node.js", category: "backend" }
-  - { name: "Express", category: "backend" }
-  - { name: "MongoDB", category: "backend" }
-  - { name: "SQL", category: "backend" }
-  - { name: "REST APIs", category: "backend" }
-  - { name: "Firebase", category: "backend" }
-  - { name: "Supabase", category: "backend" }
-  - { name: "Git", category: "tools" }
-  - { name: "Figma", category: "tools" }
-  - { name: "Zod", category: "tools" }
-  - { name: "Vitest", category: "tools" }
-  - { name: "Docker", category: "tools" }
-  - { name: "Clerk", category: "tools" }
-  - { name: "Three.js", category: "tools" }
-  - { name: "AI APIs (Groq, Gemini)", category: "tools" }
-
 experience:
   - company: "Art25 Defense AB"
     title: "Full Stack Developer"
     date: "Oct 2026 – Present"
     link: "https://art25.ai/"
     duties:
-      - "Developing features for a pre-seed startup building a unified AI governance and GRC platform, with Next.js, React, TypeScript and Supabase (Postgres, Auth, Realtime, row-level security), deployed on Vercel."
+      - "Developing features for a pre-seed startup building a unified AI governance and GRC platform, with Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, Recharts and Supabase (Postgres, Auth, Realtime, row-level security), deployed on Vercel."
       - "Leading UI development for configurable forms and contributing UI work across several core platform modules."
       - "Fixing and shipping tested issues in a review-based workflow with the core team (feature → develop → test → production)."
+      - "Setting up agentic development on the codebase: AI agents that organize how AI works in the repo, and the security around that setup."
       - "Designed the logo and building the website for [NIARR](https://niarr.eu) (Nordic Institute for AI Risk and Resilience), the NGO founded by Art25."
+
+  - company: "FEDECRAIL"
+    title: "Volunteer Full Stack Developer & Digital Lead"
+    date: "Jun 2026 – Present"
+    link: "https://www.fedecrail.org/"
+    duties:
+      - "Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways."
+      - "Running UX research for a user base that is predominantly 55+, and designing around their needs."
 
   - company: "AI Beauty Recommendation App"
     title: "Founding Engineer"
@@ -72,14 +53,6 @@ experience:
       - "Designed and built a multi-client analytics dashboard platform with per-brand dashboards for prospective clients such as Oatly, Stiga, Billhop, Norstedts, CRA-YON and X-peng, with KPI cards, Chart.js charts and a JSON data model where adding a client needs no component changes."
       - "Refactored a ~4,000-line Shopify app into modular React components with error boundaries, custom hooks and documentation."
       - "Integrated the HubSpot API and Cloudflare R2, and added Clerk authentication for client project submissions."
-
-  - company: "FEDECRAIL"
-    title: "Volunteer Full Stack Developer & Digital Lead"
-    date: "Jun 2026 – Present"
-    link: "https://www.fedecrail.org/"
-    duties:
-      - "Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways."
-      - "Running UX research for a user base that is predominantly 55+, and designing around their needs."
 
   - company: "Sportly"
     title: "Frontend Developer Intern"
@@ -110,9 +83,8 @@ experience:
     title: "IT Support Assistant"
     date: "2018 – 2019"
     duties:
-      - "Gave technical support to staff and students."
-      - "Troubleshot hardware and software issues."
-      - "Supported digital learning environments."
+      - "Helped citizens at Medborgarkontoret i Spånga-Tensta with digital tasks and tech questions."
+      - "Ran workshops teaching people how to use computers and digital services."
 projects:
 
   - title: "NIARR"
@@ -508,25 +480,12 @@ projects:
       - Playful design with animations and themed styling  
       - Built collaboratively with **HTML, CSS, and JavaScript**  
       - Deployed via **GitHub Pages**
-  - title: "Naiman"
-    date: "2025-08-24"
-    description: "A startup project in active development. Details are under wraps for now."
-    tags: ["Next.js", "TypeScript", "Tailwind", "Startup Project"]
-    link: "#"
-    github: "#"
-    image: "https://placehold.co/1200x630.png"
-    content: |
-      ### Overview
-      Naiman is a startup project I'm currently building. The details aren't public yet.
-
-      ### Status
-      In active development. Not yet public.
 ---
 
-Hey, I’m Odai — a Full Stack Developer with hands-on experience building real products for startups and teams.
+Hey, I’m Odai a Full Stack Developer with hands-on experience building real products for startups and teams.
 
-I’ve worked across the stack and across very different users: a multi-client analytics dashboard platform at **Aeoflo**, a sports-tech platform at **Sportly**, a website redesign for European heritage railways at **FEDECRAIL**, and projects like **Vidare**, a 3D concept app built around Swedish travel law, plus **iOS apps** and **AI-powered multiplayer games**. The range is the point: designing for FEDECRAIL's mostly 55+ audience is a different problem from building analytics dashboards, and I enjoy both.
+I’ve worked across the stack and across very different users: an AI governance platform at **Art25**, where I also built the website for the **NIARR** institute, a multi-client analytics dashboard platform at **Aeoflo**, a sports-tech platform at **Sportly**, a website redesign for European heritage railways at **FEDECRAIL**, and projects like **Vidare**, a 3D concept app built around Swedish travel law, plus **iOS apps** and **AI-powered multiplayer games**. The range is the point: designing for FEDECRAIL's mostly 55+ audience is a different problem from building a GRC platform or analytics dashboards, and I enjoy all of it.
 
-Right now I’m taking on **freelance projects** while actively looking for my next full-time role. I love solving problems that mix creativity and logic, and when I’m not coding, you’ll probably find me [cooking](/cooking) 🍋.
+Right now I’m building at **Art25** and on two products of my own, while looking for my next full-time role. I love solving problems that mix creativity and logic, and when I’m not coding, you’ll probably find me [cooking](/cooking) 🍋.
 
 If you’re working on something interesting, I’d love to hear about it.

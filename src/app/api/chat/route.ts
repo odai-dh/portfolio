@@ -14,21 +14,22 @@ Rules for accuracy:
 --- ABOUT ODAI ---
 Name: Odai Dahi
 Role: Full Stack Developer
-Status: Currently freelancing and open to new full-time opportunities
+Status: Full Stack Developer at Art25 Defense AB, building two products of his own, and open to new full-time opportunities
 Email: odai@odaidh.dev
 GitHub: https://github.com/odai-dh
 LinkedIn: https://www.linkedin.com/in/odai-dahi/
 
 --- SKILLS ---
-Frontend: HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, SwiftUI, Framer Motion, GSAP, React Three Fiber, Zustand
-Backend: Node.js, Express, MongoDB, SQL, REST APIs, Firebase, Supabase
-Tools: Docker, Vitest, Chart.js, Clerk, HubSpot API, Cloudflare R2, shadcn/ui, Zod, react-hook-form, Figma, Git
+Frontend: HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, SwiftUI, React Native, shadcn/ui, Framer Motion, GSAP, Three.js, React Three Fiber, WebGL and GLSL, Zustand
+Backend: Node.js, Express, MongoDB, PostgreSQL, REST APIs, Firebase, Supabase
+Tools: Git, Figma, Zod, Vitest, Playwright, Docker, Clerk, Vercel, Claude Code, AI APIs (Groq, Gemini), Chart.js, HubSpot API, Cloudflare R2, react-hook-form
 Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, WebXR)
 
 --- EXPERIENCE ---
 1. Art25 Defense AB (Full Stack Developer, Oct 2026 – present)
-   - Develops features for a pre-seed startup building a unified AI governance and GRC platform (Next.js, React, TypeScript, Supabase)
+   - Develops features for a pre-seed startup building a unified AI governance and GRC platform (Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, Recharts, Supabase, Vercel)
    - Leads UI development for configurable forms and contributes UI work across core platform modules
+   - Sets up agentic development on the codebase: AI agents that organize how AI works in the repo, and the security around that setup
    - Designed the logo and is building the website for NIARR (niarr.eu, Nordic Institute for AI Risk and Resilience), the NGO founded by Art25
 
 2. AI Beauty Recommendation App (Founding Engineer, 2026 – present)
@@ -45,7 +46,7 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
    - Integrated HubSpot API, Cloudflare R2, Clerk auth
    - Recommendation from Antoine Abribat (Co-Founder & COO): "He grew from a talented intern into a dependable developer capable of shipping production-ready features independently."
 
-5. FEDECRAIL (Volunteer Full Stack Developer & Digital Lead, 2026 – present)
+5. FEDECRAIL (Volunteer Full Stack Developer & Digital Lead, Jun 2026 – present)
    - Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways
    - Running UX research for a user base that is predominantly 55+, and designing around their needs
 
@@ -61,7 +62,7 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
    - Financial reporting, inventory control, staff scheduling
 
 9. Stockholm Stad (IT Support Assistant, 2018–2019)
-   - Technical support for staff and students, hardware/software troubleshooting
+   - Helped citizens at Medborgarkontoret i Spånga-Tensta with digital tasks and tech questions, and ran workshops teaching people to use computers and digital services
 
 --- PROJECTS ---
 1. NIARR — Website for the Nordic Institute for AI Risk and Resilience, an independent non-profit in Stockholm: a scroll-driven story told by thousands of WebGL particles (brain, risk network, Nordic map), built for privacy and accessibility (Next.js, three.js, GLSL, Tailwind CSS, Zod, Resend)
@@ -76,7 +77,6 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
 10. SpaceToon 3D — VR solar system experience with Three.js, A-Frame, WebXR
 11. myHealth ID — UX/UI Figma prototype for a digital healthcare app
 12. HyperKart — Mario Kart–inspired tournament website (team hackathon)
-13. Naiman — Upcoming startup project, details not yet public
 
 --- EDUCATION ---
 Hyper Island — Code & Collaborate program (where he studied before graduating)
