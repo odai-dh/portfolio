@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { Footer } from '@/components/Footer';
 import { ProjectContentCards } from '@/components/ProjectContentCards';
 import { WebsitePreview } from '@/components/WebsitePreview';
+import { canEmbed } from '@/lib/embeddable';
 
 type ProjectPageParams = {
   params: Promise<{
@@ -26,6 +27,10 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
   if (!project) {
     notFound();
   }
+
+  const isFigmaPrototype = Boolean(project.figma && project.link?.includes('figma.com/proto'));
+  const hasLiveSite = Boolean(project.link && project.link !== '#');
+  const embeddable = hasLiveSite && !isFigmaPrototype ? await canEmbed(project.link) : false;
 
   const projectUrl = `https://www.odaidh.dev/projects/${slug}`;
   const jsonLd = {
@@ -110,7 +115,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
             </div>
           </header>
 
-          {project.figma && project.link && project.link.includes('figma.com/proto') ? (
+          {isFigmaPrototype ? (
             <div className="mb-8">
               <div className="rounded-lg border bg-muted/50 p-6 text-center">
                 <p className="mb-4 text-sm text-muted-foreground">
@@ -124,12 +129,32 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                 </Button>
               </div>
             </div>
-          ) : project.link ? (
+          ) : embeddable ? (
             <WebsitePreview
               url={project.link}
               title={project.title}
               imageUrl={project.image || "https://placehold.co/1200x630.png"}
             />
+          ) : hasLiveSite ? (
+            // The site can't be shown in a frame here, so its screenshot links to it instead
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative mb-8 block overflow-hidden rounded-lg border"
+            >
+              <Image
+                src={project.image}
+                alt={`${project.title} website`}
+                width={1200}
+                height={630}
+                className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+              <span className="absolute bottom-3 right-3 inline-flex items-center gap-1 rounded-md border border-border bg-background/85 px-3 py-1.5 font-mono text-xs text-foreground transition-colors group-hover:text-primary">
+                Open the live site
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </span>
+            </a>
           ) : project.image ? (
             <div className="mb-8 overflow-hidden rounded-lg border">
               <Image
