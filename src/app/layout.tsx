@@ -43,7 +43,6 @@ export const metadata: Metadata = {
     'web development',
     'portfolio',
     'Stockholm developer',
-    'freelance developer',
     'Odai Dahi',
   ],
   authors: [{ name: 'Odai Dahi' }],
@@ -155,7 +154,7 @@ export default function RootLayout({
               "seeks": {
                 "@type": "Demand",
                 "name": "Open to new opportunities",
-                "description": "Open to full-time Full Stack Developer roles (remote, hybrid, or Stockholm-based) and freelance web/mobile projects."
+                "description": "Open to full-time Full Stack Developer roles (remote, hybrid, or Stockholm-based)."
               },
               "alumniOf": {
                 "@type": "EducationalOrganization",

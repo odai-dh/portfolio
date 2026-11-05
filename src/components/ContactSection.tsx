@@ -103,7 +103,7 @@ export function ContactSection({ socials }: { socials: Socials }) {
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
               <span>
                 Based in <span className="text-foreground">Stockholm, Sweden</span>. Open to full-time roles
-                (remote, hybrid or on-site) and freelance projects.
+                (remote, hybrid or on-site).
               </span>
             </div>
           </div>
