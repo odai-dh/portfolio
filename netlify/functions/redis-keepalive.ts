@@ -1,7 +1,7 @@
 // Upstash deletes free databases after 14 days without commands, and the rate limiter
 // only talks to Redis when someone uses chat or the contact form. This weekly ping
 // keeps the database active so the limits (lib/rate-limit.ts) don't silently switch off.
-export default async () => {
+const keepalive = async () => {
   const url = process.env.UPSTASH_REDIS_REST_URL;
   const token = process.env.UPSTASH_REDIS_REST_TOKEN;
   if (!url || !token) {
@@ -18,5 +18,7 @@ export default async () => {
   }
   console.log('redis-keepalive: ok');
 };
+
+export default keepalive;
 
 export const config = { schedule: '@weekly' };
