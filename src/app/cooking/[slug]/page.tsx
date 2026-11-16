@@ -51,7 +51,7 @@ function Neighbour({ entry, number, direction }: { entry: CookingEntry; number: 
         <Image src={entry.heroPhoto} alt="" fill sizes="64px" className="object-cover" />
       </span>
       <span>
-        <span className="block font-mono text-[11px] uppercase text-[#78716C]">
+        <span className="block font-mono text-[11px] uppercase text-[#6F6862]">
           {isNext ? 'Next order' : 'Previous order'} · No.{number}
         </span>
         <span className="block font-[family-name:var(--font-fraunces)] text-[20px] text-[#1C1917] group-hover:text-[#B4532A]">
@@ -94,7 +94,7 @@ export default async function CookingEntryPage({
               height={heroDimensions.height}
               priority
             />
-            <p className="absolute bottom-3 left-0 right-0 hidden text-center [@media(hover:hover)]:block font-[family-name:var(--font-fraunces)] text-[15px] italic text-[#78716C]">
+            <p className="absolute bottom-3 left-0 right-0 hidden text-center [@media(hover:hover)]:block font-[family-name:var(--font-fraunces)] text-[15px] italic text-[#6F6862]">
               Hover to look closer
             </p>
           </div>
@@ -105,9 +105,9 @@ export default async function CookingEntryPage({
           <div className="cooking-torn-bottom bg-[#FFFDF8] px-8 pb-12 pt-8 font-mono text-[12px] uppercase text-[#1C1917] ring-1 ring-inset ring-[#1C1917]/10 md:px-10">
             <div className="flex justify-between">
               <span className="font-bold">Order No.{number}</span>
-              <span className="text-[#78716C]">Table 1</span>
+              <span className="text-[#6F6862]">Table 1</span>
             </div>
-            <div className="mt-1 text-[#78716C]">
+            <div className="mt-1 text-[#6F6862]">
               {formatCookingDate(entry.date, { year: 'numeric' })} · Stockholm
             </div>
             <Rule />

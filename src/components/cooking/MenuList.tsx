@@ -55,7 +55,7 @@ export function MenuList({ groups }: { groups: MenuGroup[] }) {
   return (
     <section id="menu" className="relative scroll-mt-24 pb-14 pt-24">
       <header className="text-center">
-        <p className="font-[family-name:var(--font-manrope)] text-[11px] uppercase tracking-[0.3em] text-[#78716C]">
+        <p className="font-[family-name:var(--font-manrope)] text-[11px] uppercase tracking-[0.3em] text-[#6F6862]">
           Served whenever
         </p>
         <h2 className="cooking-display mt-3 font-[family-name:var(--font-fraunces)] text-[56px] italic leading-none text-[#1C1917] md:text-[80px]">
@@ -89,18 +89,18 @@ export function MenuList({ groups }: { groups: MenuGroup[] }) {
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="flex items-baseline gap-3 text-[#1C1917]">
-                        <span className="font-[family-name:var(--font-manrope)] text-[11px] tabular-nums tracking-[0.1em] text-[#78716C]">
+                        <span className="font-[family-name:var(--font-manrope)] text-[11px] tabular-nums tracking-[0.1em] text-[#6F6862]">
                           No.{String(item.number).padStart(2, '0')}
                         </span>
                         <span className="font-[family-name:var(--font-fraunces)] text-[22px] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#B4532A] group-focus-visible:text-[#B4532A] md:text-[28px]">
                           {item.title}
                         </span>
                         <span aria-hidden className="cooking-leader hidden sm:block" />
-                        <span className="hidden shrink-0 font-[family-name:var(--font-manrope)] text-[12px] uppercase tracking-[0.15em] text-[#78716C] sm:block">
+                        <span className="hidden shrink-0 font-[family-name:var(--font-manrope)] text-[12px] uppercase tracking-[0.15em] text-[#6F6862] sm:block">
                           {item.dateLabel}
                         </span>
                       </span>
-                      <span className="mt-1 block truncate font-[family-name:var(--font-fraunces)] text-[15px] italic text-[#78716C] md:pl-[3.4rem]">
+                      <span className="mt-1 block truncate font-[family-name:var(--font-fraunces)] text-[15px] italic text-[#6F6862] md:pl-[3.4rem]">
                         {item.caption}
                       </span>
                     </span>

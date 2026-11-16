@@ -148,7 +148,7 @@ export function SnakeGame({ onClose }: { onClose?: () => void }) {
         ctx.fillStyle = '#3B82F6';
         ctx.fillText(title, W / 2, H / 2 + 10);
         ctx.font = '11px monospace';
-        ctx.fillStyle = '#475569';
+        ctx.fillStyle = '#7c8aa0';
         ctx.fillText(`${feRef.current} frontend · ${beRef.current} backend`, W / 2, H / 2 + 36);
         ctx.font = 'italic 11px monospace';
         ctx.fillStyle = '#3B82F6';
@@ -255,7 +255,7 @@ export function SnakeGame({ onClose }: { onClose?: () => void }) {
       ctx.fillStyle = '#e2e8f0';
       ctx.fillText('SKILL·BOY', W / 2, H / 2 - 70);
       ctx.font = '12px monospace';
-      ctx.fillStyle = '#475569';
+      ctx.fillStyle = '#7c8aa0';
       ctx.fillText('collect skills · earn your title', W / 2, H / 2 - 36);
       if (blinkOn) {
         ctx.font = 'bold 16px monospace';
@@ -320,7 +320,7 @@ export function SnakeGame({ onClose }: { onClose?: () => void }) {
       </div>
 
       {/* Controls hint */}
-      <p className="font-mono text-[10px] text-[#475569] tracking-wide text-center">
+      <p className="font-mono text-[10px] text-[#7c8aa0] tracking-wide text-center">
         Arrow keys · WASD · or D-pad
       </p>
 
@@ -361,7 +361,7 @@ export function SnakeGame({ onClose }: { onClose?: () => void }) {
         <div className="flex -rotate-[20deg] items-start gap-3">
           <span aria-hidden className="mt-6 flex flex-col items-center gap-1">
             <span className="h-11 w-11 rounded-full bg-[#2d2d4e]" />
-            <span className="font-mono text-[9px] text-[#475569]">B</span>
+            <span className="font-mono text-[9px] text-[#7c8aa0]">B</span>
           </span>
           <span className="flex flex-col items-center gap-1">
             <button
@@ -378,7 +378,7 @@ export function SnakeGame({ onClose }: { onClose?: () => void }) {
       <div className="flex items-center gap-5">
         <span aria-hidden className="flex flex-col items-center gap-1">
           <span className="h-2.5 w-10 -rotate-[20deg] rounded-full bg-[#2d2d4e]" />
-          <span className="font-mono text-[9px] tracking-widest text-[#475569]">SELECT</span>
+          <span className="font-mono text-[9px] tracking-widest text-[#7c8aa0]">SELECT</span>
         </span>
         <button
           onClick={() => { if (gameState !== 'playing') startGame(); }}

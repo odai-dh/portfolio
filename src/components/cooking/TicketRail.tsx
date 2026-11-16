@@ -24,7 +24,7 @@ export function TicketRail({ label, tickets }: { label: string; tickets: Ticket[
       {/* The steel rail */}
       <div
         aria-hidden
-        className="h-3 rounded-full border border-[#78716C]/60"
+        className="h-3 rounded-full border border-[#6F6862]/60"
         style={{ background: 'linear-gradient(180deg, #F5F5F4 0%, #A8A29E 55%, #D6D3D1 100%)' }}
       />
 
@@ -36,7 +36,7 @@ export function TicketRail({ label, tickets }: { label: string; tickets: Ticket[
               <span className="cooking-torn-bottom -mt-2 block bg-[#FFFDF8] px-4 pb-7 pt-5 font-mono text-[11px] uppercase text-[#1C1917] ring-1 ring-inset ring-[#1C1917]/10">
                 <span className="flex justify-between">
                   <span className="font-bold">No.{String(ticket.number).padStart(2, '0')}</span>
-                  <span className="text-[#78716C]">Table 1</span>
+                  <span className="text-[#6F6862]">Table 1</span>
                 </span>
                 <span aria-hidden className="my-3 block border-t border-dashed border-[#1C1917]/40" />
                 <span className="relative block aspect-square overflow-hidden">
@@ -51,7 +51,7 @@ export function TicketRail({ label, tickets }: { label: string; tickets: Ticket[
                 <span className="mt-4 block font-[family-name:var(--font-fraunces)] text-[20px] normal-case leading-tight group-hover:text-[#B4532A]">
                   {ticket.title}
                 </span>
-                <span className="mt-1 line-clamp-2 block font-[family-name:var(--font-fraunces)] text-[13px] normal-case italic text-[#78716C]">
+                <span className="mt-1 line-clamp-2 block font-[family-name:var(--font-fraunces)] text-[13px] normal-case italic text-[#6F6862]">
                   {ticket.caption}
                 </span>
                 <span aria-hidden className="my-3 block border-t border-dashed border-[#1C1917]/40" />

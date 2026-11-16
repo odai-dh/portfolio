@@ -19,7 +19,7 @@ export default function CookingArchivePage() {
 
       <main className="mx-auto max-w-6xl px-6 py-16 md:px-10">
         <header className="mb-20 max-w-xl">
-          <p className="flex items-center font-[family-name:var(--font-manrope)] text-[11px] uppercase tracking-[0.3em] text-[#78716C]">
+          <p className="flex items-center font-[family-name:var(--font-manrope)] text-[11px] uppercase tracking-[0.3em] text-[#6F6862]">
             The archive
             <CookingGlyph name="knife" className="mx-3 h-5 w-5 text-[#B4532A]" />
             {entries.length} plates
@@ -27,7 +27,7 @@ export default function CookingArchivePage() {
           <h1 className="cooking-display mt-4 font-[family-name:var(--font-fraunces)] text-[64px] italic leading-none text-[#1C1917] md:text-[96px]">
             The Pass
           </h1>
-          <p className="mt-6 font-[family-name:var(--font-fraunces)] text-[20px] leading-[1.6] text-[#78716C]">
+          <p className="mt-6 font-[family-name:var(--font-fraunces)] text-[20px] leading-[1.6] text-[#6F6862]">
             Every order that ever left this kitchen, clipped to the rail. Newest first, one rail a month.
           </p>
         </header>

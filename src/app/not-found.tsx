@@ -20,7 +20,9 @@ export default function NotFound() {
 
         {/* screen — fixed dark like the game's LCD, theme-independent */}
         <div className="w-full rounded-lg border-2 border-border bg-[#0d0d1a] p-6 text-center shadow-inner">
-          <p className="font-mono text-5xl font-bold tracking-widest text-primary">404</p>
+          <h1 className="font-mono text-5xl font-bold tracking-widest text-[#3B82F6]">
+            404<span className="sr-only">: page not found</span>
+          </h1>
           <p className="mt-3 font-mono text-lg font-bold uppercase tracking-[0.3em] text-red-400">
             Game Over
           </p>
@@ -29,7 +31,7 @@ export default function NotFound() {
             <br />
             Level not found.
           </p>
-          <p className="mt-5 animate-pulse font-mono text-xs tracking-widest text-slate-500">
+          <p className="mt-5 animate-pulse font-mono text-xs tracking-widest text-slate-400">
             ▸ PRESS CONTINUE
           </p>
         </div>

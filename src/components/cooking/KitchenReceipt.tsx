@@ -24,7 +24,7 @@ export function KitchenReceipt({ entries }: { entries: CookingEntry[] }) {
   return (
     <div className="cooking-receipt mx-auto w-full max-w-[340px] rotate-[2deg] bg-[#FFFDF8] px-7 py-10 font-mono text-[12px] uppercase leading-relaxed text-[#1C1917]">
       <p className="text-center text-[15px] font-bold tracking-[0.2em]">Odai&apos;s Kitchen</p>
-      <p className="text-center text-[#78716C]">Stockholm · mostly weekends</p>
+      <p className="text-center text-[#6F6862]">Stockholm · mostly weekends</p>
       <Rule />
       <Row left="Table 1" right="Guest: you" />
       <Rule />

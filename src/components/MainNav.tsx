@@ -42,7 +42,7 @@ export function MainNav({ name, socials }: { name: string; socials: Socials }) {
   return (
     <div className="flex h-full flex-col p-4">
       <div className="flex items-center justify-between p-2">
-        <a href="#hero" className="font-headline text-2xl font-bold text-primary">
+        <a href="#hero" aria-label={`${name}, back to top`} className="font-headline text-2xl font-bold text-primary">
           {name.charAt(0)}
         </a>
         <div className="flex items-center gap-2">
@@ -86,13 +86,13 @@ export function MainNav({ name, socials }: { name: string; socials: Socials }) {
       </nav>
 
       <div className="mt-auto flex justify-center gap-4">
-        <a href={socials.github} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
+        <a href={socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
           <Github className="h-5 w-5" />
         </a>
-        <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
+        <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
           <Linkedin className="h-5 w-5" />
         </a>
-        <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
+        <a href={socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">
           <Instagram className="h-5 w-5" />
         </a>
         <Link prefetch={false} href="/cooking" aria-label="Odai cooks" className="text-muted-foreground transition-all hover:text-primary hover:scale-110">

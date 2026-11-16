@@ -40,7 +40,7 @@ export function PlateHero() {
   return (
     <section className="grid items-center gap-14 py-12 md:grid-cols-[1.15fr_1fr] md:py-20">
       <div>
-        <p className="flex items-center font-[family-name:var(--font-manrope)] text-[11px] uppercase tracking-[0.3em] text-[#78716C]">
+        <p className="flex items-center font-[family-name:var(--font-manrope)] text-[11px] uppercase tracking-[0.3em] text-[#6F6862]">
           A cooking journal
           <CookingGlyph name="pan" className="mx-3 h-5 w-5 text-[#B4532A]" />
           Stockholm
@@ -50,7 +50,7 @@ export function PlateHero() {
           <br />
           and bad <em>decisions.</em>
         </h1>
-        <p className="mt-8 max-w-sm font-[family-name:var(--font-fraunces)] text-[20px] italic text-[#78716C]">
+        <p className="mt-8 max-w-sm font-[family-name:var(--font-fraunces)] text-[20px] italic text-[#6F6862]">
           Stockholm, mostly weekends.
         </p>
         <a
@@ -130,7 +130,7 @@ export function PlateHero() {
           </div>
           <SaltableBowl className="absolute inset-[12.5%] z-20 rounded-full" />
         </div>
-        <p className="mt-6 text-center font-[family-name:var(--font-fraunces)] text-[15px] italic text-[#78716C]">
+        <p className="mt-6 text-center font-[family-name:var(--font-fraunces)] text-[15px] italic text-[#6F6862]">
           Needs salt? Tap the bowl.
         </p>
       </div>
