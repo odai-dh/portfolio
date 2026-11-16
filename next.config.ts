@@ -32,6 +32,10 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // Bundle next-mdx-remote into the server code. Next keeps it external by default and loads it
+  // through a hashed alias in .next/node_modules, which the Netlify runtime doesn't ship: every
+  // /notes/<slug> and /cooking/<slug> page then answered 500 in production while working locally.
+  transpilePackages: ['next-mdx-remote'],
   images: {
     remotePatterns: [
       {
