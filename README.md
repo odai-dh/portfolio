@@ -14,6 +14,8 @@ Live at **[www.odaidh.dev](https://www.odaidh.dev)**
 - 📫 Contact form with validation (React Hook Form + Zod) and email delivery via Resend
 - 📄 Multilingual CV download (English & Swedish)
 - 🔍 Deep SEO: Person JSON-LD, dynamic sitemap & robots, Open Graph/Twitter cards, `llms.txt` for AI agents, IndexNow submission
+- 🧩 One source of facts: the chat assistant's knowledge, `/llms.txt` and the JSON-LD are all generated from `portfolio.md`
+- ✅ Tested: unit tests keep the content, CV and email signature consistent; Playwright checks every page type, accessibility (WCAG 2.1 AA) and the no-JavaScript view; CI runs it all on every push
 - ⚡ Statically generated project pages, scroll-progress bar, section-aware navigation
 
 ## 🛠️ Tech Stack
@@ -78,6 +80,10 @@ npm run dev
 | `npm run start` | Serve the production build |
 | `npm run lint` | Lint |
 | `npm run typecheck` | TypeScript check (`tsc --noEmit`) — also runs in the Netlify build |
+| `npm run test` | Unit tests (Vitest): content, generated facts, CV and signature consistency |
+| `npm run test:e2e` | Browser tests (Playwright + axe) against the production build |
+| `npm run check` | Types, lint, unit tests, build and browser tests in one go (what CI runs) |
+| `npm run cv` | Rebuild the CV PDFs from `docs/cv/*.json` |
 | `npm run indexnow` | Submit the live sitemap's URLs to IndexNow (run after deploy) |
 
 ## 🔧 Customization
@@ -90,7 +96,7 @@ Theme colors are HSL CSS variables in `src/app/globals.css`; Tailwind config in 
 
 ```
 portfolio/
-├── public/                    # static assets, SEO files (llms.txt, verification), CVs
+├── public/                    # static assets, SEO verification files, CVs
 ├── scripts/indexnow.mjs       # IndexNow submission
 ├── src/
 │   ├── app/

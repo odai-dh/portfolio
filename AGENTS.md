@@ -52,9 +52,17 @@ IndexNow).
 npm run dev         # http://localhost:3000
 npm run typecheck   # must pass (Netlify runs it before every build)
 npm run lint        # must pass with 0 errors (warnings are known, see eslint.config.mjs)
+npm run test        # unit tests (Vitest): content loads, generated facts, CV and signature agree
 npm run build       # must pass before you commit
+npm run test:e2e    # browser tests (Playwright) against the production build; run build first
+npm run check       # all of the above in order: the one command to run before committing
+npm run cv          # rebuilds the CV PDFs in public/ from docs/cv/*.json (needs Chrome)
 npm run indexnow    # after a deploy only: tells search engines about the live sitemap
 ```
+
+GitHub Actions (`.github/workflows/ci.yml`) runs `npm run check` on every push and pull request.
+The browser tests can also check a deployed site:
+`E2E_BASE_URL=https://www.odaidh.dev npm run test:e2e`.
 
 `next build` alone does **not** fail on type errors (`ignoreBuildErrors` is on), which is why
 typecheck is its own step. Run both.
@@ -62,19 +70,25 @@ typecheck is its own step. Run both.
 ## Project structure
 
 ```
-src/content/portfolio.md   ★ the site's copy: front-matter (name, title, subtitle, email, socials,
-                           experience[], projects[]) + the About text as the Markdown body
+src/content/portfolio.md   ★ the site's copy and every fact about Odai: front-matter (name,
+                           title, status, skills, education, experience[], projects[]…) + the
+                           About text as the Markdown body
 content/notes/*.mdx        /notes write-ups (front-matter: title, slug, date, summary, tags, draft)
 content/cooking/*.mdx      /cooking journal entries (photos in public/images/cooking/)
 src/app/                   routes: / , /projects/[slug] , /notes , /notes/[slug] ,
                            /cooking , /cooking/archive , /cooking/[slug] , /api/chat ,
-                           sitemap.ts , robots.ts , not-found.tsx (the Game Boy 404)
+                           llms.txt (generated) , sitemap.ts , robots.ts ,
+                           not-found.tsx (the Game Boy 404)
 src/components/            feature components; ui/ (shadcn), cooking/, three/World3D/ (3D mode)
-src/lib/                   markdown.ts (portfolio.md loader + Zod schema), notes.ts, cooking.ts,
+src/lib/                   markdown.ts (portfolio.md loader + Zod schema), facts.ts (builds the
+                           chat facts, llms.txt and JSON-LD from it), notes.ts, cooking.ts,
                            skillboy.ts (shared Snake data), rate-limit.ts, utils.ts
-public/                    llms.txt, og-image.png, CVs, images/projects/ (1200×630 cards)
+public/                    og-image.png, CV PDFs, email/ (signature images),
+                           images/projects/ (1200×630 cards)
+docs/                      cv/cv.<lang>.json (the CVs' text), email-signature.html
+tests/                     unit/ (Vitest) and e2e/ (Playwright)
 netlify/functions/         scheduled functions
-scripts/indexnow.mjs       IndexNow submission
+scripts/                   build-cv.mjs (CV PDFs), indexnow.mjs (IndexNow submission)
 ```
 
 ## Content rules (most important)
@@ -82,15 +96,23 @@ scripts/indexnow.mjs       IndexNow submission
 1. **Never invent facts.** No made-up projects, numbers, clients, dates, tools, quotes, degrees or
    credentials. If something is missing, ask Odai or leave it out.
 2. **Copy lives in content files, not components.** Edit `src/content/portfolio.md` for the main
-   site. Pages and components only lay content out. Known exceptions: the stats and quote in
-   `ProofStrip.tsx` and the section headings.
-3. **The same facts live in five places.** When a fact about Odai changes, check all of them in
-   the same change:
-   - `src/content/portfolio.md` (the source of truth)
-   - the `SYSTEM_PROMPT` in `src/app/api/chat/route.ts` (third person, plain text)
-   - `public/llms.txt`
-   - the Person JSON-LD in `src/app/layout.tsx` (role changes and major skills only)
-   - `src/components/ProofStrip.tsx` (if a stat or the quote changes)
+   site. Pages and components only lay content out. The only exception is the section headings.
+3. **`portfolio.md` is the single source of facts.** These are generated from it by
+   `src/lib/facts.ts` and must never be edited by hand or given facts of their own:
+   - the chat assistant's fact sheet (`src/app/api/chat/route.ts` holds only its rules)
+   - `/llms.txt` (`src/app/llms.txt/route.ts`)
+   - the Person JSON-LD in `src/app/layout.tsx`
+   - the numbers and quote under the hero, and the availability line in Contact
+
+   Four copies are still kept by hand. When a fact changes, update them in the same change:
+   - the CVs: edit `docs/cv/cv.en.json` and `cv.sv.json`, run `npm run cv`, read both PDFs
+   - the email signature: `docs/email-signature.html` (its images in `public/email/` are
+     loaded by emails already sent, so never rename or delete them)
+   - the link-preview image `public/og-image.png`
+   - the page descriptions in the `metadata` export of `src/app/layout.tsx`
+
+   `npm run test` fails if the CVs or the signature contradict `portfolio.md` (company, dates,
+   title, email, links).
 4. **Order matters.** `experience[]` and `projects[]` render in file order, newest first. The
    first two projects become wide featured cards on the homepage.
 5. **Project slugs** are `title.toLowerCase().replace(/\s+/g, '-')`: only whitespace is replaced.
@@ -165,13 +187,17 @@ scripts/indexnow.mjs       IndexNow submission
 
 ## Recipes
 
-**Add a project:** add it at the top of `projects[]` in `portfolio.md`, capture a 1200×630 card
-image into `public/images/projects/`, sync the other four places (see Content rule 3), run the
-checklist, and check `/projects/<slug>` and the homepage card.
+**Add a project:** add it at the top of `projects[]` in `portfolio.md` and capture a 1200×630 card
+image into `public/images/projects/`. The chat assistant, `/llms.txt` and the search data pick it
+up by themselves. Decide whether it belongs on the CV (Content rule 3), run the checklist, and
+check `/projects/<slug>` and the homepage card.
 
-**Add a note:** add `content/notes/<slug>.mdx` (set `draft: true` until it's ready; drafts show
-in development only), add it to the Notes section of `llms.txt` when published, link it from the
-relevant project if there is one.
+**Change a job, date, title or other fact:** edit `portfolio.md`, then the hand-kept copies in
+Content rule 3. `npm run test` tells you if the CV or signature now disagree.
+
+**Add a note:** add `content/notes/<slug>.mdx` (the file name must equal the slug; set
+`draft: true` until it's ready, drafts show in development only). `/llms.txt` lists it by itself
+once published. Link it from the relevant project if there is one.
 
 **Add a cooking entry:** add `content/cooking/<slug>.mdx` and its photos in
 `public/images/cooking/`. It is picked up automatically.
@@ -216,7 +242,7 @@ relevant project if there is one.
 - Pages export `metadata` (or `generateMetadata`) with a unique title, description and
   canonical URL.
 - New public routes go in `src/app/sitemap.ts`; `/cooking` stays out and stays `noindex`.
-- Keep the JSON-LD in `layout.tsx` and `llms.txt` in step with `portfolio.md`.
+- The JSON-LD and `/llms.txt` are generated from `portfolio.md`; don't hand-edit them.
 
 ## Code style
 
@@ -248,12 +274,15 @@ relevant project if there is one.
 
 ## Before you commit
 
-- [ ] `npm run typecheck && npm run lint && npm run build` pass
+- [ ] `npm run check` passes (types, lint, unit tests, build, browser tests)
 - [ ] Changed pages checked at 390 px and 1440 px wide, in dark and light mode, with no sideways
       scrolling on phones
-- [ ] No invented content; the five places from Content rule 3 agree
+- [ ] No invented content; the hand-kept copies in Content rule 3 are updated
 - [ ] Every new `<Link>` has `prefetch={false}`
 - [ ] No new external origins (or they're in the CSP with a reason), secrets or tracking
+- [ ] After a dependency or config change: the deployed site is checked too
+      (`E2E_BASE_URL=https://www.odaidh.dev npm run test:e2e`). A local build can pass while the
+      host fails; that is how every note and cooking page was down for eleven days
 
 <!-- BEGIN:nextjs-agent-rules -->
 
