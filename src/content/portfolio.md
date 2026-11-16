@@ -9,10 +9,65 @@ socials:
   instagram: "https://www.instagram.com/odai.dh1"
   tiktok: "https://www.tiktok.com/@limonboy96"
 
+# --- Facts used by the generated outputs ---------------------------------------------------
+# The chat assistant's facts, /llms.txt and the search data (JSON-LD) are all built from this
+# file by src/lib/facts.ts. Change a fact here and every one of them follows.
+location: "Stockholm, Sweden"
+status: "Full Stack Developer at Art25 Defense AB, building two products of his own, and open to new full-time opportunities."
+availability: "Open to full-time roles (remote, hybrid or on-site)."
+summary: "Odai is a Full Stack Developer who has shipped real products for venture-backed startups and teams. He works across the stack, strongest in React, Next.js, TypeScript and Tailwind CSS, with backend experience in Node.js, Express, MongoDB and SQL. He also builds iOS apps in SwiftUI and has shipped AI-powered features using Groq, Google Gemini and Hugging Face APIs."
+currently:
+  - "Full Stack Developer at Art25 Defense AB (AI governance and GRC platform)"
+  - "Building two products of his own: an AI beauty recommendation app and a React Native e-commerce app"
+  - "Most interested in product-focused teams shipping real features for real users"
+
+skills:
+  - group: "Frontend"
+    items: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "HTML", "CSS", "SwiftUI", "React Native", "shadcn/ui", "Framer Motion", "GSAP", "Three.js", "React Three Fiber", "WebGL & GLSL", "Zustand"]
+  - group: "Backend"
+    items: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs", "Firebase", "Supabase"]
+  - group: "Tools & Services"
+    items: ["Git", "Figma", "Zod", "Vitest", "Playwright", "Docker", "Clerk", "Vercel", "Claude Code", "Chart.js", "HubSpot API", "Cloudflare R2", "react-hook-form"]
+  - group: "AI Integration"
+    items: ["Groq", "Google Gemini", "Hugging Face APIs", "prompt engineering", "streaming responses", "rate limiting"]
+  - group: "Other"
+    items: ["UX/UI design (Figma)", "3D/VR web (Three.js, A-Frame, WebXR)", "iOS development"]
+
+education:
+  - school: "Hyper Island"
+    link: "https://www.hyperisland.com/"
+    location: "Stockholm"
+    program: "Frontend Developer Program (FED26), a two-year higher vocational (YH) program"
+    date: "2024 – Mar 2026"
+    details: "React, Next.js, TypeScript, Node.js/Express and MongoDB, agile teamwork, UX/UI in Figma and automated testing."
+  - school: "Damascus University"
+    program: "Land Surveying, three semesters"
+    date: "2014 – 2015"
+
+recommendation:
+  quote: "He grew from a talented intern into a dependable developer capable of shipping production-ready features independently. Any team would benefit from his work ethic, technical skill, and positive attitude."
+  highlight: "He grew from a talented intern into a dependable developer capable of shipping production-ready features independently."
+  author: "Antoine Abribat"
+  role: "Co-Founder & COO"
+  company: "Aeoflo"
+
+# The three numbers under the hero. Each must be backed by a project write-up below.
+proof:
+  - value: "6"
+    label: "brand dashboards in one platform"
+    detail: "built for prospects like Oatly and Stiga"
+  - value: "20,000+"
+    label: "lines in the Aeoflo website"
+    detail: "built solo, from scratch"
+  - value: "1 night"
+    label: "to the first Vidare prototype"
+    detail: "at a hackathon, then 5 days to finish it"
+
 experience:
   - company: "Art25 Defense AB"
     title: "Full Stack Developer"
     date: "Oct 2026 – Present"
+    location: "Stockholm"
     link: "https://art25.ai/"
     duties:
       - "Developing features for a pre-seed startup building a unified AI governance and GRC platform, with Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, Recharts and Supabase (Postgres, Auth, Realtime, row-level security), deployed on Vercel."
@@ -32,6 +87,7 @@ experience:
   - company: "AI Beauty Recommendation App"
     title: "Founding Engineer"
     date: "2026 – Present"
+    ownProduct: true
     duties:
       - "Building an AI-powered app that helps shoppers find the right beauty products on in-store retail kiosks."
       - "Owning the product end to end, from interface and AI flows to backend."
@@ -39,6 +95,7 @@ experience:
   - company: "E-commerce App (React Native)"
     title: "Mobile Developer"
     date: "2026 – Present"
+    ownProduct: true
     duties:
       - "Building a React Native e-commerce app for Android users together with a co-founder."
       - "Developing the API behind the app in Node.js, with a focus on security and protecting user data."

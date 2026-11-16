@@ -3,6 +3,8 @@ import { Inter, Calistoga } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { getPortfolioData } from '@/lib/markdown';
+import { buildPersonJsonLd } from '@/lib/facts';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -106,11 +108,13 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const personJsonLd = buildPersonJsonLd(await getPortfolioData());
+
   return (
     // suppressHydrationWarning: the inline script below may swap dark for light before React loads
     <html lang="en" className={`dark scroll-smooth ${inter.variable} ${calistoga.variable}`} suppressHydrationWarning>
@@ -118,94 +122,8 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <meta name="google-site-verification" content="eqIL5mctJjbAPj_179mB8g0QQvo0wCHZ6PLtqJ8MJFU" />
         <meta name="google-site-verification" content="7ZU2DkIjWAd_35wggYNZj9pZDrZI38mL21W2Ap8fmfY" />
-        {/* Structured Data for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Odai Dahi",
-              "url": "https://www.odaidh.dev",
-              "jobTitle": "Full Stack Developer",
-              "description": "Full Stack Developer building production apps with Next.js, TypeScript, Node.js, and AI integrations.",
-              "image": "https://www.odaidh.dev/og-image.png",
-              "email": "mailto:odai@odaidh.dev",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Stockholm",
-                "addressCountry": "SE"
-              },
-              "sameAs": [
-                "https://github.com/odai-dh",
-                "https://www.linkedin.com/in/odai-dahi/",
-                "https://www.instagram.com/odai.dh1"
-              ],
-              "knowsAbout": [
-                "React", "Next.js", "TypeScript", "JavaScript", "Node.js",
-                "Express", "MongoDB", "SQL", "REST APIs", "Tailwind CSS",
-                "SwiftUI", "AI Integration", "Full Stack Development", "Web Development"
-              ],
-              "hasOccupation": {
-                "@type": "Occupation",
-                "name": "Full Stack Developer",
-                "occupationalCategory": "15-1254.00",
-                "skills": "React, Next.js, TypeScript, Node.js, Express, MongoDB, SQL, Tailwind CSS, SwiftUI, AI integrations (Groq, Gemini, Hugging Face), REST APIs, full-stack feature development",
-                "responsibilities": "Building production web applications, AI-powered features, dashboards, and frontend systems for startups.",
-                "occupationLocation": {
-                  "@type": "City",
-                  "name": "Stockholm"
-                }
-              },
-              "seeks": {
-                "@type": "Demand",
-                "name": "Open to new opportunities",
-                "description": "Open to full-time Full Stack Developer roles (remote, hybrid, or Stockholm-based)."
-              },
-              "alumniOf": {
-                "@type": "EducationalOrganization",
-                "name": "Hyper Island",
-                "url": "https://www.hyperisland.com/",
-                "description": "Frontend Developer Program (FED26), a two-year higher vocational (YH) program, 2024 to March 2026."
-              },
-              "workExperience": [
-                {
-                  "@type": "OrganizationRole",
-                  "roleName": "Full Stack Developer",
-                  "startDate": "2026-10",
-                  "worksFor": { "@type": "Organization", "name": "Art25 Defense AB" }
-                },
-                {
-                  "@type": "OrganizationRole",
-                  "roleName": "Frontend Developer Intern",
-                  "startDate": "2025-09",
-                  "endDate": "2026-03",
-                  "worksFor": { "@type": "Organization", "name": "Aeoflo", "url": "https://aeoflo.com/" }
-                },
-                {
-                  "@type": "OrganizationRole",
-                  "roleName": "Volunteer Full Stack Developer & Digital Lead",
-                  "startDate": "2026",
-                  "worksFor": { "@type": "Organization", "name": "FEDECRAIL", "url": "https://www.fedecrail.org/" }
-                },
-                {
-                  "@type": "OrganizationRole",
-                  "roleName": "Frontend Developer Intern",
-                  "startDate": "2025-05",
-                  "endDate": "2025-09",
-                  "worksFor": { "@type": "Organization", "name": "Sportly", "url": "https://sportly.se/" }
-                },
-                {
-                  "@type": "OrganizationRole",
-                  "roleName": "Assistant Restaurant Manager",
-                  "startDate": "2020-03",
-                  "endDate": "2024-08",
-                  "worksFor": { "@type": "Organization", "name": "Max Burgers" }
-                }
-              ]
-            })
-          }}
-        />
+        {/* Structured data for search engines, built from portfolio.md */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       </head>
       <body className="font-body antialiased">
         <ThemeProvider>

@@ -18,6 +18,37 @@ const ExperienceSchema = z.object({
   date: z.string().min(1),
   duties: z.array(z.string().min(1)).min(1),
   link: z.string().url().optional(),
+  location: z.string().min(1).optional(),
+  // Odai's own products rather than an employer: left out of the search data's work history
+  ownProduct: z.boolean().optional(),
+});
+
+const SkillGroupSchema = z.object({
+  group: z.string().min(1),
+  items: z.array(z.string().min(1)).min(1),
+});
+
+const EducationSchema = z.object({
+  school: z.string().min(1),
+  program: z.string().min(1),
+  date: z.string().min(1),
+  link: z.string().url().optional(),
+  location: z.string().min(1).optional(),
+  details: z.string().min(1).optional(),
+});
+
+const RecommendationSchema = z.object({
+  quote: z.string().min(1),
+  highlight: z.string().min(1), // the sentence shown under the hero; must be part of `quote`
+  author: z.string().min(1),
+  role: z.string().min(1),
+  company: z.string().min(1),
+});
+
+const ProofSchema = z.object({
+  value: z.string().min(1),
+  label: z.string().min(1),
+  detail: z.string().min(1),
 });
 
 const RawProjectSchema = z.object({
@@ -48,12 +79,25 @@ const FrontMatterSchema = z.object({
   subtitle: z.string().min(1),
   email: z.string().email(),
   socials: SocialsSchema,
+  location: z.string().min(1),
+  status: z.string().min(1),
+  availability: z.string().min(1),
+  summary: z.string().min(1),
+  currently: z.array(z.string().min(1)).min(1),
+  skills: z.array(SkillGroupSchema).min(1),
+  education: z.array(EducationSchema).min(1),
+  recommendation: RecommendationSchema,
+  proof: z.array(ProofSchema).min(1),
   experience: z.array(ExperienceSchema).min(1),
   projects: z.array(RawProjectSchema).min(1),
 });
 
 export type Experience = z.infer<typeof ExperienceSchema>;
 export type Socials = z.infer<typeof SocialsSchema>;
+export type SkillGroup = z.infer<typeof SkillGroupSchema>;
+export type Education = z.infer<typeof EducationSchema>;
+export type Recommendation = z.infer<typeof RecommendationSchema>;
+export type Proof = z.infer<typeof ProofSchema>;
 export type Project = z.infer<typeof RawProjectSchema> & {
   slug: string;
   contentHtml: string;

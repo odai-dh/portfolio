@@ -41,7 +41,7 @@ export default async function Home() {
                   email={portfolioData.email}
                 />
               </HeroMode>
-              <ProofStrip />
+              <ProofStrip proof={portfolioData.proof} recommendation={portfolioData.recommendation} />
               <AboutSection
                 aboutHtml={portfolioData.aboutHtml}
                 tiktokUrl={portfolioData.socials.tiktok}
@@ -49,7 +49,11 @@ export default async function Home() {
               <ExperienceSection experiences={portfolioData.experience} />
               <ProjectsSection projects={portfolioData.projects} />
 
-              <ContactSection socials={portfolioData.socials} />
+              <ContactSection
+                socials={portfolioData.socials}
+                location={portfolioData.location}
+                availability={portfolioData.availability}
+              />
             </main>
             <Footer name={portfolioData.name} />
           </SidebarInset>

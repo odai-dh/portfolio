@@ -22,7 +22,9 @@ const contactFormSchema = z.object({
   website: z.string().optional(), // honeypot — hidden from humans
 });
 
-export function ContactSection({ socials }: { socials: Socials }) {
+type ContactSectionProps = { socials: Socials; location: string; availability: string };
+
+export function ContactSection({ socials, location, availability }: ContactSectionProps) {
   const { toast } = useToast();
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -102,8 +104,7 @@ export function ContactSection({ socials }: { socials: Socials }) {
             <div className="flex items-start gap-3 rounded-lg border border-border/60 bg-card/50 p-4 text-sm text-muted-foreground">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
               <span>
-                Based in <span className="text-foreground">Stockholm, Sweden</span>. Open to full-time roles
-                (remote, hybrid or on-site).
+                Based in <span className="text-foreground">{location}</span>. {availability}
               </span>
             </div>
           </div>
