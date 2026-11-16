@@ -1,8 +1,21 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useSyncExternalStore } from 'react';
 
 type Theme = 'light' | 'dark';
+
+const THEME_EVENT = 'themechange';
+
+// The class on <html> is the single source of truth; React only reads it. A small inline script
+// in layout.tsx sets it before the first paint, from the visitor's saved choice.
+function readTheme(): Theme {
+  return document.documentElement.classList.contains('light') ? 'light' : 'dark';
+}
+
+function subscribe(onChange: () => void) {
+  window.addEventListener(THEME_EVENT, onChange);
+  return () => window.removeEventListener(THEME_EVENT, onChange);
+}
 
 const ThemeContext = createContext<{
   theme: Theme;
@@ -13,41 +26,25 @@ const ThemeContext = createContext<{
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
+  // The server always renders dark; the client swaps to the real value right after hydration.
+  // The tree keeps the same shape either way: an earlier version returned a different wrapper
+  // before and after mount, which made React discard and rebuild the whole page on every load.
+  const theme = useSyncExternalStore(subscribe, readTheme, () => 'dark' as Theme);
 
-  useEffect(() => {
-    setMounted(true);
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-    
+  const toggleTheme = useCallback(() => {
+    const next: Theme = readTheme() === 'dark' ? 'light' : 'dark';
     const root = document.documentElement;
     root.classList.remove('light', 'dark');
-    root.classList.add(theme);
-    localStorage.setItem('theme', theme);
-  }, [theme, mounted]);
+    root.classList.add(next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      // storage blocked: the choice just won't survive a reload
+    }
+    window.dispatchEvent(new Event(THEME_EVENT));
+  }, []);
 
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-  };
-
-  if (!mounted) {
-    return <div className="dark">{children}</div>;
-  }
-
-  return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 }
 
 export const useTheme = () => useContext(ThemeContext);

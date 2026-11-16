@@ -18,6 +18,10 @@ const calistoga = Calistoga({
   display: 'swap',
 });
 
+// Runs before the first paint, so a visitor who chose light mode never sees a flash of dark.
+// Dark stays the default for everyone else. (ThemeProvider reads the class this sets.)
+const themeInitScript = `try{if(localStorage.getItem('theme')==='light'){var c=document.documentElement.classList;c.remove('dark');c.add('light')}}catch(e){}`;
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -108,8 +112,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark scroll-smooth ${inter.variable} ${calistoga.variable}`}>
+    // suppressHydrationWarning: the inline script below may swap dark for light before React loads
+    <html lang="en" className={`dark scroll-smooth ${inter.variable} ${calistoga.variable}`} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <meta name="google-site-verification" content="eqIL5mctJjbAPj_179mB8g0QQvo0wCHZ6PLtqJ8MJFU" />
         <meta name="google-site-verification" content="7ZU2DkIjWAd_35wggYNZj9pZDrZI38mL21W2Ap8fmfY" />
         {/* Structured Data for SEO */}

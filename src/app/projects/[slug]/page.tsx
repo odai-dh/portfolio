@@ -148,6 +148,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                 alt={`${project.title} website`}
                 width={1200}
                 height={630}
+                priority
                 className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
               />
               <span className="absolute bottom-3 right-3 inline-flex items-center gap-1 rounded-md border border-border bg-background/85 px-3 py-1.5 font-mono text-xs text-foreground transition-colors group-hover:text-primary">
@@ -162,6 +163,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                 alt={project.title}
                 width={1200}
                 height={630}
+                priority
                 className="w-full object-cover"
                 data-ai-hint="project screenshot"
               />

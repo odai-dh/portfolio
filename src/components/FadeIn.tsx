@@ -1,51 +1,39 @@
 'use client';
-import { useRef, useEffect, useState, type ReactNode } from 'react';
-import { cn } from '@/lib/utils';
+import { useEffect, useRef, type ReactNode } from 'react';
 
 interface FadeInProps {
   children: ReactNode;
   className?: string;
-  delay?: string;
 }
 
-export function FadeIn({ children, className, delay = 'duration-500' }: FadeInProps) {
-  const [isVisible, setVisible] = useState(false);
-  const domRef = useRef<HTMLDivElement>(null);
+// Scroll-in reveal that never hides content it shouldn't. The markup is visible by default, so
+// the page reads fine without JavaScript and before it has loaded. Once JS runs, only blocks
+// that are still below the screen get hidden ("armed") and fade in when scrolled to; anything
+// already on screen (the hero, most importantly) is left alone.
+// The state lives in a data attribute styled in globals.css, so revealing never re-renders React.
+export function FadeIn({ children, className }: FadeInProps) {
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          if (domRef.current) {
-            observer.unobserve(domRef.current);
-          }
-        }
-      });
-    });
-
-    const { current } = domRef;
-    if (current) {
-      observer.observe(current);
+    const el = ref.current;
+    if (!el || el.dataset.reveal === 'shown') return;
+    if (!el.dataset.reveal) {
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      el.dataset.reveal = 'armed';
     }
 
-    return () => {
-      if (current) {
-        observer.unobserve(current);
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        el.dataset.reveal = 'shown';
+        observer.disconnect();
       }
-    };
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div
-      ref={domRef}
-      className={cn(
-        'transition-all ease-out',
-        delay,
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
-        className
-      )}
-    >
+    <div ref={ref} className={className}>
       {children}
     </div>
   );

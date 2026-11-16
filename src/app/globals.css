@@ -84,6 +84,16 @@
   }
 }
 
+/* Scroll-in reveals (FadeIn.tsx). Content is visible unless JavaScript has "armed" a block
+   that is still below the screen, so nothing is hidden without JS or before it loads. */
+[data-reveal='armed'] {
+  opacity: 0;
+  transform: translateY(2rem);
+}
+[data-reveal='shown'] {
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
 /* Respect the user's motion preferences: collapse animations/transitions
    to imperceptible durations instead of removing them, so JS onTransitionEnd
    handlers and IntersectionObserver reveals still fire. */
