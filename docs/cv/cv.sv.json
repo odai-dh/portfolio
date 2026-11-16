@@ -1,0 +1,180 @@
+{
+  "lang": "sv",
+  "output": "public/OdaiDahi-CV-Sv.pdf",
+  "name": "Odai Dahi",
+  "title": "Fullstackutvecklare",
+  "contact": [
+    "Stockholm · +46 76 292 5857",
+    "odai@odaidh.dev",
+    "odaidh.dev",
+    "linkedin.com/in/odai-dahi · github.com/odai-dh"
+  ],
+  "summary": "Fullstackutvecklare som bygger produktionsappar i React, TypeScript och Next.js för väldigt olika användare: en plattform för AI-styrning på Art25, analysdashboards byggda för potentiella kunder som Oatly, en sporttech-plattform, en europeisk museijärnvägsfederation vars publik till stor del är 55+, och AI för detaljhandeln. Var ensam frontendutvecklare på Aeoflo med fullt ägarskap över en kodbas på 20 000+ rader. Tog examen från Hyper Island i mars 2026 och har fortsatt bygga sedan dess.",
+  "labels": {
+    "experience": "Erfarenhet",
+    "projects": "Projekt",
+    "education": "Utbildning",
+    "skills": "Kompetenser",
+    "languages": "Språk"
+  },
+  "experience": [
+    {
+      "role": "Fullstackutvecklare",
+      "org": "Art25 Defense AB",
+      "date": "okt 2026 – nu",
+      "meta": "Stockholm · Pre-seed-startup · Plattform för AI-styrning och GRC",
+      "bullets": [
+        "Utvecklar funktioner för en samlad plattform för AI-styrning och GRC i Next.js, React och TypeScript på Supabase (Postgres, Auth, Realtime, row-level security), driftsatt på Vercel.",
+        "Leder UI-utvecklingen av konfigurerbara formulär och bidrar med UI-arbete i flera av plattformens kärnmoduler.",
+        "Åtgärdar och levererar testade ärenden i ett granskningsbaserat arbetsflöde med kärnteamet (feature → develop → test → produktion).",
+        "Sätter upp agentisk utveckling i kodbasen: AI-agenter som organiserar hur AI arbetar i repot, och säkerheten kring den uppsättningen.",
+        "Designade logotypen och bygger webbplatsen för NIARR (niarr.eu), den ideella organisation som Art25 har grundat."
+      ],
+      "tech": "Next.js · React · TypeScript · Tailwind CSS · shadcn/ui · Recharts · Supabase · Vercel"
+    },
+    {
+      "role": "Fullstackutvecklare och digital ansvarig (ideellt)",
+      "org": "FEDECRAIL",
+      "date": "jun 2026 – nu",
+      "meta": "Distans · Europeiska federationen för musei- och turistjärnvägar",
+      "bullets": [
+        "Leder omgörningen och moderniseringen av webbplatsen för en federation av museijärnvägar i hela Europa, och bygger den nya sajten från grunden.",
+        "Gör UX-research med en användargrupp som till stor del är 55+ och omsätter resultaten i designbeslut med tillgänglighet först."
+      ]
+    },
+    {
+      "role": "Medgrundande utvecklare",
+      "org": "AI-app för skönhetsrekommendationer",
+      "date": "2026 – nu",
+      "meta": "Stockholm",
+      "bullets": [
+        "Bygger en AI-driven app för skönhetsrekommendationer till kiosker i butik, fullstack från idé till produkt."
+      ]
+    },
+    {
+      "role": "Mobilutvecklare",
+      "org": "E-handelsapp (React Native)",
+      "date": "2026 – nu",
+      "bullets": [
+        "Bygger en e-handelsapp i React Native för Android tillsammans med en medgrundare, och API:et bakom den i Node.js med fokus på säkerhet och skydd av användardata.",
+        "Optimerar produktbilder så att de laddas snabbare och drar mindre data i mobilnät."
+      ]
+    },
+    {
+      "role": "Frontendutvecklare, praktik",
+      "org": "Aeoflo AB",
+      "date": "sep 2025 – mar 2026",
+      "meta": "Stockholm · Riskkapitalfinansierad startup inom AI-analys",
+      "bullets": [
+        "Ensam frontendutvecklare med fullt ägarskap över frontend. Levererade produktionsfärdiga funktioner självständigt.",
+        "Byggde företagets webbplats från grunden (20 000+ rader) i Next.js, TypeScript och Tailwind CSS, med blogg, mörkt läge och bokning via HubSpot.",
+        "Designade och byggde en dashboardplattform för flera kunder, med egna dashboards för potentiella kunder som Oatly, Stiga, Billhop, Norstedts, CRA-YON och X-peng. Datamodellen i JSON gör att en ny kund inte kräver några komponentändringar.",
+        "Refaktorerade en Shopify-app på cirka 4 000 rader till modulära React-komponenter med error boundaries, egna hooks och dokumentation.",
+        "Integrerade HubSpot API, Cloudflare R2 och inloggning med Clerk, med formulär validerade av Zod."
+      ],
+      "quote": "\"Any team would benefit from his work ethic, technical skill, and positive attitude.\" Antoine Abribat, medgrundare och COO",
+      "tech": "Next.js · React · TypeScript · Tailwind CSS · Framer Motion · Chart.js · shadcn/ui · Clerk · Zod"
+    },
+    {
+      "role": "Frontendutvecklare, praktik",
+      "org": "Sportly",
+      "date": "maj 2025 – sep 2025",
+      "meta": "Stockholm · Sporttech-plattform",
+      "bullets": [
+        "Byggde responsiva UI-komponenter och funktioner i React, TypeScript och Tailwind CSS i linje med designsystemet.",
+        "Arbetade i ett agilt team med utvecklare och designers för att leverera nya funktioner."
+      ]
+    },
+    {
+      "role": "Biträdande restaurangchef",
+      "org": "Max Burgers",
+      "date": "mar 2020 – aug 2024",
+      "meta": "Stockholm",
+      "bullets": [
+        "Ansvarade för den dagliga driften och ledde personalen när restaurangchefen var borta. Rekryterade, utbildade och coachade medarbetare och skiftledare.",
+        "Skötte ekonomisk rapportering, kassaavslut, månatlig inventering och schemaläggning."
+      ]
+    },
+    {
+      "role": "IT-supportassistent",
+      "org": "Stockholms stad",
+      "date": "2018 – 2019",
+      "bullets": [
+        "Hjälpte medborgare på Medborgarkontoret i Spånga-Tensta med digitala ärenden och teknikfrågor, och höll workshops i hur man använder datorer och digitala tjänster."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "NIARR",
+      "sub": "niarr.eu",
+      "link": "https://niarr.eu",
+      "date": "okt 2026",
+      "bullets": [
+        "Webbplats för Nordic Institute for AI Risk and Resilience: en scrollstyrd berättelse där cirka 18 000 WebGL-partiklar formar en hjärna, ett nätverk av risker och en karta över Norden. Cirka 7 000 rader TypeScript, GLSL och CSS.",
+        "Byggd enligt en institutions krav: strikt Content Security Policy, ingen analys och inga kakor, WCAG 2.1 AA utan axe-fel, samt fallback för reducerad rörelse och för webbläsare utan JavaScript."
+      ],
+      "tech": "Next.js · TypeScript · three.js · GLSL · Tailwind CSS · Zod · Resend"
+    },
+    {
+      "name": "Vidare",
+      "sub": "sl-compensation.netlify.app",
+      "link": "https://sl-compensation.netlify.app/",
+      "date": "sep 2026",
+      "bullets": [
+        "Konceptapp som beställer taxi hem åt strandade SL-resenärer och söker ersättningen från SL enligt lagen om kollektivtrafikresenärers rättigheter, i ett scrollstyrt 3D-Stockholm. Byggd ensam på fem dagar: cirka 10 800 rader TypeScript och 108 enhetstester.",
+        "Alla externa tjänster (SL-data, taxi, betalning, BankID) ligger bakom typade gränssnitt, så riktiga integrationer kan ersätta mockarna utan att UI:t påverkas."
+      ],
+      "tech": "Next.js · TypeScript · React Three Fiber · GSAP · Zustand · Zod · Vitest"
+    },
+    {
+      "name": "BuzzyJeopardy",
+      "sub": "Multiplayer-frågesport i realtid",
+      "date": "2026",
+      "bullets": [
+        "Varje spelare buzzar in från sin egen mobil. Firebase synkar spelets state och hanterar race conditions vid buzz-in, och Gemini genererar ett helt spel med fem kategorier i ett anrop."
+      ],
+      "tech": "Next.js · TypeScript · Firebase · Gemini API · Framer Motion"
+    },
+    {
+      "name": "Death Calendar",
+      "sub": "Native iOS-app",
+      "date": "2026",
+      "bullets": [
+        "Visualiserar ett helt liv som ett rutnät med upp till 29 000+ punkter, med lazy rendering, MVVM-arkitektur och lokal lagring."
+      ],
+      "tech": "Swift · SwiftUI"
+    }
+  ],
+  "education": [
+    {
+      "title": "Frontendutvecklare (FED26)",
+      "org": "Hyper Island",
+      "date": "2024 – mar 2026",
+      "meta": "Stockholm · Tvåårig YH-utbildning (400 YH-poäng), examen mars 2026",
+      "bullets": [
+        "Läste React, Next.js, TypeScript, Node.js/Express och MongoDB, agilt teamarbete (Scrum, Kanban), UX/UI i Figma och automatiserade tester."
+      ]
+    },
+    {
+      "title": "Lantmäteri, tre terminer",
+      "org": "Damaskus universitet",
+      "date": "2014 – 2015"
+    }
+  ],
+  "skills": [
+    ["Frontend", "React, Next.js, TypeScript, JavaScript, HTML, CSS"],
+    ["UI och rörelse", "Tailwind CSS, shadcn/ui, Framer Motion, GSAP"],
+    ["Backend", "Node.js, Express, REST API:er, Supabase, PostgreSQL, MongoDB, Firebase"],
+    ["3D", "Three.js, React Three Fiber, WebGL och GLSL, WebXR"],
+    ["Test", "Vitest, Jest, Playwright, Zod"],
+    ["Verktyg", "Git, Docker, Figma, Netlify, Vercel, Cloudflare"],
+    ["AI", "Gemini, Groq, Claude Code"],
+    ["Mobil", "React Native, Swift, SwiftUI"]
+  ],
+  "languages": [
+    ["Svenska", "flytande"],
+    ["Engelska", "flytande"],
+    ["Arabiska", "modersmål"]
+  ]
+}

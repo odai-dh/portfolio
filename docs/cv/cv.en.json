@@ -1,0 +1,180 @@
+{
+  "lang": "en",
+  "output": "public/OdaiDahi-CV-En.pdf",
+  "name": "Odai Dahi",
+  "title": "Full Stack Developer",
+  "contact": [
+    "Stockholm, Sweden · +46 76 292 5857",
+    "odai@odaidh.dev",
+    "odaidh.dev",
+    "linkedin.com/in/odai-dahi · github.com/odai-dh"
+  ],
+  "summary": "Full stack developer who builds production apps in React, TypeScript and Next.js for very different users: an AI governance platform at Art25, analytics dashboards built for prospective clients such as Oatly, a sports-tech platform, a heritage railway federation whose audience is mostly 55+, and AI for retail. Was the sole frontend developer at Aeoflo with full ownership of a 20,000+ line codebase. Graduated from Hyper Island in March 2026 and has kept shipping since.",
+  "labels": {
+    "experience": "Experience",
+    "projects": "Projects",
+    "education": "Education",
+    "skills": "Skills",
+    "languages": "Languages"
+  },
+  "experience": [
+    {
+      "role": "Full Stack Developer",
+      "org": "Art25 Defense AB",
+      "date": "Oct 2026 – Present",
+      "meta": "Stockholm · Pre-seed startup · AI governance and GRC platform",
+      "bullets": [
+        "Develop features for a unified AI governance and GRC platform in Next.js, React and TypeScript on Supabase (Postgres, Auth, Realtime, row-level security), deployed on Vercel.",
+        "Lead UI development for configurable forms and contribute UI work across several core platform modules.",
+        "Fix and ship tested issues in a review-based workflow with the core team (feature → develop → test → production).",
+        "Set up agentic development on the codebase: AI agents that organize how AI works in the repo, and the security around that setup.",
+        "Designed the logo and build the website for NIARR (niarr.eu), the NGO founded by Art25."
+      ],
+      "tech": "Next.js · React · TypeScript · Tailwind CSS · shadcn/ui · Recharts · Supabase · Vercel"
+    },
+    {
+      "role": "Volunteer Full Stack Developer & Digital Lead",
+      "org": "FEDECRAIL",
+      "date": "Jun 2026 – Present",
+      "meta": "Remote · European Federation of Museum & Tourist Railways",
+      "bullets": [
+        "Lead the website redesign and modernization for a federation of heritage railways across Europe, building the new site end to end.",
+        "Run UX research with a user base that is mostly 55+ and turn the findings into accessibility-first design decisions."
+      ]
+    },
+    {
+      "role": "Co-founding Engineer",
+      "org": "AI Beauty Recommendation App",
+      "date": "2026 – Present",
+      "meta": "Stockholm",
+      "bullets": [
+        "Build an AI-powered beauty recommendation app for in-store retail kiosks, full stack from concept to product."
+      ]
+    },
+    {
+      "role": "Mobile Developer",
+      "org": "E-commerce App (React Native)",
+      "date": "2026 – Present",
+      "bullets": [
+        "Build a React Native e-commerce app for Android with a co-founder, and the Node.js API behind it with a focus on security and protecting user data.",
+        "Optimize product images so they load faster and use less data on mobile networks."
+      ]
+    },
+    {
+      "role": "Frontend Developer Intern",
+      "org": "Aeoflo AB",
+      "date": "Sep 2025 – Mar 2026",
+      "meta": "Stockholm · Venture-backed AI analytics startup",
+      "bullets": [
+        "Sole frontend developer with full ownership of the frontend, shipping production features independently.",
+        "Built the company website from scratch (20,000+ lines) in Next.js, TypeScript and Tailwind CSS, including a blog, dark mode and HubSpot booking.",
+        "Designed and built a multi-client analytics dashboard platform, with per-brand dashboards for prospective clients such as Oatly, Stiga, Billhop, Norstedts, CRA-YON and X-peng. Its JSON data model means adding a new client needs no component changes.",
+        "Refactored a ~4,000-line Shopify app into modular React components with error boundaries, custom hooks and documentation.",
+        "Integrated the HubSpot API, Cloudflare R2 and Clerk authentication with Zod-validated forms."
+      ],
+      "quote": "\"Any team would benefit from his work ethic, technical skill, and positive attitude.\" Antoine Abribat, Co-Founder & COO",
+      "tech": "Next.js · React · TypeScript · Tailwind CSS · Framer Motion · Chart.js · shadcn/ui · Clerk · Zod"
+    },
+    {
+      "role": "Frontend Developer Intern",
+      "org": "Sportly",
+      "date": "May 2025 – Sep 2025",
+      "meta": "Stockholm · Sports-tech platform",
+      "bullets": [
+        "Built responsive UI components and features in React, TypeScript and Tailwind CSS, consistent with the design system.",
+        "Worked in an agile team of developers and designers to deliver new features."
+      ]
+    },
+    {
+      "role": "Assistant Restaurant Manager",
+      "org": "Max Burgers",
+      "date": "Mar 2020 – Aug 2024",
+      "meta": "Stockholm",
+      "bullets": [
+        "Ran daily operations and led the team when the manager was away. Recruited, trained and coached staff and shift leaders.",
+        "Handled financial reporting, closing, monthly inventory control and staff scheduling."
+      ]
+    },
+    {
+      "role": "IT Support Assistant",
+      "org": "City of Stockholm",
+      "date": "2018 – 2019",
+      "bullets": [
+        "Helped citizens at Medborgarkontoret in Spånga-Tensta with digital tasks and tech questions, and ran workshops on using computers and digital services."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "NIARR",
+      "sub": "niarr.eu",
+      "link": "https://niarr.eu",
+      "date": "Oct 2026",
+      "bullets": [
+        "Website of the Nordic Institute for AI Risk and Resilience: a scroll-driven story told by about 18,000 WebGL particles that form a brain, a network of risks and a map of the Nordics. About 7,000 lines of TypeScript, GLSL and CSS.",
+        "Built to an institution's standards: strict Content Security Policy, no analytics or cookies, WCAG 2.1 AA with zero axe violations, and reduced-motion and no-JavaScript fallbacks."
+      ],
+      "tech": "Next.js · TypeScript · three.js · GLSL · Tailwind CSS · Zod · Resend"
+    },
+    {
+      "name": "Vidare",
+      "sub": "sl-compensation.netlify.app",
+      "link": "https://sl-compensation.netlify.app/",
+      "date": "Sep 2026",
+      "bullets": [
+        "Concept app that books a stranded SL traveller's taxi home and claims the fare back from SL under Swedish law, inside a scroll-driven 3D Stockholm. Built solo in five days: ~10,800 lines of TypeScript and 108 unit tests.",
+        "Every external service (SL data, taxi, payments, BankID) sits behind a typed interface, so real integrations can replace the mocks without touching the UI."
+      ],
+      "tech": "Next.js · TypeScript · React Three Fiber · GSAP · Zustand · Zod · Vitest"
+    },
+    {
+      "name": "BuzzyJeopardy",
+      "sub": "Real-time multiplayer trivia",
+      "date": "2026",
+      "bullets": [
+        "Every player buzzes in from their own phone. Firebase keeps game state in sync and handles buzz-in race conditions, and Gemini generates a full five-category game in one call."
+      ],
+      "tech": "Next.js · TypeScript · Firebase · Gemini API · Framer Motion"
+    },
+    {
+      "name": "Death Calendar",
+      "sub": "Native iOS app",
+      "date": "2026",
+      "bullets": [
+        "Visualizes a lifetime as a grid of up to 29,000+ dots with lazy rendering, MVVM architecture and local-first storage."
+      ],
+      "tech": "Swift · SwiftUI"
+    }
+  ],
+  "education": [
+    {
+      "title": "Frontend Developer Program (FED26)",
+      "org": "Hyper Island",
+      "date": "2024 – Mar 2026",
+      "meta": "Stockholm · Two-year YH program (400 YH-poäng)",
+      "bullets": [
+        "React, Next.js, TypeScript, Node.js/Express and MongoDB, agile teamwork (Scrum, Kanban), UX/UI in Figma and automated testing."
+      ]
+    },
+    {
+      "title": "Land Surveying, three semesters",
+      "org": "Damascus University",
+      "date": "2014 – 2015"
+    }
+  ],
+  "skills": [
+    ["Frontend", "React, Next.js, TypeScript, JavaScript, HTML, CSS"],
+    ["UI & motion", "Tailwind CSS, shadcn/ui, Framer Motion, GSAP"],
+    ["Backend", "Node.js, Express, REST APIs, Supabase, PostgreSQL, MongoDB, Firebase"],
+    ["3D", "Three.js, React Three Fiber, WebGL & GLSL, WebXR"],
+    ["Testing", "Vitest, Jest, Playwright, Zod"],
+    ["Tools", "Git, Docker, Figma, Netlify, Vercel, Cloudflare"],
+    ["AI", "Gemini, Groq, Claude Code"],
+    ["Mobile", "React Native, Swift, SwiftUI"]
+  ],
+  "languages": [
+    ["Swedish", "fluent"],
+    ["English", "fluent"],
+    ["Arabic", "native"]
+  ]
+}
