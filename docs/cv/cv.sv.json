@@ -45,6 +45,7 @@
     {
       "role": "Medgrundande utvecklare",
       "org": "AI-app för skönhetsrekommendationer",
+      "site": "AI Beauty Recommendation App",
       "date": "2026 – nu",
       "meta": "Stockholm",
       "bullets": [
@@ -54,6 +55,7 @@
     {
       "role": "Mobilutvecklare",
       "org": "E-handelsapp (React Native)",
+      "site": "E-commerce App (React Native)",
       "date": "2026 – nu",
       "bullets": [
         "Bygger en e-handelsapp i React Native för Android tillsammans med en medgrundare, och API:et bakom den i Node.js med fokus på säkerhet och skydd av användardata.",
@@ -63,6 +65,7 @@
     {
       "role": "Frontendutvecklare, praktik",
       "org": "Aeoflo AB",
+      "site": "Aeoflo",
       "date": "sep 2025 – mar 2026",
       "meta": "Stockholm · Riskkapitalfinansierad startup inom AI-analys",
       "bullets": [
@@ -98,6 +101,7 @@
     {
       "role": "IT-supportassistent",
       "org": "Stockholms stad",
+      "site": "Stockholm Stad",
       "date": "2018 – 2019",
       "bullets": [
         "Hjälpte medborgare på Medborgarkontoret i Spånga-Tensta med digitala ärenden och teknikfrågor, och höll workshops i hur man använder datorer och digitala tjänster."

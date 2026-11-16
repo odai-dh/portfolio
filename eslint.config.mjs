@@ -18,7 +18,7 @@ const eslintConfig = defineConfig([
       'react-hooks/purity': 'warn',
     },
   },
-  globalIgnores(['.next/**', '.netlify/**', 'out/**', 'build/**', 'next-env.d.ts']),
+  globalIgnores(['.next/**', '.netlify/**', 'out/**', 'build/**', 'next-env.d.ts', 'playwright-report/**', 'test-results/**', 'docs/cv/.build/**']),
 ])
 
 export default eslintConfig

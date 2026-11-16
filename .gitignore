@@ -49,3 +49,10 @@ firestore-debug.log
 CLAUDE.md
 # generated CV pages (scripts/build-cv.mjs)
 docs/cv/.build/
+
+# test output
+/test-results/
+/playwright-report/
+
+# local Netlify build output (netlify build --offline)
+.netlify/
