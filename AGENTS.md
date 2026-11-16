@@ -114,9 +114,12 @@ scripts/indexnow.mjs       IndexNow submission
   right; check both.
 - **Colours:** use the tokens through Tailwind (`bg-background`, `bg-card`, `text-foreground`,
   `text-muted-foreground`, `text-primary`, `border-border`…), never raw hex in components. To
-  change a colour, change the token in `globals.css` for both `:root` and `.dark`. One accent:
-  the electric blue `primary` (`#0099ff`). Exceptions: the game canvases (`SnakeGame`,
-  `three/World3D`) and `/cooking`.
+  change a colour, change the token in `globals.css` for both `:root` and `.dark`. One accent,
+  the electric blue `primary`: `#0099ff` in dark mode, and a darker shade of the same hue
+  (`#006eb8`) in light mode, because the bright blue is too faint on white. Text on top of the
+  blue uses `text-primary-foreground` (dark navy in dark mode, white in light mode), never a
+  hard-coded white. Exceptions to the token rule: the game canvases (`SnakeGame`,
+  `three/World3D`), the Game Boy screen on the 404 page and `/cooking`.
 - **Type:** Inter for body (`font-body`), Calistoga for headings (`font-headline`), monospace for
   labels and section numbers (`font-mono`). Fonts load through `next/font` only, never from a
   CDN. Don't add fonts to the main site.
