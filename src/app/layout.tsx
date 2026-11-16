@@ -35,7 +35,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Odai Dahi | Full Stack Developer',
-  description: 'Full Stack Developer — building production apps with Next.js, TypeScript, and AI integrations. Freelancing and open to work.',
+  description: 'Full Stack Developer in Stockholm, building production apps with Next.js, TypeScript and AI integrations. Open to full-time roles.',
   keywords: [
     'full stack developer',
     'frontend developer',
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.odaidh.dev',
     title: 'Odai Dahi | Full Stack Developer',
-    description: 'Full Stack Developer — Next.js, TypeScript, Node.js, and AI integrations. Freelancing & open to work.',
+    description: 'Full Stack Developer in Stockholm. Next.js, TypeScript, Node.js and AI integrations. Open to full-time roles.',
     siteName: 'Odai Dahi Portfolio',
     images: [
       {
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Odai Dahi | Full Stack Developer',
-    description: 'Full Stack Developer — Next.js, TypeScript, Node.js, and AI integrations.',
+    description: 'Full Stack Developer in Stockholm. Next.js, TypeScript, Node.js and AI integrations.',
     images: ['/og-image.png'],
   },
   icons: {
