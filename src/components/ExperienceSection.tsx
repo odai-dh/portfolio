@@ -4,7 +4,7 @@ import type { Experience } from '@/lib/markdown';
 import { SectionWrapper } from '@/components/SectionWrapper';
 import { FadeIn } from './FadeIn';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useEffect, useState, useRef } from 'react';
+import { useState } from 'react';
 import { Link, Briefcase } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -19,7 +19,7 @@ function renderDuty(duty: string) {
         href={m[2]}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-primary underline-offset-4 hover:underline"
+        className="text-primary underline decoration-primary/50 underline-offset-4 hover:decoration-primary"
       >
         {m[1]}
       </a>
@@ -27,44 +27,16 @@ function renderDuty(duty: string) {
   });
 }
 
+// Tab ids must be valid HTML ids. Radix builds them from the tab's value, so the value can't be
+// the company name (spaces made aria-controls invalid).
+const tabValue = (index: number) => `exp-${index}`;
+
 type ExperienceSectionProps = {
   experiences: Experience[];
 };
 
 export function ExperienceSection({ experiences }: ExperienceSectionProps) {
-  const [activeTab, setActiveTab] = useState<string>(experiences[0]?.company || '');
-  const containerRef = useRef<HTMLDivElement>(null);
-  const contentRefs = useRef<Map<string, HTMLDivElement>>(new Map());
-  const [containerStyle, setContainerStyle] = useState<React.CSSProperties>({});
-
-  // Update container height when tab changes
-  useEffect(() => {
-    if (!experiences.length) return;
-
-    const updateHeight = () => {
-      let maxHeight = 0;
-      contentRefs.current.forEach((element) => {
-        const height = element.scrollHeight;
-        maxHeight = Math.max(maxHeight, height);
-      });
-
-      maxHeight += 10;
-
-      setContainerStyle({
-        height: `${maxHeight}px`,
-        position: 'relative',
-        overflow: 'hidden'
-      });
-    };
-
-    const timer = setTimeout(updateHeight, 50);
-    window.addEventListener('resize', updateHeight);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('resize', updateHeight);
-    };
-  }, [experiences, activeTab]);
+  const [activeTab, setActiveTab] = useState<string>(tabValue(0));
 
   if (!experiences || experiences.length === 0) {
     return null;
@@ -86,30 +58,30 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
           onValueChange={setActiveTab}
         >
           <TabsList className="flex flex-row md:flex-col h-auto md:h-full justify-start bg-transparent p-0 gap-0 overflow-x-auto md:overflow-x-visible max-w-full">
-            {experiences.map((exp) => (
+            {experiences.map((exp, index) => (
               <TabsTrigger
                 key={exp.company}
-                value={exp.company}
-                onMouseEnter={() => setActiveTab(exp.company)}
+                value={tabValue(index)}
+                onMouseEnter={() => setActiveTab(tabValue(index))}
                 className={cn(
                   "w-full justify-start transition-all duration-300 group relative",
                   "rounded-none border-b-2 md:border-b-0 md:border-l-2 px-4 py-3",
                   // Active state
-                  activeTab === exp.company && "border-primary bg-secondary/50 text-primary",
+                  activeTab === tabValue(index) && "border-primary bg-secondary/50 text-primary",
                   // Default state
-                  activeTab !== exp.company && "border-border text-muted-foreground hover:border-primary/50 hover:bg-secondary/20 hover:text-foreground"
+                  activeTab !== tabValue(index) && "border-border text-muted-foreground hover:border-primary/50 hover:bg-secondary/20 hover:text-foreground"
                 )}
               >
                 {/* Animated background indicator */}
                 <div className={cn(
                   "absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 transition-opacity duration-300",
-                  activeTab === exp.company && "opacity-100"
+                  activeTab === tabValue(index) && "opacity-100"
                 )} />
                 
                 <div className="relative z-10 flex items-center gap-2">
                   <Briefcase className={cn(
                     "h-4 w-4 transition-transform duration-300",
-                    activeTab === exp.company && "scale-110"
+                    activeTab === tabValue(index) && "scale-110"
                   )} />
                   <span className="font-medium">{exp.company}</span>
                 </div>
@@ -117,21 +89,23 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
             ))}
           </TabsList>
 
-          <div className="flex-grow" style={containerStyle} ref={containerRef}>
-            {experiences.map((exp) => (
+          {/* Every panel sits in the same grid cell, so the container is as tall as the tallest
+              panel without any JavaScript measuring, and switching tabs never moves the page. */}
+          <div className="grid flex-grow overflow-hidden">
+            {experiences.map((exp, index) => (
               <TabsContent
                 key={exp.company}
-                value={exp.company}
+                value={tabValue(index)}
+                // Inactive panels stay mounted for the height animation; inert keeps their
+                // links out of the tab order and away from screen readers
+                inert={activeTab !== tabValue(index)}
                 className={cn(
-                  "mt-0 w-full absolute top-0 left-0 transition-all duration-500",
+                  "col-start-1 row-start-1 mt-0 w-full transition-all duration-500",
                   "opacity-0 translate-x-4",
-                  activeTab === exp.company && "opacity-100 translate-x-0 z-10 pointer-events-auto",
-                  activeTab !== exp.company && "pointer-events-none"
+                  activeTab === tabValue(index) && "opacity-100 translate-x-0 z-10 pointer-events-auto",
+                  activeTab !== tabValue(index) && "pointer-events-none"
                 )}
                 forceMount
-                ref={(el) => {
-                  if (el) contentRefs.current.set(exp.company, el);
-                }}
               >
                 <div className="space-y-4">
                   {/* Header with border accent */}
