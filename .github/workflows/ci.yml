@@ -27,7 +27,15 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
+      - name: Install dependencies
+        # On failure, the first lines of npm's error become annotations, so the cause shows on the
+        # run's summary page instead of only in the step log
+        run: |
+          echo "node $(node -v), npm $(npm -v)"
+          if ! npm ci > npm-ci.log 2>&1; then
+            grep -m 25 'npm error' npm-ci.log | sed 's/^/::error title=npm ci::/'
+            exit 1
+          fi
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run test
