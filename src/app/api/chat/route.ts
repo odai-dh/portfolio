@@ -26,7 +26,7 @@ Tools: Git, Figma, Zod, Vitest, Playwright, Docker, Clerk, Vercel, Claude Code, 
 Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, WebXR)
 
 --- EXPERIENCE ---
-1. Art25 Defense AB (Full Stack Developer, Oct 2026 – present)
+1. Art25 Defense AB, Stockholm (Full Stack Developer, Oct 2026 – present)
    - Develops features for a pre-seed startup building a unified AI governance and GRC platform (Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, Recharts, Supabase, Vercel)
    - Leads UI development for configurable forms and contributes UI work across core platform modules
    - Sets up agentic development on the codebase: AI agents that organize how AI works in the repo, and the security around that setup
@@ -50,7 +50,7 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
    - Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways
    - Running UX research for a user base that is predominantly 55+, and designing around their needs
 
-6. Sportly (Frontend Developer Intern, Jun 2025 – Oct 2025)
+6. Sportly (Frontend Developer Intern, May 2025 – Sep 2025)
    - Built frontend for a sports tech platform using React, TypeScript, Tailwind CSS
    - Built responsive UI components, collaborated in agile team with developers and designers
 
@@ -79,7 +79,8 @@ Also has UX/UI design experience and 3D/VR web development (Three.js, A-Frame, W
 12. HyperKart — Mario Kart–inspired tournament website (team hackathon)
 
 --- EDUCATION ---
-Hyper Island — Code & Collaborate program (where he studied before graduating)
+Hyper Island, Stockholm — Frontend Developer Program (FED26), a two-year higher vocational (YH) program, 2024 – March 2026. He graduated in March 2026.
+Damascus University — Land Surveying, three semesters, 2014 – 2015 (not a completed degree).
 
 --- PERSONALITY ---
 Odai is creative, driven, and loves solving problems that mix logic and design. Outside of coding he enjoys cooking (🍋 is his signature). He's sociable, positive, and team-oriented — known for good energy in collaborative environments.`;

@@ -28,19 +28,20 @@ Odai is a Full Stack Developer who has shipped real products for venture-backed 
 
 ## Experience
 
-- **Art25 Defense AB** — Full Stack Developer (Oct 2026 – Present). Features for a pre-seed startup building a unified AI governance and GRC platform (Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, Recharts, Supabase with Postgres, Auth, Realtime and row-level security, Vercel). Leads UI development for configurable forms; ships tested fixes in a review-based workflow; sets up agentic development (AI agents in the repo) and its security. Designed the logo and is building the website for NIARR (https://niarr.eu), the NGO founded by Art25.
+- **Art25 Defense AB**, Stockholm — Full Stack Developer (Oct 2026 – Present). Features for a pre-seed startup building a unified AI governance and GRC platform (Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, Recharts, Supabase with Postgres, Auth, Realtime and row-level security, Vercel). Leads UI development for configurable forms; ships tested fixes in a review-based workflow; sets up agentic development (AI agents in the repo) and its security. Designed the logo and is building the website for NIARR (https://niarr.eu), the NGO founded by Art25.
 - **FEDECRAIL** — Volunteer Full Stack Developer & Digital Lead (Jun 2026 – Present). Leading the website redesign and modernization for the European Federation of Museum & Tourist Railways, and running UX research for a user base that is predominantly 55+.
 - **AI Beauty Recommendation App** — Founding Engineer (2026 – Present). Building an AI-powered app that helps shoppers find beauty products on in-store retail kiosks; owns the product end to end.
 - **E-commerce App (React Native)** — Mobile Developer (2026 – Present). React Native e-commerce app for Android with a co-founder; Node.js API focused on security and user-data protection; image optimization for mobile networks.
 - **Aeoflo** — Frontend Developer Intern (Sep 2025 – Mar 2026). Sole frontend developer at a venture-backed AI analytics startup. Built the entire company website (20,000+ lines of code) and a multi-client analytics dashboard platform, with per-brand dashboards built for prospective clients including Oatly, Stiga, Billhop, Norstedts, CRA-YON, and X-peng. Refactored a 4,000-line monolithic Shopify app into modular React components. Integrated HubSpot API, Cloudflare R2, and Clerk authentication.
-- **Sportly** — Frontend Developer Intern (Jun 2025 – Oct 2025). Built the frontend of a sports tech platform using React, TypeScript, and Tailwind CSS. Delivered responsive UI components and collaborated in an agile team.
+- **Sportly** — Frontend Developer Intern (May 2025 – Sep 2025). Built the frontend of a sports tech platform using React, TypeScript, and Tailwind CSS. Delivered responsive UI components and collaborated in an agile team.
 - **RAW Comedy Club** — Event Assistant (Sep 2024 – Dec 2025). Event operations, artist coordination, logistics.
 - **Max Burgers** — Assistant Restaurant Manager (Mar 2020 – Aug 2024). Managed daily operations, staff, financial reporting, and scheduling.
 - **Stockholm Stad** — IT Support Assistant (2018 – 2019). Helped citizens at Medborgarkontoret i Spånga-Tensta with digital tasks, and ran workshops on computers and digital services.
 
 ## Education
 
-- **Hyper Island** — Code & Collaborate program. Project-based education focused on collaborative product development.
+- **Hyper Island**, Stockholm — Frontend Developer Program (FED26), a two-year higher vocational (YH) program, 2024 – March 2026. React, Next.js, TypeScript, Node.js/Express and MongoDB, agile teamwork, UX/UI in Figma and automated testing.
+- **Damascus University** — Land Surveying, three semesters (2014 – 2015).
 
 ## Selected Projects
 

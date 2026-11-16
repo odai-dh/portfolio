@@ -56,7 +56,7 @@ experience:
 
   - company: "Sportly"
     title: "Frontend Developer Intern"
-    date: "Jun 2025 – Oct 2025"
+    date: "May 2025 – Sep 2025"
     link: "https://sportly.se/"
     duties:
       - "Built frontend features for a sports tech platform with React, TypeScript and Tailwind CSS."

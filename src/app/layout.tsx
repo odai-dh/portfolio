@@ -166,7 +166,7 @@ export default function RootLayout({
                 "@type": "EducationalOrganization",
                 "name": "Hyper Island",
                 "url": "https://www.hyperisland.com/",
-                "description": "Code & Collaborate program — project-based education focused on collaborative product development."
+                "description": "Frontend Developer Program (FED26), a two-year higher vocational (YH) program, 2024 to March 2026."
               },
               "workExperience": [
                 {
@@ -191,8 +191,8 @@ export default function RootLayout({
                 {
                   "@type": "OrganizationRole",
                   "roleName": "Frontend Developer Intern",
-                  "startDate": "2025-06",
-                  "endDate": "2025-10",
+                  "startDate": "2025-05",
+                  "endDate": "2025-09",
                   "worksFor": { "@type": "Organization", "name": "Sportly", "url": "https://sportly.se/" }
                 },
                 {
