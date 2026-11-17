@@ -56,3 +56,6 @@ docs/cv/.build/
 
 # local Netlify build output (netlify build --offline)
 .netlify/
+
+# capture-clip.mjs working files
+/scratch/

@@ -63,6 +63,8 @@ const RawProjectSchema = z.object({
   github: z.string().optional(), // may be "#"
   figma: z.string().url().optional(),
   image: z.string().min(1),
+  // a short silent loop shown on the featured card instead of the still image (public/videos/…)
+  video: z.string().regex(/^\/videos\/[\w.-]+\.mp4$/, 'expected /videos/<name>.mp4').optional(),
   content: z.string().optional(),
 });
 

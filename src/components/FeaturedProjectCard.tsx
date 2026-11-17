@@ -5,27 +5,26 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowUpRight, Github } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ProjectVideo } from './ProjectVideo';
 
 const MAX_TAGS = 6;
 
 export function FeaturedProjectCard({ project }: { project: Project }) {
   return (
     <div className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-border/50 bg-card transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20 ">
-      <Link
-        prefetch={false}
-        href={`/projects/${project.slug}`}
-        tabIndex={-1}
-        aria-hidden
-        className="relative block aspect-[1200/630] overflow-hidden border-b border-border/50"
-      >
-        <Image
-          src={project.image}
-          alt=""
-          fill
-          sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-        />
-      </Link>
+      <div className="relative aspect-[1200/630] overflow-hidden border-b border-border/50">
+        <Link
+          prefetch={false}
+          href={`/projects/${project.slug}`}
+          tabIndex={-1}
+          aria-hidden
+          className="absolute inset-0 block transition-transform duration-700 group-hover:scale-105"
+        >
+          <Image src={project.image} alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-top" />
+        </Link>
+        {/* outside the link: the video has a pause button, and buttons can't sit inside links */}
+        {project.video && <ProjectVideo src={project.video} label={project.title} />}
+      </div>
       <div className="flex flex-grow flex-col p-6">
         <p className="font-mono text-xs text-primary">Featured project</p>
         <div className="mt-2 flex items-start justify-between gap-2">

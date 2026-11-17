@@ -23,6 +23,12 @@ describe('portfolio.md', async () => {
     }
   });
 
+  it('has a video file for every project that names one', () => {
+    for (const project of data.projects) {
+      if (project.video) expect(inPublic(project.video), `${project.title}: ${project.video}`).toBe(true);
+    }
+  });
+
   it('lists projects newest first', () => {
     const dates = data.projects.map((project) => project.date).filter((date): date is string => !!date);
     const newestTwo = dates.slice(0, 2);

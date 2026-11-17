@@ -126,6 +126,33 @@ test('the experience tabs work with the keyboard', async ({ page }) => {
   expect(controls).toMatch(/^[\w-]+$/); // a valid id: no spaces
 });
 
+test('project clips wait until they are near the screen, play, and can be paused', async ({ page }) => {
+  const requested: string[] = [];
+  page.on('request', (request) => request.url().includes('/videos/') && requested.push(request.url()));
+  await page.goto('/', { waitUntil: 'networkidle' });
+  expect(requested, 'no clip downloads before the projects are near the screen').toEqual([]);
+
+  const video = page.locator('#projects video').first();
+  await video.scrollIntoViewIfNeeded();
+  await expect.poll(() => video.evaluate((el: HTMLVideoElement) => !el.paused && el.currentTime > 0), { timeout: 10_000 }).toBe(true);
+
+  await page.getByRole('button', { name: /^Pause the .* preview$/ }).first().click();
+  await expect.poll(() => video.evaluate((el: HTMLVideoElement) => el.paused)).toBe(true);
+  await expect(page.getByRole('button', { name: /^Play the .* preview$/ }).first()).toBeVisible();
+});
+
+test.describe('with reduced motion', () => {
+  test.use({ reducedMotion: 'reduce' });
+
+  test('project clips do not start by themselves', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'networkidle' });
+    const video = page.locator('#projects video').first();
+    await video.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1500);
+    expect(await video.evaluate((el: HTMLVideoElement) => el.paused)).toBe(true);
+  });
+});
+
 test.describe('without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
 

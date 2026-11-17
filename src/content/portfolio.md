@@ -150,6 +150,7 @@ projects:
     tags: ["Next.js", "TypeScript", "three.js", "WebGL", "GLSL", "Tailwind CSS", "Zod", "Resend"]
     link: "https://niarr.eu"
     image: "/images/projects/niarr.jpg"
+    video: "/videos/niarr.mp4"
     content: |
       ### Overview
       NIARR (Nordic Institute for AI Risk and Resilience) is an independent, non-profit and nonpartisan institute founded in Stockholm in 2026. It brings together researchers, public institutions, policymakers and industry around the risks of increasingly capable AI. Its audience expects a calm, credible institution, not a tech-startup landing page, but the founder wanted the homepage to tell a story.
@@ -201,6 +202,7 @@ projects:
     link: "https://sl-compensation.netlify.app/"
     github: "https://github.com/odai-dh/sl-compensation"
     image: "/images/projects/vidare.jpg"
+    video: "/videos/vidare.mp4"
     content: |
       ### Overview
       When SL traffic in Stockholm breaks down, Swedish law (Lag 2015:953) lets travellers who risk arriving at least 20 minutes late take a taxi, and SL pays up to 1 480 kr. Almost nobody uses it: few people know, and those who do rarely want to pay hundreds of kronor upfront and wait weeks for the refund.
