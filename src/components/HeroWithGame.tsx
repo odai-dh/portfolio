@@ -27,17 +27,17 @@ export function HeroWithGame({ name, title, subtitle, email }: Props) {
 
   return (
     <>
-      {/* Wide screens: Skill·Boy sits in the hero's right half. Narrower: the Play button opens it as an overlay. */}
+      {/* From 1024 px Skill·Boy sits in the hero's right half. Narrower: the Play button opens it as an overlay. */}
       <SectionWrapper
         id="hero"
-        className="flex min-h-[60vh] flex-col justify-center py-12 md:py-0 xl:-mr-16 xl:grid xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center xl:gap-12 2xl:-mr-32"
+        className="flex min-h-[60vh] flex-col justify-center py-12 md:py-0 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-8 xl:-mr-16 xl:gap-12 2xl:-mr-32"
       >
         <FadeIn>
           <p className="mb-4 font-mono text-primary">Hi, my name is</p>
-          <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          <h1 className="font-headline text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-6xl xl:text-7xl">
             {name}.
           </h1>
-          <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-muted-foreground sm:text-5xl lg:text-6xl xl:text-[2.6rem] 2xl:text-6xl">
+          <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-muted-foreground sm:text-5xl lg:text-[2.2rem] xl:text-[2.6rem] 2xl:text-6xl">
             {title}.
           </h2>
           <p className={`mt-6 text-lg text-muted-foreground ${mode === '3d' ? 'max-w-sm' : 'max-w-2xl'}`}>
@@ -71,7 +71,7 @@ export function HeroWithGame({ name, title, subtitle, email }: Props) {
               size="lg"
               variant={gameOpen ? 'destructive' : 'outline'}
               onClick={() => setGameOpen(v => !v)}
-              className={mode === '3d' ? 'hidden' : 'xl:hidden'}
+              className={mode === '3d' ? 'hidden' : 'lg:hidden'}
             >
               {gameOpen ? (
                 <><X className="mr-2 h-4 w-4" /> Stop</>
@@ -84,8 +84,8 @@ export function HeroWithGame({ name, title, subtitle, email }: Props) {
 
         {/* Powered off while 3D mode runs its own snake over the hero */}
         {mode === '2d' && (
-          <FadeIn className="hidden xl:block">
-            <div className="w-[320px] rotate-[4deg] 2xl:w-[380px] drop-shadow-[0_30px_60px_rgba(0,153,255,0.18)] transition-transform duration-500 focus-within:rotate-0 hover:rotate-0">
+          <FadeIn className="hidden lg:block">
+            <div className="w-[270px] rotate-[4deg] xl:w-[320px] 2xl:w-[380px] drop-shadow-[0_30px_60px_rgba(0,153,255,0.18)] transition-transform duration-500 focus-within:rotate-0 hover:rotate-0">
               <SnakeGame />
             </div>
           </FadeIn>

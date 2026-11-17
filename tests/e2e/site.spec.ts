@@ -114,7 +114,13 @@ test('on tablets and laptops the content uses the space next to the sidebar', as
     await page.goto('/');
     const main = await page.locator('main.container').boundingBox();
     expect(main!.width, `content width at ${width} px`).toBeGreaterThanOrEqual(width - 256 - 1);
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow, `sideways scroll at ${width} px`).toBeLessThanOrEqual(0);
   }
+  // From 1024 px Skill·Boy sits in the hero; below that the Play button opens it
+  await expect(page.locator('#hero canvas')).toBeVisible();
+  await page.setViewportSize({ width: 1023, height: 900 });
+  await expect(page.getByRole('button', { name: /^Play$/ })).toBeVisible();
   // On wide screens the content stays close to the sidebar instead of drifting to the middle
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
