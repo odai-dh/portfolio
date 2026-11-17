@@ -1,7 +1,7 @@
 ---
 name: "Odai Dahi"
 title: "Full Stack Developer"
-subtitle: "I build production Next.js apps, from a dashboard platform at Aeoflo to Vidare, a 3D concept app for Stockholm. Stockholm-based and open to full-time roles."
+subtitle: "I build production Next.js apps, from a dashboard platform at Aeoflo to Vidare, a 3D concept app for SL travellers. Based in Stockholm and open to full-time roles."
 email: "odai@odaidh.dev"
 socials:
   github: "https://github.com/odai-dh"
