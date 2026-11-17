@@ -1,0 +1,48 @@
+name: Live check
+
+# Checks the real site, www.odaidh.dev, and fails (so GitHub emails you) when something is broken:
+# - every kind of page, accessibility and the no-JavaScript view (the Playwright tests)
+# - the chat's outside services, through /api/health: Groq still serves the chat's model, and the
+#   rate limiter's database answers
+# Runs every morning, after each successful Netlify production deploy, and on demand
+# (Actions → Live check → Run workflow).
+on:
+  schedule:
+    - cron: '17 6 * * *' # 07:17 in Stockholm in winter, 08:17 in summer
+  deployment_status:
+  workflow_dispatch:
+
+concurrency:
+  group: live-check
+  cancel-in-progress: true
+
+jobs:
+  live:
+    # after a deploy, only when a production deploy finished successfully
+    if: >-
+      github.event_name != 'deployment_status' ||
+      (github.event.deployment_status.state == 'success' && contains(github.event.deployment.environment, 'Production'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      E2E_BASE_URL: https://www.odaidh.dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: |
+          if ! npm ci > npm-ci.log 2>&1; then
+            grep -m 25 'npm error' npm-ci.log | sed 's/^/::error title=npm ci::/'
+            exit 1
+          fi
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: live-check-results
+          path: test-results/
+          retention-days: 7

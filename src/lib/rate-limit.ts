@@ -54,3 +54,14 @@ export async function incrementDailyCount(scope: string, id: string): Promise<nu
     return 0;
   }
 }
+
+/** For the health check: true if Redis answers, false if it is missing or unreachable. */
+export async function pingRedis(): Promise<boolean> {
+  const client = getRedis();
+  if (!client) return false;
+  try {
+    return (await client.ping()) === 'PONG';
+  } catch {
+    return false;
+  }
+}

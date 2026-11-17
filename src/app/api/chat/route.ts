@@ -2,6 +2,7 @@ import Groq from 'groq-sdk';
 import { getClientIp, incrementDailyCount } from '@/lib/rate-limit';
 import { getPortfolioData } from '@/lib/markdown';
 import { buildChatFacts } from '@/lib/facts';
+import { CHAT_MODEL } from '@/lib/chat-model';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -33,9 +34,6 @@ ${first} is creative, driven, and loves solving problems that mix logic and desi
   return systemPrompt;
 }
 
-// llama-3.3-70b-versatile was retired by Groq (2026-10). gpt-oss-120b/20b were tried and rejected: they
-// corrupt e-mail addresses mid-answer (stray Harmony tokens after the '@'), which a contact-friendly bot can't have.
-const CHAT_MODEL = 'qwen/qwen3.8-27b';
 const MAX_QUESTIONS = 5;
 const MAX_MESSAGE_LENGTH = 400;
 const RATE_LIMIT_PER_DAY = 8; // slightly above MAX_QUESTIONS to allow for retries
