@@ -64,6 +64,12 @@ GitHub Actions (`.github/workflows/ci.yml`) runs `npm run check` on every push a
 The browser tests can also check a deployed site:
 `E2E_BASE_URL=https://www.odaidh.dev npm run test:e2e`.
 
+**Monitoring:** `.github/workflows/live-check.yml` runs those browser tests against the live site
+every morning, after every successful production deploy and on demand. It also calls
+`/api/health`, which reports whether Groq still serves the chat's model (`src/lib/chat-model.ts`)
+and whether the rate limiter's Redis answers. A failed run is GitHub emailing Odai that the live
+site is broken; treat it as urgent.
+
 `next build` alone does **not** fail on type errors (`ignoreBuildErrors` is on), which is why
 typecheck is its own step. Run both.
 
@@ -165,8 +171,8 @@ scripts/                   build-cv.mjs (CV PDFs), capture-clip.mjs (project cli
   `app/cooking/layout.tsx`), no dark mode, `noindex`, not in the sitemap, reached only through
   the pot icon in the sidebar and the About text. Keep its styles in `cooking.css` and
   `components/cooking/`, and keep the main site's styles out of it.
-- **Don't add:** analytics or tracking, cookie banners, popups, stock photos, a second UI or icon
-  library next to shadcn/ui and lucide.
+- **Don't add:** tracking or analytics beyond Cloudflare Web Analytics, cookie banners, popups,
+  stock photos, a second UI or icon library next to shadcn/ui and lucide.
 
 ## Components
 
@@ -253,7 +259,11 @@ once published. Link it from the relevant project if there is one.
   message was sent when it wasn't.
 - Chat: keep the question and length limits, the rate limits and the accuracy rules in the
   system prompt.
-- No analytics, tracking or cookies without Odai's approval.
+- **Analytics:** Cloudflare Web Analytics only (approved by Odai, 2026-11-17). It is cookie-free,
+  so the site needs no cookie banner. Cloudflare injects its script when it is switched on in the
+  Cloudflare dashboard; the CSP allows `static.cloudflareinsights.com` (script) and
+  `cloudflareinsights.com` (connect) for it. Any other analytics, tracking or cookies need Odai's
+  approval first.
 
 ## SEO
 
