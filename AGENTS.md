@@ -84,11 +84,13 @@ src/lib/                   markdown.ts (portfolio.md loader + Zod schema), facts
                            chat facts, llms.txt and JSON-LD from it), notes.ts, cooking.ts,
                            skillboy.ts (shared Snake data), rate-limit.ts, utils.ts
 public/                    og-image.png, CV PDFs, email/ (signature images),
-                           images/projects/ (1200×630 cards)
+                           images/projects/ (1200×630 cards), videos/ (project clips)
 docs/                      cv/cv.<lang>.json (the CVs' text), email-signature.html
 tests/                     unit/ (Vitest) and e2e/ (Playwright)
 netlify/functions/         scheduled functions
-scripts/                   build-cv.mjs (CV PDFs), indexnow.mjs (IndexNow submission)
+assets/og/                 fonts and the pixel portrait for the generated share images
+scripts/                   build-cv.mjs (CV PDFs), capture-clip.mjs (project clips),
+                           indexnow.mjs (IndexNow submission)
 ```
 
 ## Content rules (most important)
@@ -173,6 +175,7 @@ scripts/                   build-cv.mjs (CV PDFs), indexnow.mjs (IndexNow submis
 | `SectionWrapper` | Every homepage section (`id` for the nav anchor, standard spacing) |
 | `FadeIn` | Scroll-in reveal, once per element |
 | `ProjectCard` / `FeaturedProjectCard` | Project cards: regular, and the two wide featured ones |
+| `ProjectVideo` | The optional looping clip on a featured card (lazy, pausable, reduced-motion aware) |
 | `ProjectContentCards` | A project page's `content`, split into cards by its `###` headings |
 | `WebsitePreview` | Live iframe preview on a project page (sandbox rules in its comments) |
 | `ProofStrip` | Stats and recommendation under the hero |
@@ -193,6 +196,17 @@ scripts/                   build-cv.mjs (CV PDFs), indexnow.mjs (IndexNow submis
 image into `public/images/projects/`. The chat assistant, `/llms.txt` and the search data pick it
 up by themselves. Decide whether it belongs on the CV (Content rule 3), run the checklist, and
 check `/projects/<slug>` and the homepage card.
+
+**Add a clip to a featured project:** the first two projects can show a short silent loop
+instead of their still image. Record it with `node scripts/capture-clip.mjs` (instructions at the
+top of the file; needs Google Chrome and ffmpeg), keep it about 8 seconds and under ~1 MB, and add
+`video: "/videos/<name>.mp4"` to the project. `ProjectVideo` handles the rest: it plays only
+on screen, never before it is near the screen, not at all with reduced motion, and has a pause
+button.
+
+**Share images:** every project and note gets its own link-preview image, generated at build time
+by `opengraph-image.tsx` next to its page (shared look in `src/lib/og-card.tsx`, fonts in
+`assets/og/`). Nothing to do when adding one; check `/<route>/opengraph-image` if in doubt.
 
 **Change a job, date, title or other fact:** edit `portfolio.md`, then the hand-kept copies in
 Content rule 3. `npm run test` tells you if the CV or signature now disagree.

@@ -14,6 +14,7 @@ Live at **[www.odaidh.dev](https://www.odaidh.dev)**
 - 📫 Contact form with validation (React Hook Form + Zod) and email delivery via Resend
 - 📄 Multilingual CV download (English & Swedish)
 - 🔍 Deep SEO: Person JSON-LD, dynamic sitemap & robots, Open Graph/Twitter cards, `llms.txt` for AI agents, IndexNow submission
+- 🎬 Featured projects play short silent clips of the live sites (lazy, pausable, off with reduced motion); every project and note has its own generated share image
 - 🧩 One source of facts: the chat assistant's knowledge, `/llms.txt` and the JSON-LD are all generated from `portfolio.md`
 - ✅ Tested: unit tests keep the content, CV and email signature consistent; Playwright checks every page type, accessibility (WCAG 2.1 AA) and the no-JavaScript view; CI runs it all on every push
 - ⚡ Statically generated project pages, scroll-progress bar, section-aware navigation
@@ -84,6 +85,7 @@ npm run dev
 | `npm run test:e2e` | Browser tests (Playwright + axe) against the production build |
 | `npm run check` | Types, lint, unit tests, build and browser tests in one go (what CI runs) |
 | `npm run cv` | Rebuild the CV PDFs from `docs/cv/*.json` |
+| `node scripts/capture-clip.mjs` | Record a short looping clip of a live project for its featured card |
 | `npm run indexnow` | Submit the live sitemap's URLs to IndexNow (run after deploy) |
 
 ## 🔧 Customization
