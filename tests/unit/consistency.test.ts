@@ -7,7 +7,7 @@ import { getClientIp } from '@/lib/rate-limit';
 const root = process.cwd();
 const read = (file: string) => fs.readFileSync(path.join(root, file), 'utf8');
 
-type CvEntry = { org: string; site?: string; date: string };
+type CvEntry = { org: string; site?: string; date: string; role: string };
 type Cv = { title: string; contact: string[]; experience: CvEntry[]; projects: { name: string }[] };
 
 // Swedish CV dates use Swedish month names; everything else about a date must match the site
@@ -48,6 +48,13 @@ describe('the CVs agree with the site', async () => {
 
   it('en: uses the same title as the site', () => {
     expect((JSON.parse(read('docs/cv/cv.en.json')) as Cv).title).toBe(data.title);
+  });
+
+  it('en: every job has the same role title as on the site', () => {
+    const siteTitles = new Map(data.experience.map((job) => [job.company, job.title]));
+    for (const entry of (JSON.parse(read('docs/cv/cv.en.json')) as Cv).experience) {
+      expect(entry.role, entry.org).toBe(siteTitles.get(entry.site ?? entry.org));
+    }
   });
 });
 
