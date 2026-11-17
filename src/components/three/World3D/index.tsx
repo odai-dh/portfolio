@@ -169,7 +169,7 @@ function BoardOverlay({
             <span className="text-foreground">score {result.score}</span>
             <span className="text-muted-foreground">·</span>
             {result.newBest ? (
-              <span className="rounded bg-primary px-1.5 py-0.5 text-xs font-bold text-primary-foreground">NEW BEST!</span>
+              <span className="rounded bg-primary-strong px-1.5 py-0.5 text-xs font-bold text-primary-foreground">NEW BEST!</span>
             ) : (
               <span className="text-muted-foreground">best {result.best}</span>
             )}

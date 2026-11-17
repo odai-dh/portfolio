@@ -38,7 +38,7 @@ function ContactCard() {
         <div className="flex flex-col gap-2 pt-1">
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-medium hover:opacity-90 active:opacity-80 transition-opacity"
+            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-primary-strong text-primary-foreground text-xs font-medium hover:opacity-90 active:opacity-80 transition-opacity"
           >
             <Mail className="w-3.5 h-3.5 flex-shrink-0" />
             Send an email
@@ -288,7 +288,7 @@ export function ChatWidget() {
                   )}
                   <div className={`max-w-[78%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap ${
                     m.role === 'user'
-                      ? 'bg-primary text-primary-foreground rounded-br-sm'
+                      ? 'bg-primary-strong text-primary-foreground rounded-br-sm'
                       : 'bg-muted text-foreground rounded-bl-sm'
                   }`}>
                     {m.content || <span className="opacity-40">▍</span>}
@@ -329,7 +329,7 @@ export function ChatWidget() {
             <button
               onClick={() => send(input)}
               disabled={!input.trim() || loading || limitReached}
-              className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground disabled:opacity-30 transition-all hover:scale-105 active:scale-95 flex-shrink-0"
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-primary-strong text-primary-foreground disabled:opacity-30 transition-all hover:scale-105 active:scale-95 flex-shrink-0"
             >
               <Send className="w-3.5 h-3.5" />
             </button>
@@ -340,7 +340,7 @@ export function ChatWidget() {
       {/* Robot toggle button */}
       <button
         onClick={() => setOpen(v => !v)}
-        className="relative w-14 h-14 rounded-full shadow-lg flex items-center justify-center bg-primary text-primary-foreground transition-all duration-200 hover:scale-110 active:scale-95"
+        className="relative w-14 h-14 rounded-full shadow-lg flex items-center justify-center bg-primary-strong text-primary-foreground transition-all duration-200 hover:scale-110 active:scale-95"
         aria-label="Chat with AI about Odai"
       >
         {open ? (

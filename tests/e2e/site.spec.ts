@@ -154,6 +154,21 @@ for (const theme of ['dark', 'light'] as const) {
       await page.goto(path, { waitUntil: 'load' });
       await scrollThrough(page);
       const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).exclude('iframe').analyze();
+      // Deliberate exception (Odai, 2026-11-17): white text on the bright blue fill
+      // (bg-primary-strong: buttons, the chat bubble, the dropdown highlight) is his chosen look,
+      // although it is 2.9:1. Every other contrast failure still fails the test.
+      // axe shortens the class attribute, so the exception is matched on the measured colours.
+      const isBrandFill = (node: (typeof results.violations)[number]['nodes'][number]) => {
+        const data = node.any[0]?.data as { bgColor?: string; fgColor?: string } | undefined;
+        return data?.bgColor === '#0099ff' && /^#f[0-9a-f]{5}$/i.test(data?.fgColor ?? '');
+      };
+      results.violations = results.violations
+        .map((violation) =>
+          violation.id === 'color-contrast'
+            ? { ...violation, nodes: violation.nodes.filter((node) => !isBrandFill(node)) }
+            : violation
+        )
+        .filter((violation) => violation.nodes.length > 0);
       const failures = results.violations.map((violation) => `${violation.id} ×${violation.nodes.length}: ${violation.nodes[0].html.slice(0, 100)}`);
       expect(failures, `${path} (${theme})`).toEqual([]);
     }
