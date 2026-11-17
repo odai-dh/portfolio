@@ -73,7 +73,7 @@ test('the chat\'s outside services work (Groq model, rate limiter)', async ({ pa
   test.skip(!process.env.E2E_BASE_URL, 'needs the deployed site and its keys');
   const response = await page.request.get('/api/health');
   const body = await response.json();
-  expect(body, 'a false check names the broken service').toEqual({ ok: true, checks: { chatModel: true, rateLimit: true } });
+  expect(body, 'a false check names the broken service').toMatchObject({ ok: true, checks: { chatModel: true, rateLimit: true } });
 });
 
 test('llms.txt is generated from the content', async ({ page }) => {

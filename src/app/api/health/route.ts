@@ -2,7 +2,7 @@ import Groq from 'groq-sdk';
 import { CHAT_MODEL } from '@/lib/chat-model';
 import { pingRedis } from '@/lib/rate-limit';
 
-// GET /api/health: are the chat's outside services working? Used by the daily live check
+// GET /api/health: are the chat's outside services working, and which commit is deployed? Used by the daily live check
 // (.github/workflows/live-check.yml). It answers only with which checks passed, never with
 // details. Results are reused for ten minutes, so calling it often costs nothing.
 // - chatModel: Groq still lists the chat's model (listing models costs no tokens). The list is
@@ -31,7 +31,7 @@ export async function GET() {
   }
   const ok = Object.values(cached.checks).every(Boolean);
   return Response.json(
-    { ok, checks: cached.checks },
+    { ok, checks: cached.checks, commit: process.env.DEPLOYED_COMMIT },
     { status: ok ? 200 : 503, headers: { 'Cache-Control': 'no-store' } }
   );
 }

@@ -4,12 +4,13 @@ name: Live check
 # - every kind of page, accessibility and the no-JavaScript view (the Playwright tests)
 # - the chat's outside services, through /api/health: Groq still serves the chat's model, and the
 #   rate limiter's database answers
-# Runs every morning, after each successful Netlify production deploy, and on demand
+# Runs every morning, after every push to main once Netlify has deployed it, and on demand
 # (Actions → Live check → Run workflow).
 on:
   schedule:
     - cron: '17 6 * * *' # 07:17 in Stockholm in winter, 08:17 in summer
-  deployment_status:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -18,10 +19,6 @@ concurrency:
 
 jobs:
   live:
-    # after a deploy, only when a production deploy finished successfully
-    if: >-
-      github.event_name != 'deployment_status' ||
-      (github.event.deployment_status.state == 'success' && contains(github.event.deployment.environment, 'Production'))
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -39,6 +36,20 @@ jobs:
             exit 1
           fi
       - run: npx playwright install --with-deps chromium
+      - name: Wait until Netlify serves this commit
+        if: github.event_name == 'push'
+        # /api/health reports the deployed commit. A failed Netlify build never gets there, and
+        # that is a failure worth an email too.
+        run: |
+          want="${GITHUB_SHA::7}"
+          for i in $(seq 1 60); do
+            got=$(curl -fs "$E2E_BASE_URL/api/health" | node -pe "JSON.parse(require('fs').readFileSync(0)).commit" 2>/dev/null || true)
+            if [ "$got" = "$want" ]; then echo "deployed: $got"; exit 0; fi
+            echo "live is ${got:-unreachable}, waiting for $want"
+            sleep 15
+          done
+          echo "::error title=Deploy::$want was not live after 15 minutes. Check the Netlify deploy log."
+          exit 1
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: failure()

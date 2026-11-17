@@ -34,6 +34,11 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // The commit this build came from (Netlify sets COMMIT_REF), shown by /api/health so the live
+  // check can wait until a push is actually deployed before testing it
+  env: {
+    DEPLOYED_COMMIT: (process.env.COMMIT_REF ?? 'local').slice(0, 7),
+  },
   // Bundle next-mdx-remote into the server code. Next keeps it external by default and loads it
   // through a hashed alias in .next/node_modules, which the Netlify runtime doesn't ship: every
   // /notes/<slug> and /cooking/<slug> page then answered 500 in production while working locally.
