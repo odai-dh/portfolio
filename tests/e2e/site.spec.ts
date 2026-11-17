@@ -105,6 +105,23 @@ test('pages have no errors and never scroll sideways', async ({ page, baseURL })
   expect(problems).toEqual([]);
 });
 
+test('on tablets and laptops the content uses the space next to the sidebar', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'phones have no fixed sidebar');
+  // A second, hidden sidebar once reserved an empty 256 px column on the right at every width,
+  // squeezing tablets to a 256 px column
+  for (const width of [768, 1024]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    const main = await page.locator('main.container').boundingBox();
+    expect(main!.width, `content width at ${width} px`).toBeGreaterThanOrEqual(width - 256 - 1);
+  }
+  // On wide screens the content stays close to the sidebar instead of drifting to the middle
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  const main = await page.locator('main.container').boundingBox();
+  expect(main!.x, 'gap between the sidebar and the content at 1440 px').toBeLessThanOrEqual(256 + 32);
+});
+
 test('the server HTML is kept, not rebuilt, when the page loads', async ({ page }) => {
   await page.addInitScript(() => {
     document.addEventListener('DOMContentLoaded', () => {

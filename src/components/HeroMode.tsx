@@ -48,8 +48,10 @@ export function HeroMode({ children }: { children: React.ReactNode }) {
   const [fading, setFading] = useState(false);
   const [eligible, setEligible] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
-  // the 3D canvas takes the space right of the hero text when there's room for it
-  const [area, setArea] = useState<{ left: number; width: number } | null>(null);
+  // The 3D canvas takes the space right of the hero text when there's room for it ('side'), and
+  // otherwise the full width of the window ('full'). Both are measured against the window, not
+  // the content column, which is not centred in the window (the sidebar sits on its left).
+  const [area, setArea] = useState<{ left: number; width: number; framing: Framing } | null>(null);
 
   useLayoutEffect(() => {
     if (mode !== '3d') return;
@@ -57,8 +59,14 @@ export function HeroMode({ children }: { children: React.ReactNode }) {
       const wrap = wrapRef.current;
       if (!wrap) return;
       const textRight = heroTextRight(wrap);
-      const width = document.documentElement.clientWidth - textRight - GAP;
-      setArea(width >= MIN_SIDE_WIDTH ? { left: textRight + GAP - wrap.getBoundingClientRect().left, width } : null);
+      const viewport = document.documentElement.clientWidth;
+      const wrapLeft = wrap.getBoundingClientRect().left;
+      const width = viewport - textRight - GAP;
+      setArea(
+        width >= MIN_SIDE_WIDTH
+          ? { left: textRight + GAP - wrapLeft, width, framing: 'side' }
+          : { left: -wrapLeft, width: viewport, framing: 'full' }
+      );
     };
     measure();
     const late = window.setTimeout(measure, 400); // after fonts and the fade settle
@@ -132,13 +140,10 @@ export function HeroMode({ children }: { children: React.ReactNode }) {
         {/* one wrapper whose box changes, so a resize never restarts the game */}
         {mode === '3d' && (
           <div
-            className={cn(
-              'pointer-events-none absolute inset-y-0 z-40',
-              !area && 'left-1/2 w-screen -translate-x-1/2'
-            )}
+            className={cn('pointer-events-none absolute inset-y-0 z-40', !area && 'left-0 w-full')}
             style={area ? { left: area.left, width: area.width } : undefined}
           >
-            <World3D onExit={toggle} framing={area ? 'side' : 'full'} />
+            <World3D onExit={toggle} framing={area?.framing ?? 'full'} />
           </div>
         )}
       </div>
