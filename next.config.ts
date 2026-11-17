@@ -13,12 +13,14 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       // React's development build needs eval() for its debugging tools; production never does
-      `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"}`,
+      // static.cloudflareinsights.com: Cloudflare Web Analytics (cookie-free; approved by Odai 2026-11-17).
+      // Cloudflare injects its beacon itself when Web Analytics is switched on for the site.
+      `script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com${process.env.NODE_ENV === 'production' ? '' : " 'unsafe-eval'"}`,
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https:",
       "frame-src https:",
-      "connect-src 'self'",
+      "connect-src 'self' https://cloudflareinsights.com",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",
