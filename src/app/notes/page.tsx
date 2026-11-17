@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   title: 'Notes | Odai Dahi',
   description: 'Short write-ups of problems I ran into while building, and how I solved them.',
   alternates: { canonical: 'https://www.odaidh.dev/notes' },
+  openGraph: {
+    type: 'website',
+    url: 'https://www.odaidh.dev/notes',
+    title: 'Notes | Odai Dahi',
+    description: 'Short write-ups of problems I ran into while building, and how I solved them.',
+  },
+  twitter: { card: 'summary_large_image', title: 'Notes | Odai Dahi', creator: '@odaidh' },
 };
 
 export default function NotesPage() {

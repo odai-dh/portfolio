@@ -202,14 +202,7 @@ export async function generateMetadata({ params }: ProjectPageParams) {
       title: `${project.title} | Odai Dahi Portfolio`,
       description: project.description || `${project.title} - A project by Odai Dahi`,
       siteName: 'Odai Dahi Portfolio',
-      images: project.image ? [
-        {
-          url: project.image,
-          width: 1200,
-          height: 630,
-          alt: project.title,
-        }
-      ] : [],
+      // the image comes from opengraph-image.tsx next to this page
       publishedTime: project.date,
       authors: ['Odai Dahi'],
       tags: project.tags,
@@ -218,7 +211,6 @@ export async function generateMetadata({ params }: ProjectPageParams) {
       card: 'summary_large_image',
       title: `${project.title} | Odai Dahi`,
       description: project.description || `${project.title} - A project by Odai Dahi`,
-      images: project.image ? [project.image] : [],
       creator: '@odaidh',
     },
   };
