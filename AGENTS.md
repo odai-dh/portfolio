@@ -138,9 +138,11 @@ scripts/                   build-cv.mjs (CV PDFs), indexnow.mjs (IndexNow submis
   `text-muted-foreground`, `text-primary`, `border-border`…), never raw hex in components. To
   change a colour, change the token in `globals.css` for both `:root` and `.dark`. One accent,
   the electric blue `primary`: `#0099ff` in dark mode, and a darker shade of the same hue
-  (`#006eb8`) in light mode, because the bright blue is too faint on white. Text on top of the
-  blue uses `text-primary-foreground` (dark navy in dark mode, white in light mode), never a
-  hard-coded white. Exceptions to the token rule: the game canvases (`SnakeGame`,
+  (`#006eb8`) in light mode, because the bright blue is too faint on white. Anything filled
+  with blue behind text (buttons, the chat bubble, badges) uses `bg-primary-strong` with
+  `text-primary-foreground`: white on the bright blue `#0099ff`. That pairing is 2.9:1, below
+  WCAG AA; Odai chose it over a deeper blue (2026-11-17), and it is the one contrast exception
+  the accessibility test allows. Don't use it for anything else. Exceptions to the token rule: the game canvases (`SnakeGame`,
   `three/World3D`), the Game Boy screen on the 404 page and `/cooking`.
 - **Type:** Inter for body (`font-body`), Calistoga for headings (`font-headline`), monospace for
   labels and section numbers (`font-mono`). Fonts load through `next/font` only, never from a
