@@ -207,6 +207,8 @@ button.
 **Share images:** every project and note gets its own link-preview image, generated at build time
 by `opengraph-image.tsx` next to its page (shared look in `src/lib/og-card.tsx`, fonts in
 `assets/og/`). Nothing to do when adding one; check `/<route>/opengraph-image` if in doubt.
+Cooking pages share as the dish photo instead: `scripts/cooking-og.mjs` crops each one to
+1200×630 into `public/og/cooking/` (gitignored) before every `npm run dev` and `npm run build`.
 
 **Change a job, date, title or other fact:** edit `portfolio.md`, then the hand-kept copies in
 Content rule 3. `npm run test` tells you if the CV or signature now disagree.
