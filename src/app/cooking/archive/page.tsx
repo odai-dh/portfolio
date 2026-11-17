@@ -7,6 +7,12 @@ import { getAllCookingEntries, groupByMonth, toCookingTicket } from '@/lib/cooki
 
 export const metadata: Metadata = {
   title: 'Archive — Odai cooks',
+  openGraph: {
+    title: 'Archive — Odai cooks',
+    description: 'Every dish so far, on the pass.',
+    images: [{ url: '/og/cooking/index.jpg', width: 1200, height: 630, alt: 'Odai cooks' }],
+  },
+  twitter: { title: 'Archive — Odai cooks', description: 'Every dish so far, on the pass.', images: ['/og/cooking/index.jpg'] },
 };
 
 export default function CookingArchivePage() {

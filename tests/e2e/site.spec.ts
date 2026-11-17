@@ -53,6 +53,21 @@ test('every kind of page loads', async ({ page }) => {
   expect((await page.request.get('/projects/this-project-does-not-exist')).status()).toBe(404);
 });
 
+test('cooking links preview as the dish, not as the developer profile', async ({ page }) => {
+  await page.goto('/cooking/archive');
+  const dish = await page.locator('a[href^="/cooking/"]:not([href="/cooking/archive"])').first().getAttribute('href');
+  for (const path of ['/cooking', dish!]) {
+    await page.goto(path);
+    const title = await page.locator('meta[property="og:title"]').getAttribute('content');
+    expect(title, path).toContain('Odai cooks');
+    const image = await page.locator('meta[property="og:image"]').getAttribute('content');
+    const response = await page.request.get(new URL(image!).pathname);
+    expect(response.status(), image!).toBe(200);
+    expect(response.headers()['content-type']).toBe('image/jpeg');
+    expect((await response.body()).length, 'small enough for every app to show').toBeLessThan(300_000);
+  }
+});
+
 test('llms.txt is generated from the content', async ({ page }) => {
   const body = await (await page.request.get('/llms.txt')).text();
   expect(body).toContain('## Experience');

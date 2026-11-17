@@ -31,6 +31,22 @@ export async function generateMetadata({
   return {
     title: `${entry.title} — Odai cooks`,
     description: entry.caption,
+    openGraph: {
+      type: 'article',
+      siteName: 'Odai cooks',
+      url: `https://www.odaidh.dev/cooking/${entry.slug}`,
+      title: `${entry.title} — Odai cooks`,
+      description: entry.caption,
+      publishedTime: entry.date,
+      // the dish photo cropped to 1200×630, made by scripts/cooking-og.mjs before every build
+      images: [{ url: `/og/cooking/${entry.slug}.jpg`, width: 1200, height: 630, alt: entry.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${entry.title} — Odai cooks`,
+      description: entry.caption,
+      images: [`/og/cooking/${entry.slug}.jpg`],
+    },
   };
 }
 

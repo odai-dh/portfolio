@@ -21,6 +21,21 @@ export const metadata: Metadata = {
   title: 'Odai cooks',
   description: 'Powered by carbs and bad decisions. Stockholm, mostly weekends.',
   robots: { index: false, follow: false },
+  // Without these, cooking links inherited the homepage's developer preview
+  openGraph: {
+    type: 'website',
+    siteName: 'Odai cooks',
+    title: 'Odai cooks',
+    description: 'Powered by carbs and bad decisions. Stockholm, mostly weekends.',
+    // made by scripts/cooking-og.mjs before every build
+    images: [{ url: '/og/cooking/index.jpg', width: 1200, height: 630, alt: 'Odai cooks' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Odai cooks',
+    description: 'Powered by carbs and bad decisions. Stockholm, mostly weekends.',
+    images: ['/og/cooking/index.jpg'],
+  },
 };
 
 export default function CookingLayout({ children }: { children: React.ReactNode }) {

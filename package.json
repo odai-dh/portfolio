@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/cooking-og.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/cooking-og.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -56,6 +58,7 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "resend": "^6.0.1",
+    "sharp": "^0.35.5",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.170.0",

@@ -59,3 +59,6 @@ docs/cv/.build/
 
 # capture-clip.mjs working files
 /scratch/
+
+# cooking share images (scripts/cooking-og.mjs, made before every build)
+/public/og/
