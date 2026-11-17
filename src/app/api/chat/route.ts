@@ -3,6 +3,7 @@ import { getClientIp, incrementDailyCount } from '@/lib/rate-limit';
 import { getPortfolioData } from '@/lib/markdown';
 import { buildChatFacts } from '@/lib/facts';
 import { CHAT_MODEL } from '@/lib/chat-model';
+import { validateChatRequest } from '@/lib/chat-request';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -34,43 +35,20 @@ ${first} is creative, driven, and loves solving problems that mix logic and desi
   return systemPrompt;
 }
 
-const MAX_QUESTIONS = 5;
-const MAX_MESSAGE_LENGTH = 400;
 const RATE_LIMIT_PER_DAY = 8; // slightly above MAX_QUESTIONS to allow for retries
 const GLOBAL_LIMIT_PER_DAY = 300; // all visitors combined — circuit breaker for the Groq bill
 
 export async function POST(req: Request) {
-  let messages: { role: 'user' | 'assistant'; content: string }[];
+  let body: unknown;
   try {
-    ({ messages } = await req.json());
+    body = await req.json();
   } catch {
     return new Response('Bad request', { status: 400 });
   }
 
-  // Validate structure
-  if (!Array.isArray(messages) || messages.length === 0) {
-    return new Response('Bad request', { status: 400 });
-  }
-
-  // Server-side question limit — count how many user turns are in the history
-  const userTurns = messages.filter(m => m.role === 'user').length;
-  if (userTurns > MAX_QUESTIONS) {
-    return new Response('Question limit exceeded.', { status: 429 });
-  }
-
-  // Reject oversized messages
-  const oversized = messages.some(
-    m => typeof m.content !== 'string' || m.content.length > MAX_MESSAGE_LENGTH
-  );
-  if (oversized) {
-    return new Response('Message too long.', { status: 400 });
-  }
-
-  // Only allow known roles
-  const invalidRole = messages.some(m => m.role !== 'user' && m.role !== 'assistant');
-  if (invalidRole) {
-    return new Response('Bad request', { status: 400 });
-  }
+  // Validation first (src/lib/chat-request.ts), so invalid requests never consume a quota
+  const request = validateChatRequest(body);
+  if (!request.ok) return new Response(request.error, { status: request.status });
 
   // Quotas come last so invalid requests never consume them
   const ip = getClientIp(req.headers);
@@ -84,7 +62,7 @@ export async function POST(req: Request) {
     return new Response('Daily limit reached.', { status: 429 });
   }
 
-  const trimmed = messages.slice(-MAX_QUESTIONS * 2);
+  const trimmed = request.messages;
 
   let stream;
   try {
